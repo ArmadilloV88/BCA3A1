@@ -16,25 +16,43 @@ Golden rule of researching :
 
 1. Know your paradigms
 2. Identify your paradigm or the paradigm used
-
+__________________________________________________________________________________________________________________________________________
 Why research :
 -Identify problems
 -find answers and/or solutions
 -make suggestions to prevent undesired consequences
 -challenge stereotypes
 -generate awarness
-
+__________________________________________________________________________________________________________________________________________
 email is : evanderwalt@iie.ac.za
-
+__________________________________________________________________________________________________________________________________________
 first 4 steps of research :
-
+__________________________________________________________________________________________________________________________________________
 1. Identify and analyse the problem
 2. Reading about topics (books and articles) and writing a literature review
 3. Formulating your RQ and/ or Ha
 4. Choose a research approach/design
-
+__________________________________________________________________________________________________________________________________________
 Quantitative = presenting numerical data (number of times)
 Qualitative = presenting interpretative data (why or how)
+__________________________________________________________________________________________________________________________________________
+(Page 42)
+1. Positivist/positivism (1 statement to 1 resolution relation) - tells us what is percieved as correct (mostly reliant on statistics, predictions and correlations). Has 3 components (Observation, Prediction, Conclusion)
 
-positivism - tells us what is percieved as correct
-interperetivism - tells us why or perspectives
+example : If I drink 500ml of water (observation state) then my thirst will be quenched (prediction) due to my body needs (conclusion).
+
+Interperetivist (one statement to many posabilities) - tells us why or perspectives of sources of a specific topic.
+
+example : If I drive 60KM I might have go into an accident.
+
+Critical Realism : combination of both positivism and interpretivism to bring a real change that is direct.
+__________________________________________________________________________________________________________________________________________
+paradigm shift - is the chance of mind of one aspect from one to another (example religious to athiest or smoking to non smoking)
+
+Research traditions :
+1.Epistemological - knowledge
+2.Ontological - reality
+3.Metatheoretical - theory
+4.Methodological - research
+5.Anxiological - value
+
