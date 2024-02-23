@@ -1,0 +1,11 @@
+Enterprise - a legal entity that is able to conduct business on its own standings. A for profit business started and run by an entrepreneur.
+
+Enterprise application - is a computer application that aims to assist big companies with several needs such as data analysis, sales and marketing management, customer service, and many others. Typically, these tools are designed to serve a large number of users with high scalability and integration capabilities. examples are : contact centre software, business intelligence, enterprise communication, inventory management, marketing tools, online payments, and enterprise resource planning.
+
+Entrepreneurs start a business based on thier reasons however the reasons usually come down to :
+
+1.Problem Solving
+2.Exploit ideas
+3.Filling a gap
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+

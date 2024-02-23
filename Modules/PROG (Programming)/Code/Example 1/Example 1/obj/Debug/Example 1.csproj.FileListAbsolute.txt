@@ -1,0 +1,7 @@
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\bin\Debug\Example 1.exe.config
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\bin\Debug\Example 1.exe
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\bin\Debug\Example 1.pdb
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\obj\Debug\Example 1.csproj.AssemblyReference.cache
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\obj\Debug\Example 1.csproj.CoreCompileInputs.cache
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\obj\Debug\Example 1.exe
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Example 1\Example 1\obj\Debug\Example 1.pdb
