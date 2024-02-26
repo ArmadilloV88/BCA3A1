@@ -16,18 +16,35 @@ namespace Example_1
             {
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("        /  /\\     |--\\    /---    \\");
-                Console.WriteLine("       /  /  \\    |----| /     -   \\");
-                Console.WriteLine(" \\    /  /----\\   |--/   |          \\    /");
-                Console.WriteLine("  \\  /  /      \\  |\\     \\    -     \\  /");
-                Console.WriteLine("   \\/  /        \\ | \\     \\---       \\/");
+                Console.WriteLine("         A     RRRR    CCCC");
+                Console.WriteLine("        A A    R   R  C     C");
+                Console.WriteLine("       A   A   RRRR  C");
+                Console.WriteLine("      AAAAAAA  R  R   C     C");
+                Console.WriteLine("     A       A R   R   CCCC");
                 Console.WriteLine("---------------------------------------------");
                 Console.WriteLine("                 Arc Ready                   ");
                 Console.WriteLine("---------------------------------------------");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine("Status : Ready to execute");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.WriteLine("Please press enter to continue");
+                Console.ReadLine();
+                Menu();
             }
             else
             {
-                 bool made = CreateDirectory("C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Example 1\\Example 1\\Data");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("                   A    A");
+                Console.WriteLine("                    R  R");
+                Console.WriteLine("                     CC");
+                Console.WriteLine("                    R  R");
+                Console.WriteLine("                   A    A");
+                Console.WriteLine("---------------------------------------------");
+                Console.WriteLine("                 Arc not Ready                   ");
+                Console.WriteLine("---------------------------------------------");
+                bool made = CreateDirectory("C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Example 1\\Example 1\\Data");
                  if (made)
                 {
 
@@ -40,7 +57,23 @@ namespace Example_1
             }
             Console.ReadKey();
         }
-       static bool Initialization()
+        static void Menu()
+        {
+            Console.Clear();
+            Console.WriteLine("|-------------------------------------------------------|");
+            Console.WriteLine("|    A     RRRRR    CCCC                                |");
+            Console.WriteLine("|   A A    R    R  C    C                               |");
+            Console.WriteLine("|  A   A   RRRRR  C                                     |");
+            Console.WriteLine("| AAAAAAA  R  R    C    C                               |");
+            Console.WriteLine("|A       A R   R    CCCC                                |");
+            Console.WriteLine("|                        M       M EEEEE N    N U    U  |");
+            Console.WriteLine("|                        MM     MM E     N N  N U    U  |");
+            Console.WriteLine("|                        M M   M M EEEEE N  N N U    u  |");
+            Console.WriteLine("|                        M  M M  M E     N   NN U    U  |");
+            Console.WriteLine("|                        M   M   M EEEEE N    N  UUUU   |");
+            Console.WriteLine("|-------------------------------------------------------|");
+        }
+        static bool Initialization()
         {
             bool valid = false;
             string currentDirectoryPath = "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Example 1\\Example 1\\Data";
