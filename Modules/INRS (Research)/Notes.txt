@@ -47,7 +47,7 @@ example : If I drive 60KM I might have go into an accident.
 
 Critical Realism : combination of both positivism and interpretivism to bring a real change that is direct.
 __________________________________________________________________________________________________________________________________________
-paradigm shift - is the chance of mind of one aspect from one to another (example religious to athiest or smoking to non smoking)
+paradigm shift - is the chance of mind of one aspect to another (example religious to athiest or smoking to non smoking)
 
 Research traditions :
 1.Epistemological - knowledge
@@ -56,3 +56,44 @@ Research traditions :
 4.Methodological - research methods
 5.Anxiological - value
 __________________________________________________________________________________________________________________________________________
+
+Theories for positivist studies = aims to find theories that make predicitions or that speak to the relationship between A and B
+
+Theories for Interpretivist studies = aim to find theories that explain why or how A effects B
+
+provide a full discussion of your theory (atleast a Page)
+__________________________________________________________________________________________________________________________________________
+What Makes a good theory :
+
+1 - Theoretical Scope - how broadly it can explain a phenomenon where you start with an assumption that can be supported by an applicable theory, ensure to provide context. 
+
+2 - Appropriateness - Does your theory allign with your problem statement. Internal consistency which is to aim for the relationship between variables. External consistency whish is where the elements are applied appropriately.
+
+3 - Heurisitc value
+4 - Validity
+5 - Parsimony
+6 - Openness
+__________________________________________________________________________________________________________________________________________
+structure 
+
+1 - problem statement - establishes the problem statement; states what is the issue immediately
+2 - Research question 
+2 - Theory statement - establishes the theoretical studies
+__________________________________________________________________________________________________________________________________________
+types of theory
+
+1- Deductive (mostly positivism) starts will reading books/articles/sources then you make a proof
+2- Inductive (Mostly Interpretivism) starts with the proof then leading to finding supporting books/articles/sources
+__________________________________________________________________________________________________________________________________________
+Problem statement breakdown :
+
+Paragraph 1 - looking at your statement compared to available resources (how relevant/big is the issue). What is the ideal situation versus what is the real situation. (international issue)
+
+Goal 1 - What is the international rellevance of the issue.
+Goal 2 - What is the result you wish to find out
+
+Paragraph 2 - How real is the problem in South Africa specifically (local issue) 
+
+Paragraph 3 - What is the aim of the research study to acomplish (25 - 30 words)
+
+
