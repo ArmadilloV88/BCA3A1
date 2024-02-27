@@ -1,0 +1,10 @@
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\bin\Debug\AVA local database.dacpac
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\bin\Debug\AVA_local_database.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\bin\Debug\AVA_local_database.pdb
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\AVA local database.sqlproj.AssemblyReference.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\Model.xml
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\refactor.xml
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\postdeploy.sql
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\predeploy.sql
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\AVA_local_database.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Hackathon\CODE\DATABASE\AVA local database\obj\Debug\AVA_local_database.pdb

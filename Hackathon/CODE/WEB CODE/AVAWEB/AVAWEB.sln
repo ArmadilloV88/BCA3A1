@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AVAWEB", "AVAWEB.pyproj", "{90F713E8-6B94-4AD4-B8DA-2F0D675459DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90F713E8-6B94-4AD4-B8DA-2F0D675459DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F713E8-6B94-4AD4-B8DA-2F0D675459DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F713E8-6B94-4AD4-B8DA-2F0D675459DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F713E8-6B94-4AD4-B8DA-2F0D675459DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7A8552A6-6395-4FBC-B14A-BA5C8FB2DFB7}
+	EndGlobalSection
+EndGlobal
