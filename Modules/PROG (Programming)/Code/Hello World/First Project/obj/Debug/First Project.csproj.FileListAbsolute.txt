@@ -1,7 +1,0 @@
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\bin\Debug\First Project.exe.config
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\bin\Debug\First Project.exe
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\bin\Debug\First Project.pdb
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\obj\Debug\First Project.csproj.AssemblyReference.cache
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\obj\Debug\First Project.csproj.CoreCompileInputs.cache
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\obj\Debug\First Project.exe
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Hello World\First Project\obj\Debug\First Project.pdb

@@ -1,7 +1,0 @@
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\bin\Debug\Generator.exe.config
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\bin\Debug\Generator.exe
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\bin\Debug\Generator.pdb
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\obj\Debug\Generator.csproj.AssemblyReference.cache
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\obj\Debug\Generator.csproj.CoreCompileInputs.cache
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\obj\Debug\Generator.exe
-C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\Code\Generator\Generator\obj\Debug\Generator.pdb
