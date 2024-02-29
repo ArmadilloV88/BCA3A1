@@ -18,6 +18,7 @@ os_info = platform.uname()
 GREEN = '\033[32m'
 RESET = '\033[0m'
 RED = '\033[91m'
+YELLOW = '\033[33m'
 
 # System Hardware Information
 cpu_info = platform.processor()
@@ -104,15 +105,21 @@ def loadscreen():
     time.sleep(2)
 
 def disclaimer():
-    print("----------")
-    print("DISCLAIMER")
-    print("----------")
+    print(" ----------")
+    print("|DISCLAIMER|")
+    print(" ----------")
     print("Hello user and welcome to my back end console access point.\nI have gathered the details and processes of your machine\nfor legal purposes and for ethnicity, this doesnt mean \nI have control of your device it is just used for monitoring ")
+    
+def DeveloperMSG():
+    print(" -----------------")
+    print("|Developer Message|")
+    print(" -----------------")
+    print("Hello Developer, AVA systems are active but limited")
 
 def Menu():
-    print("|----|")
+    print(" ----")
     print("|Menu|")
-    print("|----|")
+    print(" ----")
     print("1. Login to AVA")
     print("2. Register to AVA")
     print("3. View AVA information")
@@ -147,12 +154,27 @@ print(RESET + "Testing database connection, please wait:")
 time.sleep(5)
 test_connection(connection_string)
 # Depending on the database status, wait for a few seconds
-if not ActiveDB:
+macAddress = get_mac_address()
+bypass = False
+if not ActiveDB and macAddress == "a3:8c:33:cf:3e:fb":
+    time.sleep(5)
+    print("\033[H\033[J")  # ANSI escape code to clear the screen
+    print(YELLOW + "AVA Developer Bypass granted")
+    bypass = True
+    time.sleep(2)
+    loadscreen()
+    time.sleep(2)
+    DeveloperMSG()
+    time.sleep(2)
+    Menu()
+elif not ActiveDB:
+    # Add code for the second condition
     time.sleep(5)
     print("\033[H\033[J")  # ANSI escape code to clear the screen
     print(RED + "AVA not initialized")
     time.sleep(2)
     loadscreen()
+    pass
 else:
     time.sleep(3)
     print("\033[H\033[J")  # ANSI escape code to clear the screen
