@@ -85,10 +85,12 @@ def test_connection(connection_string):
         ActiveDB = True
         print(GREEN + "Connection successful. Database is active and reachable.")
         connection.close()
+        time.sleep(2)
     except Exception as e:
         ActiveDB = False
         print(RED + "Connection failed. Please check your connection string and database configuration.")
         print("Error:", e)
+        time.sleep(2)
         
 def loadscreen():
     print(RESET + " ------------------------------------------------------")
@@ -143,9 +145,9 @@ def Decision(macAddress, bypass):
          user_input = int(input("Please select a number: "))
          if user_input >= 1 and user_input <= 4:
             if user_input == 1:
-               LoginToAVA()
+               LoginToAVA(macAddress, bypass)
             elif user_input == 2:
-               RegisterToAVA()
+               RegisterToAVA(macAddress, bypass)
             elif user_input == 3:
                AVAInfo()
             elif user_input == 4:
@@ -189,8 +191,8 @@ print("\033[H\033[J")  # ANSI escape code to clear the screen
 # Depending on the database status, wait for a few seconds
 macAddress = get_mac_address()
 bypass = False
-publicIP = get_public_ip()  # You need to call the function get_public_ip() to get the actual public IP
-    
+publicIP = get_public_ip()
+
 # Check if publicIP is None (NULL is not a valid Python keyword)
 if publicIP is None:
     print(RED + "AVA Developer Bypass granted")
@@ -207,7 +209,6 @@ if publicIP is None:
         time.sleep(2)
         Menu()
         Decision(macAddress, bypass)
-    
 elif not ActiveDB and macAddress == "a3:8c:33:cf:3e:fb":
     time.sleep(5)
     print("\033[H\033[J")  
@@ -219,8 +220,7 @@ elif not ActiveDB and macAddress == "a3:8c:33:cf:3e:fb":
     DeveloperMSG()  
     time.sleep(2)
     Menu()
-    Decision()
-    
+    Decision(macAddress, bypass)
 elif not ActiveDB:
     # Add code for the second condition
     time.sleep(5)
@@ -229,7 +229,6 @@ elif not ActiveDB:
     time.sleep(2)
     loadscreen()
     pass  # Not sure what you want to do here
-    
 else:
     time.sleep(3)
     print("\033[H\033[J")  # ANSI escape code to clear the screen
@@ -241,4 +240,4 @@ else:
     disclaimer()
     time.sleep(2)
     Menu()
-    Decision()
+    Decision(macAddress, bypass)
