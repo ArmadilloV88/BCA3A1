@@ -126,19 +126,75 @@ def Menu():
     print("2. Register to AVA")
     print("3. View AVA information")
     print("4. Exit AVA")
-    print("Please select an option")
     
 def LoginToAVA(macAddress, bypass):
-    print("Login")
-       
+    if bypass == True and macAddress =="a3:8c:33:cf:3e:fb":
+        print("\033[H\033[J")  # ANSI escape code to clear the screen
+        loadscreen()
+        print("AVA Login username : Developer")
+        Password = input("Password : ")
+        if Password == "Dev":
+            print(GREEN+"Login successfull taking developer to AVA Dashboard")
+            pass
+        else :
+            print(RED+"Password incorrect")
+            time.sleep(2)
+            LoginToAVA(macAddress,bypass)
+    elif bypass == True and not macAddress == "a3:8c:33:cf:3e:fb":
+        print("\033[H\033[J") 
+        loadscreen()
+        print("AVA Login username : Developer")
+        Password = input("Password : ")
+        if Password == "Dev":
+            print(GREEN+"Login Successfull taking user to AVA Dashboard")
+            pass
+        else :
+            print(RED+"Password incorrect")
+            time.sleep(2)
+            LoginToAVA(macAddress,bypass)
+    else:
+        Username = input("Username : ")
+        if Username == "":
+            print(RED+"Username cant be blank")
+            time.sleep(2)
+            LoginToAVA(macAddress,bypass)
+            pass
+        else:
+            print("\033[H\033[J")
+            loadscreen()
+            print("Username : "+Username)
+            Password = input("Password : ")
+            # Add code for further processing after getting username and password
+     
 def RegisterToAVA(macAddress, bypass):
     print("Register to AVA")
     
 def AVAInfo():
     print("AVA Info")
      
+def ExitScreen():
+    print( " ------------------------------------------------------")
+    print("|       AAA        VV             VV        AAA        | AVA BUILD        :  V1")
+    print("|      AA AA        VV           VV        AA AA       | Application type :  Console")
+    time.sleep(2)
+    print("|     AA   AA        VV         VV        AA   AA      | Device name      :  Device released")
+    time.sleep(2)
+    print("|    AA     AA        VV       VV        AA     AA     | Device IPv4 int  :  Device internal IP released")
+    time.sleep(2)
+    print("|   AAAAAAAAAAA        VV     VV        AAAAAAAAAAA    | Device IPv4 out  :  Device External IP released")
+    time.sleep(2)
+    print("|  AA         AA        VV   VV        AA         AA   | Device MAC       :  Device Mac Address released")
+    print("| AA           AA        VV VV        AA           AA  | Current Time     : ", current_time)
+    print("|AA             AA        VVV        AA             AA |")
+    print("|------------------------------------------------------|")
+    print("|           ADVANCED VALNERABILITY ACCESSOR            |")
+    print(" ------------------------------------------------------")
+
 def ExitAVA():
-    print("Exit to AVA")
+    print(RED+"Exiting AVA")
+    ExitScreen()
+    time.sleep(2)
+    exit()
     
 def Decision(macAddress, bypass):
      try:
@@ -202,9 +258,7 @@ if publicIP is None:
         print("\033[H\033[J")  
         print(YELLOW + "AVA Developer Bypass granted however limited due to no internet access")
         bypass = True
-        time.sleep(2)
         loadscreen()
-        time.sleep(2)
         DeveloperMSG()  
         time.sleep(2)
         Menu()
@@ -214,9 +268,7 @@ elif not ActiveDB and macAddress == "a3:8c:33:cf:3e:fb":
     print("\033[H\033[J")  
     print(YELLOW + "AVA Developer Bypass granted")
     bypass = True
-    time.sleep(2)
     loadscreen()
-    time.sleep(2)
     DeveloperMSG()  
     time.sleep(2)
     Menu()
