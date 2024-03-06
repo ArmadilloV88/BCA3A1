@@ -96,6 +96,34 @@ Paragraph 2 - How real is the problem in South Africa specifically (local issue)
 
 Paragraph 3 - What is the aim of the research study to acomplish (25 - 30 words)
 __________________________________________________________________________________________________________________________________________
+Types of research page 91-92
 
+Pure/Basic research (Positivism or interpretism) - aims to provide only answers and add to the exisiting knowledge using valid and reliable surveys
 
+Applied research (critical change) - aims to apply knowledge to real situations
 
+Exploratory Research
+Descriptive Research
+Correlational Research
+Applied Research
+Explanatory Research
+Predictive Research
+Pragmatic Research
+__________________________________________________________________________________________________________________________________________
+Hypothesis
+-a statement you aim to accept or reject / a statement to assist in your research and to predict an outcome (If A then B)
+-its not the truth yet
+-a statement that has to be tested to find out if its true
+
+use 'if' and 'then'
+
+before writiing the HA(Hypothesis) make sure to understand your problem statement
+__________________________________________________________________________________________________________________________________________
+Types of Hypothesis
+-Alternative Hypothesis - predicts an expected outcome where the aim is to show there is a relationship
+-Null Hypothesis - makes a predicition that no relationship exists between A and B
+__________________________________________________________________________________________________________________________________________
+Variables page 99 Table 6.2
+
+Dependent Variable = B is affected by A (B depends on the effect of A)
+Independent Variable = A is not effect by B 
