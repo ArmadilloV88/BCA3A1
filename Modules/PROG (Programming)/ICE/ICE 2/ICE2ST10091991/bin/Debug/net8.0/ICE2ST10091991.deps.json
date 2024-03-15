@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "ICE2ST10091991/1.0.0": {
+        "runtime": {
+          "ICE2ST10091991.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ICE2ST10091991/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

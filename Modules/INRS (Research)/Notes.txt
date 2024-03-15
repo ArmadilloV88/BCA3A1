@@ -127,3 +127,35 @@ Variables page 99 Table 6.2
 
 Dependent Variable = B is affected by A (B depends on the effect of A)
 Independent Variable = A is not effect by B 
+__________________________________________________________________________________________________________________________________________
+Literature review process:
+
+1.Identify and identify key terms
+2.Determine relationships
+3.Establish a framework
+4.Determine information gaps
+
+establish objectives which establish literacy sections
+
+Types of reviews :
+
+1. Historical reviews (phases of development)
+2. Thematic reviews (different perspectives)
+3. Theoretical reviews
+4. Empirical reviews
+
+primary sources - includes gathering data through research instruments i.e. interviews
+
+secondary sources - books, articles, journals
+
+when taking an article :
+
+Who is writing the article and their accreditation ? (what say do thay have in the industry)
+What is being written on the source and its rellevance ? (it must allign to your topic)
+Where is the research done and its rellevance ? (must be in africa)
+When is the source written ? (10 year difference)
+
+1st level numbering : 1.INTRODUCTION (Must be in caps)
+2nd level numbering : 1.i.Backyard (proper case)
+3rd level numbering : 1.ii.Frontyard (proper case)
+

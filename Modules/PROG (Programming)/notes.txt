@@ -8,4 +8,9 @@ Entrepreneurs start a business based on thier reasons however the reasons usuall
 2.Exploit ideas
 3.Filling a gap
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Design Patterns :
 
+Concurrency
+creational
+bahvioural
+structural

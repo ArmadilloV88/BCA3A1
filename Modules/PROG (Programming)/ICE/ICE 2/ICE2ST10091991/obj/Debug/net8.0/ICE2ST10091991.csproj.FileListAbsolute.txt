@@ -1,0 +1,15 @@
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\bin\Debug\net8.0\ICE2ST10091991.exe
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\bin\Debug\net8.0\ICE2ST10091991.deps.json
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\bin\Debug\net8.0\ICE2ST10091991.runtimeconfig.json
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\bin\Debug\net8.0\ICE2ST10091991.dll
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\bin\Debug\net8.0\ICE2ST10091991.pdb
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.AssemblyInfoInputs.cache
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.AssemblyInfo.cs
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.csproj.CoreCompileInputs.cache
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.sourcelink.json
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.dll
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\refint\ICE2ST10091991.dll
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.pdb
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ICE2ST10091991.genruntimeconfig.cache
+C:\Users\ccver\Desktop\VC\BCA3A1\Modules\PROG (Programming)\ICE\ICE 2\ICE2ST10091991\obj\Debug\net8.0\ref\ICE2ST10091991.dll

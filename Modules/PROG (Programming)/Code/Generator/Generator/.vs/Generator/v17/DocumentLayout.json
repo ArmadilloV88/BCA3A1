@@ -1,9 +1,9 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Code Generator exmple\\Generator\\",
+  "WorkspaceRootPath": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Generator\\Generator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4A6B9A17-D065-433C-9DC4-BF327E8AA19E}|Generator.csproj|c:\\users\\ccver\\desktop\\vc\\bca3a1\\modules\\prog (programming)\\code\\code generator exmple\\generator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{4A6B9A17-D065-433C-9DC4-BF327E8AA19E}|Generator.csproj|c:\\users\\ccver\\desktop\\vc\\bca3a1\\modules\\prog (programming)\\code\\generator\\generator\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4A6B9A17-D065-433C-9DC4-BF327E8AA19E}|Generator.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -14,17 +14,29 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Code Generator exmple\\Generator\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Generator\\Generator\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Code Generator exmple\\Generator\\Program.cs",
+              "ToolTip": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\Code\\Generator\\Generator\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAAAFoAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-02-23T07:30:30.128Z",
               "EditorCaption": ""
