@@ -8,20 +8,35 @@ To avoid any security snafus, a good no or low-code platform should have built-i
 
 It should put some limits on what business users can do to keep things safe. And IT should keep an eye on what's happening to stay in the loop
 ______________________________________________________________________________________________________________________________________________________________________________________________
-
-Problem statement draft (3rd statement)
----------------------------------------
-The aim of this research is to provide young IT developers in Gauteng that are new to the IT software production industry with better knowledge on the security effects when using LCNC (Low Code No Code) applications in respective comparison to traditional hand coding when developing sensitive IT Application. (last sentence) By providing this information the research aims to find the security effectivness when using LCNC applications compared to using traditional coding standards in application development in reltionship to the security effetivness of both development methodologies.
-______________________________________________________________________________________________________________________________________________________________________________________________
-
 Technology type - LCNC (Low Code No Code)
 Group target - Young IT professionals in Gauteng
 variable A - security effects
 variable B - sensitive IT data systems
 ______________________________________________________________________________________________________________________________________________________________________________________________
 
-Problem Questions
+Problem statement Final (3rd statement)
+---------------------------------------
+The aim of this research is to provide young IT developers in Gauteng that are new to the IT software production industry with better knowledge on the cyber security risks when using LCNC (Low Code No Code) applications in respective comparison to traditional hand coding when developing sensitive IT Application for organizations. (last sentence) By providing this information the research aims to find the security effectivness when using LCNC applications compared to using traditional coding standards in application development in reltionship to the security effetivness of both development methodologies.
+______________________________________________________________________________________________________________________________________________________________________________________________
+
+Problem Questions 
 -----------------
-Which application development methodology is best suited for which application scenrio
+1. What cyber security risks can ar-rise when using LCNC (Low Code No Code) algorithms when developing applications for businesses ?
+4. What LCNC frameworks are used in software development ?
+5. Which area of software development has adapted the use of LCNC ?
+6. What is the benefit of using Traditional coding over LCNC ?
+______________________________________________________________________________________________________________________________________________________________________________________________
+Objectives
+----------
+1. Benefits of using LCNC in software development 
+2. Downfalls of using LCNC in software development 
+3. Cyber Security risks mitigation in software development
+______________________________________________________________________________________________________________________________________________________________________________________________
+Topic related Concept examples (2) :
+
+1 - IT software production industry using LCNC (Low Code No Code) as a production line
+2 - LCNC (Low Code No Code) algorithms security practices used
+3 - Coding Methodologies preferable during specific practices such as authorization and authentication
+4 - Cyber Security risks when young IT software developers in gauteng use LCNC algorithms in developing applications
 
 

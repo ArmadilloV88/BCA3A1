@@ -158,4 +158,7 @@ When is the source written ? (10 year difference)
 1st level numbering : 1.INTRODUCTION (Must be in caps)
 2nd level numbering : 1.i.Backyard (proper case)
 3rd level numbering : 1.ii.Frontyard (proper case)
+__________________________________________________________________________________________________________________________________________
+Concept - an abstract idea that we give meaning to by defining it.
+
 
