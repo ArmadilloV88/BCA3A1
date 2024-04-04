@@ -1,0 +1,15 @@
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\bin\Debug\net8.0\ST10091991ICE3.exe
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\bin\Debug\net8.0\ST10091991ICE3.deps.json
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\bin\Debug\net8.0\ST10091991ICE3.runtimeconfig.json
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\bin\Debug\net8.0\ST10091991ICE3.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\bin\Debug\net8.0\ST10091991ICE3.pdb
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.AssemblyInfoInputs.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.AssemblyInfo.cs
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.csproj.CoreCompileInputs.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.sourcelink.json
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\refint\ST10091991ICE3.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.pdb
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ST10091991ICE3.genruntimeconfig.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\ICE\ICE 3\ST10091991ICE3\obj\Debug\net8.0\ref\ST10091991ICE3.dll
