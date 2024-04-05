@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AVAconsole")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0af29505030f2a1f310ecee87780d7f56260d812")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df37599179de893d1e8944acf6aa668edae71d0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("AVAconsole")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AVAconsole")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

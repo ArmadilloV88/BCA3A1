@@ -3,6 +3,13 @@
   "WorkspaceRootPath": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVAconsole\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0AEB5605-230F-4253-A38C-832CCD9C0AF0}|AVAconsole.csproj|c:\\users\\ccver\\desktop\\vc\\bca3a1\\hackathon\\ava\\csharp\\avaconsole\\avacore.mbconfig||{93FA4DC3-61EC-47AF-B0BA-50CAD3CAF049}",
+      "RelativeMoniker": "D:0:0:{0AEB5605-230F-4253-A38C-832CCD9C0AF0}|AVAconsole.csproj|solutionrelative:avacore.mbconfig||{93FA4DC3-61EC-47AF-B0BA-50CAD3CAF049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6A86CB2F-5C09-413F-A672-29C690A15389}|..\\AVACore_Predict\\AVACore_Predict.csproj|c:\\users\\ccver\\desktop\\vc\\bca3a1\\hackathon\\ava\\csharp\\avacore_predict\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0AEB5605-230F-4253-A38C-832CCD9C0AF0}|AVAconsole.csproj|c:\\users\\ccver\\desktop\\vc\\bca3a1\\hackathon\\ava\\csharp\\avaconsole\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0AEB5605-230F-4253-A38C-832CCD9C0AF0}|AVAconsole.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +37,32 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVACore_Predict\\Program.cs",
+              "RelativeDocumentMoniker": "..\\AVACore_Predict\\Program.cs",
+              "ToolTip": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVACore_Predict\\Program.cs",
+              "RelativeToolTip": "..\\AVACore_Predict\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-05T13:04:40.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AVACore.mbconfig",
+              "DocumentMoniker": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVAconsole\\AVACore.mbconfig",
+              "RelativeDocumentMoniker": "AVACore.mbconfig",
+              "ToolTip": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVAconsole\\AVACore.mbconfig",
+              "RelativeToolTip": "AVACore.mbconfig",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|",
+              "WhenOpened": "2024-04-05T13:02:15.291Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Hackathon\\AVA\\Csharp\\AVAconsole\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
