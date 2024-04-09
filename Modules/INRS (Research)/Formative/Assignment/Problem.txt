@@ -17,15 +17,23 @@ ________________________________________________________________________________
 Problem statement Final (3rd statement)
 ---------------------------------------
 The aim of this research is to provide young IT developers in Gauteng that are new to the IT software production industry with better knowledge on the cyber security risks when using LCNC (Low Code No Code) applications in respective comparison to traditional hand coding when developing sensitive IT Application for organizations. (last sentence) By providing this information the research aims to find the security effectivness when using LCNC applications compared to using traditional coding standards in application development in reltionship to the security effetivness of both development methodologies.
-______________________________________________________________________________________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________________________________
 
-Problem Questions 
------------------
-1. What cyber security risks can ar-rise when using LCNC (Low Code No Code) algorithms when developing applications for businesses ?
-4. What LCNC frameworks are used in software development ?
-5. Which area of software development has adapted the use of LCNC ?
-6. What is the benefit of using Traditional coding over LCNC ?
-______________________________________________________________________________________________________________________________________________________________________________________________
+Hypothesis 
+----------
+HA1 = when using LCDS (Low-Code-Development-Software) the prodctivity is much greater then using traditional hand coding practices as the time taken to finish an application takes less time taken.
+
+HA2 = when using traditional hand coding practices the chances of security vulnerabilities are much less then using LCDS (Low-Code-Development-Software).
+__________________________________________________________________________________________________________________________________________
+
+Hypotheses
+----------
+1. 
+
+Theory
+------
+Use of the Agile Development Theory (Using Stages/Phases) both hand coding and LCNC use this
+__________________________________________________________________________________________________________________________________________
 Objectives
 ----------
 1. Benefits of using LCNC in software development 
