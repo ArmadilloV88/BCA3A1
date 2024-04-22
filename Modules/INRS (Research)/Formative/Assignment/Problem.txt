@@ -24,12 +24,17 @@ Hypothesis
 HA1 = when using LCDS (Low-Code-Development-Software) the prodctivity is much greater then using traditional hand coding practices as the time taken to finish an application takes less time taken.
 
 HA2 = when using traditional hand coding practices the chances of security vulnerabilities are much less then using LCDS (Low-Code-Development-Software).
+
+HO = when using LCDS (Low-Code-Development-Software) there is no security vulnerabilities.
 __________________________________________________________________________________________________________________________________________
 
 Hypotheses
 ----------
-1. 
-
+1. If LCDS (Low-Code-Development-Software) code security snippets used in the code development stage of the software development life cycle is better refined and improved upon.
+2.An application will be much more secure and quicker developed if Young IT software developers new to the IT Software development industry use a hybrid development technique which combines LCNC for more general algorithms and traditional hand coding practices for data handling security.
+3. if the above hypoheses is correct then much safer and efficient applications can be produced in a short period of time.
+4. If all the above hypotheses are correct then the IT industry will trust LCDS more.
+__________________________________________________________________________________________________________________________________________
 Theory
 ------
 Use of the Agile Development Theory (Using Stages/Phases) both hand coding and LCNC use this
