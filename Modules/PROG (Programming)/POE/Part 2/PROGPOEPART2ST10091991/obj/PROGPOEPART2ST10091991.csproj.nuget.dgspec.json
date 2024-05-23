@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj": {}
+    "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj": {
+    "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
+        "projectUniqueName": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
         "projectName": "PROGPOEPART2ST10091991",
-        "projectPath": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
-        "packagesPath": "C:\\Users\\ccver\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ccver\\Desktop\\VC\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\obj\\",
+        "projectPath": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
+        "packagesPath": "C:\\Users\\Christiaan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\ccver\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Christiaan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,6 +49,22 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.5, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

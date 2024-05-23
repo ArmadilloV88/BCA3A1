@@ -1,0 +1,8 @@
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\ORADB.mdf
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\ORADB_log.ldf
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\SharedResources.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\SharedResources.pdb
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.csproj.AssemblyReference.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.csproj.CoreCompileInputs.cache
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.dll
+C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.pdb
