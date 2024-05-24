@@ -1,5 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "~/Views/Shared/_FarmerLayout.cshtml";
+    var username = ViewBag.Username ?? "User";
 }
+
+<h1>Welcome @username to the ORA Farmer Portal</h1>
+<p>Here you can manage your profile, products, and more.</p>

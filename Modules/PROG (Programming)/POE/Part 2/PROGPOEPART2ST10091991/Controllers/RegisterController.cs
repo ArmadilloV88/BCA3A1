@@ -1,32 +1,36 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PROGPOEPART2ST10091991.Data;
-using PROGPOEPART2ST10091991.Models.ERD;
 using PROGPOEPART2ST10091991.Models.Register;
 using System.Linq;
+using Microsoft.Extensions.Logging;
+using PROGPOEPART2ST10091991.Models.ERD;
 
 namespace PROGPOEPART2ST10091991.Controllers
 {
     public class RegisterController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly ILogger<RegisterController> _logger;
 
-        public RegisterController(AppDbContext context)
+        public RegisterController(AppDbContext context, ILogger<RegisterController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
+            _logger.LogInformation("Register Index action called");
             return View("Register");
         }
 
         [HttpPost]
         public IActionResult Index(RegisterViewModel model)
         {
+            _logger.LogInformation("Register POST action called");
             if (ModelState.IsValid)
             {
-                // Check if the username already exists
                 var existingUser = _context.Users.FirstOrDefault(u => u.Username == model.Username);
                 if (existingUser != null)
                 {
@@ -34,18 +38,16 @@ namespace PROGPOEPART2ST10091991.Controllers
                     return View("Register", model);
                 }
 
-                // Create a new user
                 var newUser = new User
                 {
                     Username = model.Username,
                     Password = model.Password,
-                    // Add additional properties as needed
                 };
 
                 _context.Users.Add(newUser);
                 _context.SaveChanges();
 
-                // Redirect to login page after successful registration
+                _logger.LogInformation($"New user registered: {model.Username}");
                 return RedirectToAction("Index", "Login");
             }
 

@@ -1,37 +1,89 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging; // Add this namespace
+using PROGPOEPART2ST10091991.Data;
+using System.Linq;
 
 namespace PROGPOEPART2ST10091991.Controllers
 {
-    [Route("FarmerDashboard")] // Base route for the controller
+    [Route("FarmerDashboard")]
     public class FarmerDashboardController : Controller
     {
-        [Route("Index")] // Route for the Index action
-        public IActionResult Index()
+        private readonly AppDbContext _context;
+        private readonly ILogger<FarmerDashboardController> _logger; // Add logger field
+
+        public FarmerDashboardController(AppDbContext context, ILogger<FarmerDashboardController> logger) // Inject logger
         {
-            // Logic for the dashboard landing page
-            return View();
+            _context = context;
+            _logger = logger;
         }
-        [Route("MyProfile")] // Route for the MyProfile action
-        public IActionResult MyProfile()
+
+        [Route("Index")]
+        public IActionResult Index(int userId)
         {
+            _logger.LogInformation($"Index action called with userId: {userId}"); // Log userId
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user != null)
+            {
+                var username = user.Username;
+                ViewBag.Username = username;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+            }
             return View();
         }
 
-        [Route("MyProducts")] // Route for the MyProducts action
-        public IActionResult MyProducts()
+        [Route("MyProfile")]
+        public IActionResult MyProfile(int userId)
         {
+            _logger.LogInformation($"MyProfile action called with userId: {userId}"); // Log userId
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user != null)
+            {
+                var username = user.Username;
+                ViewBag.Username = username;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+            }
             return View();
         }
 
-        [Route("Products")] // Route for the Products action
-        public IActionResult Products()
+        [Route("MyProducts")]
+        public IActionResult MyProducts(int userId)
         {
+            _logger.LogInformation($"MyProducts action called with userId: {userId}"); // Log userId
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user != null)
+            {
+                var username = user.Username;
+                ViewBag.Username = username;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+            }
             return View();
         }
 
-        [Route("Highlights")] // Route for the Highlights action
-        public IActionResult Highlights()
+        [Route("Products")]
+        public IActionResult Products(int userId)
         {
+            _logger.LogInformation($"Products action called with userId: {userId}"); // Log userId
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user != null)
+            {
+                var username = user.Username;
+                ViewBag.Username = username;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+            }
+            return View();
+        }
+
+        [Route("Highlights")]
+        public IActionResult Highlights(int userId)
+        {
+            _logger.LogInformation($"Highlights action called with userId: {userId}"); // Log userId
+            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user != null)
+            {
+                var username = user.Username;
+                ViewBag.Username = username;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+            }
             return View();
         }
     }
