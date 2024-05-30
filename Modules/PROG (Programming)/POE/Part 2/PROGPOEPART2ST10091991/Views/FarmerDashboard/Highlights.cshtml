@@ -1,5 +1,8 @@
 ﻿@{
     Layout = "~/Views/Shared/_FarmerLayout.cshtml";
+    var newsFeedEntries = ViewBag.NewsFeedEntries as IEnumerable<PROGPOEPART2ST10091991.Models.ERD.NewsFeed>;
 }
 
 <h1>Highlights</h1>
+
+@await Html.PartialAsync("_NewsFeedPartial", newsFeedEntries)

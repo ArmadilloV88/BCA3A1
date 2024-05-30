@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PROGPOEPART2ST10091991.Models.ERD.NewsFeed>
+
+<h2>News Feed</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>News Feed Name</th>
+                <th>Posted Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var news in Model)
+            {
+                <tr>
+                    <td>@news.NewsFeedName</td>
+                    <td>@news.NewsFeedDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>There seems to be no new products in the system, please check again another time</p>
+}
+

@@ -4112,11 +4112,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
+      "projectUniqueName": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
       "projectName": "PROGPOEPART2ST10091991",
-      "projectPath": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
+      "projectPath": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\PROGPOEPART2ST10091991.csproj",
       "packagesPath": "C:\\Users\\Christiaan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Christiaan\\Desktop\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\obj\\",
+      "outputPath": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

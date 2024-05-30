@@ -2,5 +2,96 @@
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
 
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Antiforgery
+
 <h1>My Profile</h1>
 
+<div>
+    <h2>Profile Details</h2>
+    <p><strong>Username:</strong> @ViewBag.Username</p>
+    <p><strong>Account Type:</strong> @ViewBag.AccountType</p>
+    <p><strong>Name:</strong> @ViewBag.Name</p>
+    <p><strong>Surname:</strong> @ViewBag.Surname</p>
+    <p><strong>Age:</strong> @ViewBag.Age</p>
+    <p><strong>Email:</strong> @ViewBag.Email</p>
+    <p><strong>Gender:</strong> @ViewBag.Gender</p>
+</div>
+
+@if (ViewBag.FavoriteFarmers != null && ViewBag.FavoriteFarmers.Count > 0)
+{
+    <div>
+        <h2>Favorite Farmers</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var farmer in ViewBag.FavoriteFarmers)
+                {
+                    <tr>
+                        <td>@farmer.Name</td>
+                        <td>@farmer.Surname</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@if (ViewBag.FarmerProducts != null && ViewBag.FarmerProducts.Count > 0)
+{
+    <div>
+        <h2>Farmer Products</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in ViewBag.FarmerProducts)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td><button onclick="addProduct('@product.ProductID')">Add</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <!-- Logout Button -->
+        <form id="logoutForm" asp-controller="Home" asp-action="Logout" method="post">
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
+}
+
+<script>
+    function addProduct(productId) {
+        console.log("Product ID:", productId); // Log the productId
+        fetch('/EmployeeDashboard/FavoriteProduct', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': '@Antiforgery.GetAndStoreTokens(ViewContext.HttpContext).RequestToken'
+            },
+            body: JSON.stringify({ productId: productId })
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    // Optionally, refresh the page or update the UI
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+</script>

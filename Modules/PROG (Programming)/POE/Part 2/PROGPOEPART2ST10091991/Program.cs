@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.Cookie.Name = "ORACookie";
+    });
 
 builder.Services.AddControllersWithViews();
 
@@ -58,16 +64,21 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "employee-dashboard",
     pattern: "EmployeeDashboard/{action=Index}/{id?}",
-    defaults: new { controller = "EmployeeDashboardController", action = "Index" });
+    defaults: new { controller = "EmployeeDashboard", action = "Index" });
 
 app.MapControllerRoute(
     name: "farmer-dashboard",
     pattern: "FarmerDashboard/{action=Index}/{id?}",
-    defaults: new { controller = "FarmerDashboardController", action = "Index" });
+    defaults: new { controller = "FarmerDashboard", action = "Index" });
 
 app.MapControllerRoute(
-    name: "dashboard-redirect",
-    pattern: "Dashboard/{action}/{id?}",
-    defaults: new { controller = "Dashboard", action = "Redirect" });
+    name: "farmer-products",
+    pattern: "FarmerDashboard/Products/{action=Products}/{id?}",
+    defaults: new { controller = "FarmerDashboard", action = "Products" });
+
+app.MapControllerRoute(
+    name: "employee-products",
+    pattern: "EmployeeDashboard/Products/{action=Products}/{id?}",
+    defaults: new { controller = "EmployeeDashboard", action = "Products" });
 
 app.Run();

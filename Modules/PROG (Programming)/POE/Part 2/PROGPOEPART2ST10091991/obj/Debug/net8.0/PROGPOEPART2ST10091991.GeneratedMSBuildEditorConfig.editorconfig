@@ -9,103 +9,111 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PROGPOEPART2ST10091991
 build_property.RootNamespace = PROGPOEPART2ST10091991
-build_property.ProjectDir = C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\PROGPOEPART2ST10091991\
+build_property.ProjectDir = D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\PROGPOEPART2ST10091991\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\PROGPOEPART2ST10091991
+build_property.MSBuildProjectDirectory = D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\PROGPOEPART2ST10091991
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/EmployeeDashboard.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/EmployeeDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcRW1wbG95ZWVEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Farmers.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Farmers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcRmFybWVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Highlights.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Highlights.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcSGlnaGxpZ2h0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Index.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/MyProfile.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/MyProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcTXlQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Products.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/EmployeeDashboard/Products.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVEYXNoYm9hcmRcUHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/FarmerDashboard.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/CreateProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXENyZWF0ZVByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/FarmerDashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXEZhcm1lckRhc2hib2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Highlights.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Highlights.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXEhpZ2hsaWdodHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Index.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/MyProducts.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/MyProducts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXE15UHJvZHVjdHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/MyProfile.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/MyProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXE15UHJvZmlsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Products.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/FarmerDashboard/Products.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRmFybWVyRGFzaGJvYXJkXFByb2R1Y3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Home/Index.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Home/Privacy.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Login/Login.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Login/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Register/Register.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Register/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUmVnaXN0ZXJcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/Error.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_EmployeeLayout.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_EmployeeLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FbXBsb3llZUxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_FarmerLayout.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_FarmerLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9GYXJtZXJMYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_NewsFeedPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OZXdzRmVlZFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/_ViewImports.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/_ViewStart.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Christiaan/Desktop/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_Layout.cshtml]
+[D:/VC/ST10091991/BCA3A1/Modules/PROG (Programming)/POE/Part 2/PROGPOEPART2ST10091991/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-6rbytb7e4n

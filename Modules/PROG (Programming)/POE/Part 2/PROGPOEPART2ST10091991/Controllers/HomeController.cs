@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PROGPOEPART2ST10091991.Models;
 using System.Diagnostics;
@@ -12,7 +14,16 @@ namespace PROGPOEPART2ST10091991.Controllers
             ViewData["WelcomeMessage"] = "ORA";
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            // Perform logout actions, such as clearing authentication cookies, etc.
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
+            // Redirect to the home page or any other desired page after logout
+            return RedirectToAction("Index", "Home");
+        }
         public IActionResult Privacy()
         {
             return View();

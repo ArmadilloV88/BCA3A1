@@ -6,3 +6,11 @@ C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\
 C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.csproj.CoreCompileInputs.cache
 C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.dll
 C:\Users\Christiaan\Desktop\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.pdb
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\ORADB.mdf
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\ORADB_log.ldf
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\SharedResources.dll
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\bin\Debug\SharedResources.pdb
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.csproj.AssemblyReference.cache
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.csproj.CoreCompileInputs.cache
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.dll
+D:\VC\ST10091991\BCA3A1\Modules\PROG (Programming)\POE\Part 2\SharedResources\obj\Debug\SharedResources.pdb

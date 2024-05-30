@@ -1,5 +1,80 @@
-﻿@{
+﻿@model List<PROGPOEPART2ST10091991.Models.Farmer.FarmerViewModel>
+
+@{
     Layout = "~/Views/Shared/_EmployeeLayout.cshtml";
 }
 
 <h1>Farmers</h1>
+
+@if (Model != null && Model.Count() > 0)
+{
+    <label for="farmers">Select a farmer:</label>
+    <select name="farmers" id="farmers">
+        @foreach (var farmer in Model)
+        {
+            <option value="@farmer.UserID">@farmer.Name @farmer.Surname</option>
+        }
+    </select>
+    <div id="farmerDetails" style="display: none;">
+        <h2>Farmer Details</h2>
+        <p id="farmerName"></p>
+        <p id="farmerSurname"></p>
+        <!-- Add other farmer details as needed -->
+        <h2>Products</h2>
+        <ul id="productsList"></ul>
+        <button id="followButton">Follow</button>
+    </div>
+}
+else
+{
+    <p>No farmers found.</p>
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#farmers').change(function () {
+            var userId = $(this).val(); // Get the selected farmer's user ID
+            var farmerName = $(this).find('option:selected').text(); // Get the selected farmer's name
+            if (userId) {
+                $.ajax({
+                    url: '/EmployeeDashboard/GetFarmerDetails', // Update the URL to the GetFarmerDetails action
+                    type: 'GET',
+                    data: { userId: userId }, // Send the user ID as parameter
+                    success: function (data) {
+                        $('#farmerName').text('Name: ' + data.name);
+                        $('#farmerSurname').text('Surname: ' + data.surname);
+                        $('#productsList').empty();
+                        $.each(data.products, function (index, product) {
+                            $('#productsList').append('<li>' + product.productName + ' - ' + product.productDescription + '</li>');
+                        });
+                        $('#farmerDetails').show();
+                    },
+                    error: function () {
+                        console.log('Error retrieving farmer details.');
+                    }
+                });
+            }
+        });
+
+        $('#followButton').click(function () {
+            var userId = $('#farmers').val(); // Get the selected farmer's user ID
+            var farmerName = $('#farmers option:selected').text(); // Get the selected farmer's name
+            $.ajax({
+                url: '/EmployeeDashboard/FollowFarmer',
+                type: 'POST',
+                data: { userId: userId, farmerName: farmerName },
+                success: function (response) {
+                    if (response.success) {
+                        alert(response.message);
+                    } else {
+                        alert('Failed to follow farmer: ' + response.message);
+                    }
+                },
+                error: function () {
+                    alert('Error following farmer.');
+                }
+            });
+        });
+    });
+</script>

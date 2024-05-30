@@ -1,0 +1,40 @@
+﻿@model PROGPOEPART2ST10091991.Models.ERD.Product
+
+@{
+    ViewBag.Title = "Create Product";
+}
+
+<h2>Create Product</h2>
+
+<form asp-action="CreateProduct" method="post">
+    <div class="form-group">
+        <label asp-for="ProductName"></label>
+        <input asp-for="ProductName" class="form-control" />
+        <span asp-validation-for="ProductName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductDescription"></label>
+        <textarea asp-for="ProductDescription" class="form-control"></textarea>
+        <span asp-validation-for="ProductDescription" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductCategory"></label>
+        <input asp-for="ProductCategory" class="form-control" />
+        <span asp-validation-for="ProductCategory" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="hidden" asp-for="ProductDate" />
+    </div>
+    <div class="form-group">
+        <input type="hidden" asp-for="FarmerID" value="@ViewBag.UserID" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<a href="@Url.Action("MyProducts", new { userId = ViewBag.UserID })" class="btn btn-secondary">Back to My Products</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

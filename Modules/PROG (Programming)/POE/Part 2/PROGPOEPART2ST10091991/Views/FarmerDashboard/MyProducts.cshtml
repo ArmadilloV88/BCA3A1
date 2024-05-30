@@ -1,5 +1,44 @@
-﻿@{
+﻿@model IEnumerable<PROGPOEPART2ST10091991.Models.ERD.Product>
+
+@{
+    ViewBag.Title = "My Products";
     Layout = "~/Views/Shared/_FarmerLayout.cshtml";
 }
 
-<h1>My Products</h1>
+<h2>My Products</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Date Posted</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.ProductID</td>
+                    <td>@product.ProductName</td>
+                    <td>@product.ProductDescription</td>
+                    <td>@product.ProductCategory</td>
+                    <td>@product.ProductDate</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No products found.</p>
+}
+
+<!-- Form for adding a product -->
+<form method="post" action="@Url.Action("CreateProduct", "FarmerDashboard")">
+    <button type="submit" class="btn btn-primary">Add Product</button>
+</form>
