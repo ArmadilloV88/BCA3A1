@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PROGPOEPART2ST10091991")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+523a0321b0b02f905a6280fd0faddd147c424623")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a8fa335a0bdf6e1ffdc449a997df77dd59fba94")]
 [assembly: System.Reflection.AssemblyProductAttribute("PROGPOEPART2ST10091991")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PROGPOEPART2ST10091991")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

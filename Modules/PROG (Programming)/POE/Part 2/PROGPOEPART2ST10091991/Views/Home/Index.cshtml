@@ -2,15 +2,36 @@
     ViewData["Title"] = "Welcome Page";
 }
 
-<div class="container mt-5">
+<style>
+    .container {
+        background-color: #f5f5f5; /* Light grey background */
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        font-size: 1.2rem; /* Increase button font size */
+        padding: 10px 20px; /* Add padding to buttons */
+        transition: all 0.3s ease; /* Smooth transition on hover */
+    }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            opacity: 0.8; /* Reduce opacity on hover */
+        }
+</style>
+
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 text-center">
             <h1 class="display-4">@ViewData["WelcomeMessage"]</h1>
             <p class="lead">A world green and happy.</p>
             <div class="mt-4">
-                <a asp-controller="Login" asp-action="Index" class="btn btn-primary btn-lg mr-3">Login</a>
-                <a asp-controller="Register" asp-action="Index" class="btn btn-secondary btn-lg">Register</a>
+                <a asp-controller="Login" asp-action="Index" class="btn btn-primary mr-3">Login</a>
+                <a asp-controller="Register" asp-action="Index" class="btn btn-secondary">Register</a>
             </div>
         </div>
     </div>
 </div>
+

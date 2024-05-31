@@ -20,7 +20,6 @@ namespace PROGPOEPART2ST10091991.Controllers
             _context = context;
             _logger = logger;
         }
-
         [Route("Index")]
         public IActionResult Index(int userId)
         {
@@ -44,7 +43,6 @@ namespace PROGPOEPART2ST10091991.Controllers
 
             return View();
         }
-
         [Route("MyProfile")]
         public async Task<IActionResult> MyProfile(int userId)
         {
@@ -107,6 +105,7 @@ namespace PROGPOEPART2ST10091991.Controllers
 
             return View();
         }
+
 
         [HttpGet]
         [Route("EmployeeDashboard/Products")]

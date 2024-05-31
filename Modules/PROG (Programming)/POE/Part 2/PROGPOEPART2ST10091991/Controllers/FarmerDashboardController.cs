@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using PROGPOEPART2ST10091991.Models.Product;
+using Microsoft.EntityFrameworkCore;
 
 namespace PROGPOEPART2ST10091991.Controllers
 {
@@ -43,29 +44,67 @@ namespace PROGPOEPART2ST10091991.Controllers
         }
 
         [Route("MyProfile")]
-        public IActionResult MyProfile()
+        public async Task<IActionResult> MyProfile(int userId)
         {
-            var userId = GlobalID;
-            var user = _context.Users.FirstOrDefault(u => u.UserID == userId);
+            userId = GlobalID;
+            _logger.LogInformation($"MyProfile action called with userId: {userId}"); // Log userId
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserID == userId);
             if (user != null)
             {
                 var username = user.Username;
-                var name = user.Name;
-                var surname = user.Surname;
-                var age = user.Age;
-                var email = user.Email;
-                var gender = user.Gender;
-
+                var accountType = user.TagID == 1 ? "Employee" : (user.TagID == 2 ? "Farmer" : "Unknown");
                 ViewBag.Username = username;
-                ViewBag.Name = name;
-                ViewBag.Surname = surname;
-                ViewBag.Age = age;
-                ViewBag.Email = email;
-                ViewBag.Gender = gender;
+                ViewBag.AccountType = accountType;
+                ViewBag.Name = user.Name;
+                ViewBag.Surname = user.Surname;
+                ViewBag.Age = user.Age;
+                ViewBag.Email = user.Email;
+                ViewBag.Gender = user.Gender;
+                _logger.LogInformation($"Username retrieved: {username}"); // Log username
+                _logger.LogInformation($"Account type: {accountType}"); // Log account type
+
+                // Retrieve employee ID using UserID
+                var employeeId = await _context.Employee.Where(e => e.UserID == userId)
+                                                         .Select(e => e.EmployeeID)
+                                                         .FirstOrDefaultAsync();
+
+                if (employeeId != 0)
+                {
+                    // Retrieve favorite farmers using the employee ID
+                    var favoriteFarmers = await _context.Favorites.Where(f => f.EmployeeID == employeeId)
+                                                                  .Select(f => f.FarmerID)
+                                                                  .ToListAsync();
+
+                    // Retrieve farmer names and surnames using FarmerIDs
+                    var farmerNames = await _context.Users
+                        .Where(u => favoriteFarmers.Contains(u.UserID))
+                        .Select(u => new { u.Name, u.Surname })
+                        .ToListAsync();
+
+                    ViewBag.FavoriteFarmers = farmerNames;
+                    _logger.LogInformation($"Favorite farmers retrieved: {string.Join(", ", farmerNames.Select(f => f.Name + " " + f.Surname))}"); // Log favorite farmers
+
+                    // Retrieve products of the favorite farmers
+                    var farmerProducts = await _context.Products
+                        .Where(p => favoriteFarmers.Contains(p.FarmerID))
+                        .Select(p => new { p.ProductID, p.ProductName })
+                        .ToListAsync();
+
+                    ViewBag.FarmerProducts = farmerProducts;
+                    _logger.LogInformation($"Farmer products retrieved: {string.Join(", ", farmerProducts.Select(p => p.ProductName))}"); // Log farmer products
+                }
+                else
+                {
+                    _logger.LogInformation($"No employee found for UserID: {userId}");
+                }
             }
+            else
+            {
+                _logger.LogInformation($"User not found for UserID: {userId}");
+            }
+
             return View();
         }
-
         [Route("MyProducts")]
         public IActionResult MyProducts()
         {

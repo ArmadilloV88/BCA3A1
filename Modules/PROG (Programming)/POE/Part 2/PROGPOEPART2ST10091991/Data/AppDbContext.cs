@@ -20,6 +20,11 @@
         {
             base.OnModelCreating(modelBuilder);
 
+            // Set up unique constraint on Username
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Username)
+                .IsUnique();
+
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Tag>().ToTable("Tag");
             modelBuilder.Entity<Employee>().ToTable("Employee");

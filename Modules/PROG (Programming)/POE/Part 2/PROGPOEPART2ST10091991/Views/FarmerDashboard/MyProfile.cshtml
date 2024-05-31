@@ -2,19 +2,24 @@
     Layout = "~/Views/Shared/_FarmerLayout.cshtml";
 }
 
-<h1>My Profile</h1>
+<h1 class="display-4">My Profile</h1>
 
-<div>
+<div class="container mt-5 bg-light p-4 rounded">
     <h2>Profile Details</h2>
-    <p><strong>Username:</strong> @ViewBag.Username</p>
-    <p><strong>Name:</strong> @ViewBag.Name</p>
-    <p><strong>Surname:</strong> @ViewBag.Surname</p>
-    <p><strong>Age:</strong> @ViewBag.Age</p>
-    <p><strong>Email:</strong> @ViewBag.Email</p>
-    <p><strong>Gender:</strong> @ViewBag.Gender</p>
+    <div class="row">
+        <div class="col-md-6">
+            <p><strong>Username:</strong> @ViewBag.Username</p>
+            <p><strong>Name:</strong> @ViewBag.Name</p>
+            <p><strong>Surname:</strong> @ViewBag.Surname</p>
+            <p><strong>Age:</strong> @ViewBag.Age</p>
+            <p><strong>Email:</strong> @ViewBag.Email</p>
+            <p><strong>Gender:</strong> @ViewBag.Gender</p>
+        </div>
+    </div>
 </div>
-<div>
-    <!-- Logout Button -->
+
+<!-- Logout Button -->
+<div class="mt-4">
     <form id="logoutForm" asp-controller="Home" asp-action="Logout" method="post">
         <button type="submit" class="btn btn-danger">Logout</button>
     </form>

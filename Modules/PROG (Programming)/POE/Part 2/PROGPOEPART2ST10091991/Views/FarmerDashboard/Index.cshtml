@@ -4,7 +4,13 @@
     var newsFeedEntries = ViewBag.NewsFeedEntries as IEnumerable<PROGPOEPART2ST10091991.Models.ERD.NewsFeed>;
 }
 
-<h1>Welcome @username to the ORA Farmer Portal</h1>
-<p>Here you can manage your profile, products, and more.</p>
+<div class="container mt-5 bg-light">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="display-4">Welcome, @username, to the ORA Farmer Portal</h1>
+            <p class="lead">Here you can manage your profile, products, and more.</p>
+        </div>
+    </div>
+</div>
 
 @await Html.PartialAsync("_NewsFeedPartial", newsFeedEntries)
