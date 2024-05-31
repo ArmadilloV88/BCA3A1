@@ -103,12 +103,14 @@
         <div class="farmer-products">
             <h2>Farmer Products</h2>
             <ul>
-                @foreach (var product in ViewBag.FarmerProducts)
+                @foreach (var farmerProduct in ViewBag.FarmerProducts)
                 {
+                    <li>@farmerProduct.ProductName</li>
                 }
             </ul>
         </div>
     }
+
 
     <div class="logout-button">
         <!-- Logout Button -->

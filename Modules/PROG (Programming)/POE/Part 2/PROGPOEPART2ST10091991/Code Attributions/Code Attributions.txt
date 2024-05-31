@@ -1,0 +1,13 @@
+07_05_GuyT07_05_GuyT2 et al. (2024) Using java script code in MVC5 - where to put it, Stack Overflow. 
+Available at: https://stackoverflow.com/questions/22893246/using-java-script-code-in-mvc5-where-to-put-it (Accessed: 31 May 2024).
+
+Rick-Anderson (2023) Using the dropdownlist helper with ASP.NET MVC, Microsoft Learn. 
+Available at: https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions/working-with-the-dropdownlist-box-and-jquery/using-the-dropdownlist-helper-with-aspnet-mvc (Accessed: 31 May 2024).
+
+Ardalis (2023) Layout in ASP.NET Core, Microsoft Learn. 
+Available at: https://learn.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-8.0 (Accessed: 31 May 2024).
+
+Rick-Anderson (2023a) Creating model classes with LINQ to SQL (C#), Microsoft Learn. 
+Available at: https://learn.microsoft.com/en-us/aspnet/mvc/overview/older-versions-1/models-data/creating-model-classes-with-linq-to-sql-cs (Accessed: 31 May 2024).
+
+ChatGPT (2024) ChatGPT response to query about how to run a SQL script in a database. 31 May.

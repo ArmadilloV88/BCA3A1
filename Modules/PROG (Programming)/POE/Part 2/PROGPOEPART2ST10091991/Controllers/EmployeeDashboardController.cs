@@ -76,10 +76,16 @@ namespace PROGPOEPART2ST10091991.Controllers
                                                                   .ToListAsync();
 
                     // Retrieve farmer names and surnames using FarmerIDs
+                    var farmerUserIds = await _context.Farmers
+    .Where(f => favoriteFarmers.Contains(f.FarmerID))
+    .Select(f => f.UserID)
+    .ToListAsync();
+
                     var farmerNames = await _context.Users
-                        .Where(u => favoriteFarmers.Contains(u.UserID))
+                        .Where(u => farmerUserIds.Contains(u.UserID))
                         .Select(u => new { u.Name, u.Surname })
                         .ToListAsync();
+
 
                     ViewBag.FavoriteFarmers = farmerNames;
                     _logger.LogInformation($"Favorite farmers retrieved: {string.Join(", ", farmerNames.Select(f => f.Name + " " + f.Surname))}"); // Log favorite farmers
