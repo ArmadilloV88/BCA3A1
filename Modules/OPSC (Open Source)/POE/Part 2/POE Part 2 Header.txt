@@ -1,0 +1,2 @@
+- use empty views activity on android studio
+- makes sure there is no @composible in the code 

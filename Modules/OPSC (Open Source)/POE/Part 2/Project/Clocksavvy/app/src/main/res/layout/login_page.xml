@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#3C4142">
+
+    <!-- "Welcome Back" message -->
+    <TextView
+        android:id="@+id/textWelcomeBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Welcome Back"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="32dp"/>
+
+    <!-- Email EditText -->
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textWelcomeBack"
+        android:hint="Email"
+        android:background="@drawable/inputbg"
+        android:drawableLeft="@drawable/icon_email"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <!-- Password EditText -->
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextEmail"
+        android:background="@drawable/inputbg"
+        android:hint="Password"
+        android:drawableLeft="@drawable/icon_password"
+        android:inputType="textPassword"
+        android:drawablePadding="20dp"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp" />
+
+    <!-- Remember me checkbox -->
+
+    <!-- Forgot password button -->
+
+    <!-- Login Button -->
+
+    <CheckBox
+        android:id="@+id/checkboxRememberMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginTop="25dp"
+        android:minHeight="60dp"
+        android:layout_marginStart="40dp"
+        android:text="Remember me"
+        android:textColor="@color/Red" />
+
+    <Button
+        android:id="@+id/btnForgotPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextPassword"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toEndOf="@id/checkboxRememberMe"
+        android:minHeight="60dp"
+        android:text="Forgot password"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/Gold"/>
+
+    <!-- "Don't have an account?" TextView -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textSignUp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/Gold"
+        android:text="Login"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/textSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnForgotPassword"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Don't have an account? Sign Up here"
+        android:backgroundTint="@color/Gold"
+        android:textColor="@color/black"
+        android:clickable="true"
+        android:onClick="onSignUpClick"/>
+
+</RelativeLayout>
