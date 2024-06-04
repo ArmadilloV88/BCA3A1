@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/charcoalGrey">
+
+    <!-- RecyclerView to display categories -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <!-- TextView to show message when no categories are found -->
+    <TextView
+        android:id="@+id/noCategoriesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No categories available, press the '+' button to add a category"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:textColor="@color/white"/>
+
+    <!-- Button to add a new category -->
+
+    <!-- ImageButton to delete a category -->
+
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="135dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/Gold"
+        android:text="+"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/deleteCategoryButton"
+        android:layout_width="123dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="137dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@id/addButton"
+        android:backgroundTint="@color/Gold"
+        android:text="Delete"
+        android:textColor="@color/black"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
+

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/charcoalGrey">
+
+    <!-- Header View -->
+    <View
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/header_bg" />
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/editCategoryTitleTextView"
+        android:layout_width="365dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="Create Category"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"/>
+
+    <!-- Category Name -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/editCategoryTitleTextView"
+        android:layout_marginTop="30dp"
+        android:text="Category Name:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/categoryNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@+id/editCategoryTitleTextView"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="start|top"
+        android:hint="Category Name"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+    <!-- Category Description -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryNameEditText"
+        android:layout_marginTop="16dp"
+        android:text="Description:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/categoryDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryNameEditText"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="start|top"
+        android:hint="Category description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+    <!-- Date Input -->
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/categoryDescriptionEditText"
+        android:layout_marginTop="16dp"
+        android:hint="Date"
+        android:background="@drawable/edit_text_bg"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+    <!-- Save Button -->
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateEditText"
+        android:layout_marginTop="16dp"
+        android:text="Save"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/Gold"/>
+
+    <!-- Add Category Button -->
+    <Button
+        android:id="@+id/addButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/saveButton"
+        android:layout_marginTop="16dp"
+        android:text="Add Category"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/Gold"/>
+
+</RelativeLayout>

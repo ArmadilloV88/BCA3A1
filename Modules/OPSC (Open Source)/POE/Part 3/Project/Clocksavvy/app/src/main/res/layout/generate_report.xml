@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/charcoalGrey">
+
+    <!-- Header View -->
+    <View
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/header_bg" />
+
+    <!-- Report Title -->
+    <TextView
+        android:layout_width="365dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="Report"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Timesheet Spinner -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="535dp"
+        android:text="Select Timesheet:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_timesheet"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="475dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/inputbg"
+        android:textColor="@color/white" />
+
+    <!-- Category Spinner -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="430dp"
+        android:text="Select Category:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="370dp"
+        android:spinnerMode="dropdown"
+        android:background="@drawable/inputbg"
+        android:textColor="@color/white" />
+
+    <!-- Report Display TextView -->
+    <TextView
+        android:id="@+id/report_display"
+        android:layout_width="371dp"
+        android:layout_height="180dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="161dp"
+        android:text=""
+        android:background="@drawable/header_bg"/>
+
+    <!-- Generate Button -->
+    <Button
+        android:id="@+id/btn_generate"
+        android:layout_width="125dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginEnd="115dp"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@color/Gold"
+        android:text="Generate"
+        android:textColor="@color/black" />
+
+</RelativeLayout>

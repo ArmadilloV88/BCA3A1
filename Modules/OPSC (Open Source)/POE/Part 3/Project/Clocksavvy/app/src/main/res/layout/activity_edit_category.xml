@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/charcoalGrey">
+
+    <View
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/header_bg">
+
+    </View>
+
+    <TextView
+        android:id="@+id/editCategoryTitleTextView"
+        android:layout_width="365dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="Edit Category"
+        android:textColor="@color/black"
+        android:textSize="28dp"
+        android:textStyle="bold"/>
+
+    <!-- Name of the Category input  -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="580dp"
+        android:text="Category Name:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/categoryNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="490dp"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="start|top"
+        android:hint="Category Name"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+
+
+    <!-- Description Input -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="450dp"
+        android:text="Description:"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/categoryDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="350dp"
+        android:background="@drawable/edit_text_bg"
+        android:gravity="start|top"
+        android:hint="Category description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:padding="10dp"
+        android:textColorHint="@color/black" />
+
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="272dp"
+        android:text="Save"
+        android:textColor="@color/black"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/Gold"/>
+
+</RelativeLayout>

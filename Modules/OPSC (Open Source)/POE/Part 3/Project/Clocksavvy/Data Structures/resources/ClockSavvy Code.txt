@@ -1,0 +1,1047 @@
+import android.content.Context
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.poe.clocksavvy.MainActivity.Companion.usersList
+import java.io.File
+import android.widget.Toast
+import com.poe.clocksavvy.MainActivity.Companion.autoLogin
+import java.io.FileWriter
+import java.io.IOException
+import java.util.Locale
+import android.app.DatePickerDialog
+import android.service.autofill.UserData
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.DatePicker
+import android.widget.GridLayout
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.poe.clocksavvy.MainActivity.Companion.categoriesList
+import com.poe.clocksavvy.MainActivity.Companion.userId
+import java.text.SimpleDateFormat
+import java.util.Calendar
+class MainActivity : AppCompatActivity() {
+    companion object {
+        var autoLogin = false
+        var userId: String? = null
+        var usersList: MutableList<UserInfo> = mutableListOf()
+        var contentsList: MutableList<String> = mutableListOf()
+        var categoriesList: MutableList<Category> = mutableListOf()
+        var timesheetsList: MutableList<Timesheet> = mutableListOf()
+    }
+    data class Category(
+        val categoryId: String,
+        val userId: String,
+        val categoryName: String,
+        val categoryDescription: String,
+        val categoryType: String
+    )
+    data class Timesheet(
+        val timesheetId: String,
+        val photoId: String,
+        val categoryId: String,
+        val date: String,
+        val startTime: String,
+        val endTime: String,
+        val description: String
+    )
+    data class UserInfo(
+        val userId: String,
+        val username: String,
+        val password: String,
+        val firstName: String,
+        val lastName: String
+    )
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.welcome_page)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        Log.d("MainActivity", "onCreate() called")
+        //deleteUserFile()
+        //Initialize the app and check if initialization succeeds
+        val initializationResult = initializeApp()
+        Log.d("MainActivity", "Initialization result: $initializationResult")
+        Log.d("MainActivity", "AutoLogin: $autoLogin, UserID: $userId")
+
+        // Check if initialization succeeded
+        if (initializationResult) {
+            // Navigate to the appropriate screen based on initialization result
+            if (autoLogin && userId != null) {
+                // Auto-login enabled and user ID available, navigate to the main screen
+                navigateToMainScreen()
+            } else {
+                // Auto-login disabled or no user ID available, navigate to the welcome screen
+                navigateToWelcomeScreen()
+            }
+        } else {
+            // Initialization failed, display a toast message to the user
+            Toast.makeText(this, "Initialization failed. Please try again later.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun initializeApp(): Boolean {
+        // Check if all necessary files exist and have been loaded
+        val allFilesExist = File(filesDir, "Users").exists() &&
+                File(filesDir, "Categories").exists() &&
+                File(filesDir, "Timesheets").exists() &&
+                File(filesDir, "Contents").exists()
+
+        // If any file doesn't exist, create it
+        if (!allFilesExist) {
+            createFilesIfNeeded()
+        }
+
+        // Load data from files
+        loadUsersData()
+        loadCategoriesData()
+        loadTimesheetsData()
+        loadContentsData()
+
+        // Log loaded data for debugging
+        Log.d("MainActivity", "Loaded users: $usersList")
+        Log.d("MainActivity", "Loaded categories: $categoriesList")
+        Log.d("MainActivity", "Loaded timesheets: $timesheetsList")
+        Log.d("MainActivity", "Loaded contents: $contentsList")
+
+        // Return true if initialization succeeded
+        return allFilesExist
+    }
+    private fun loadUsersData() {
+        val usersFile = File(filesDir, "Users")
+        if (usersFile.exists()) {
+            usersList = usersFile.readLines().mapNotNull { line ->
+                val userData = line.split("+")
+                if (userData.size == 5) {
+                    UserInfo(
+                        userId = userData[0],
+                        username = userData[1],
+                        password = userData[2],
+                        firstName = userData[3],
+                        lastName = userData[4]
+                    )
+                } else {
+                    Log.e("MainActivity", "Invalid user data format: $line")
+                    null
+                }
+            }.toMutableList()
+            Log.d("MainActivity", "Loaded users data: $usersList")
+        } else {
+            Log.e("MainActivity", "Users file does not exist")
+        }
+    }
+    private fun loadCategoriesData() {
+        val categoriesFile = File(filesDir, "Categories")
+        if (categoriesFile.exists()) {
+            categoriesList = categoriesFile.readLines().map { line ->
+                val categoryData = line.split("+")
+                Category(
+                    categoryId = categoryData[0],
+                    userId = categoryData[1],
+                    categoryName = categoryData[2],
+                    categoryDescription = categoryData[3],
+                    categoryType = categoryData[4]
+                )
+            }.toMutableList()
+            Log.d("MainActivity", "Loaded categories data: $categoriesList")
+        } else {
+            Log.e("MainActivity", "Categories file does not exist")
+        }
+    }
+
+    private fun loadTimesheetsData() {
+        val timesheetsFile = File(filesDir, "Timesheets")
+        if (timesheetsFile.exists()) {
+            timesheetsList = timesheetsFile.readLines().map { line ->
+                val timesheetData = line.split("+")
+                Timesheet(
+                    timesheetId = timesheetData[0],
+                    photoId = timesheetData[1],
+                    categoryId = timesheetData[2],
+                    date = timesheetData[3],
+                    startTime = timesheetData[4],
+                    endTime = timesheetData[5],
+                    description = timesheetData[6]
+                )
+            }.toMutableList()
+            Log.d("MainActivity", "Loaded timesheets data: $timesheetsList")
+        } else {
+            Log.e("MainActivity", "Timesheets file does not exist")
+        }
+    }
+
+    private fun loadContentsData() {
+        val contentsFile = File(filesDir, "Contents")
+        if (contentsFile.exists()) {
+            contentsList = contentsFile.readLines().toMutableList()
+            Log.d("MainActivity", "Loaded contents data: $contentsList")
+        } else {
+            Log.e("MainActivity", "Contents file does not exist")
+        }
+    }
+
+    private fun createFilesIfNeeded() {
+        val usersFile = File(filesDir, "Users")
+        if (!usersFile.exists()) {
+            usersFile.createNewFile()
+            Log.d("Initializer", "Users file created")
+        }
+
+        val categoriesFile = File(filesDir, "Categories")
+        if (!categoriesFile.exists()) {
+            categoriesFile.createNewFile()
+            Log.d("Initializer", "Categories file created")
+        }
+
+        val timesheetsFile = File(filesDir, "Timesheets")
+        if (!timesheetsFile.exists()) {
+            timesheetsFile.createNewFile()
+            Log.d("Initializer", "Timesheets file created")
+        }
+
+        val contentsFile = File(filesDir, "Contents")
+        if (!contentsFile.exists()) {
+            contentsFile.createNewFile()
+            Log.d("Initializer", "Contents file created")
+        }
+    }
+
+
+    private fun navigateToWelcomeScreen() {
+        // Use Intent to navigate to the welcome page activity
+        val intent = Intent(this, WelcomeActivity::class.java)
+        startActivity(intent)
+        // Finish the current activity to prevent navigating back to it
+        finish()
+    }
+
+    private fun navigateToMainScreen() {
+        // Use Intent to navigate to the main screen activity
+        val intent = Intent(this, LoginActivity::class.java) // Replace HomeActivity with the appropriate activity
+        startActivity(intent)
+        // Finish the current activity to prevent navigating back to it
+        finish()
+    }
+
+    private fun deleteUserFile() {
+        val usersFile = File(filesDir, "Users")
+        if (usersFile.exists()) {
+            val deleted = usersFile.delete()
+            if (deleted) {
+                Log.d("MainActivity", "User file deleted successfully")
+            } else {
+                Log.e("MainActivity", "Failed to delete user file")
+            }
+        } else {
+            Log.e("MainActivity", "User file does not exist")
+        }
+    }
+
+    private fun deleteCategoriesFile() {
+        val categoriesFile = File(filesDir, "Categories")
+        if (categoriesFile.exists()) {
+            val deleted = categoriesFile.delete()
+            if (deleted) {
+                Log.d("MainActivity", "Categories file deleted successfully")
+            } else {
+                Log.e("MainActivity", "Failed to delete categories file")
+            }
+        } else {
+            Log.e("MainActivity", "Categories file does not exist")
+        }
+    }
+
+}//Main Application Activity handling Initializer and offline/online mode
+class WelcomeActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.welcome_page)
+
+        // Find and handle the login and register buttons
+        val btnLoginPage = findViewById<Button>(R.id.btnLoginPage)
+        val btnRegisterPage = findViewById<Button>(R.id.btnRegisterPage)
+
+        btnLoginPage.setOnClickListener {
+            // Handle login button click
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnRegisterPage.setOnClickListener {
+            // Handle register button click
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
+    }
+}
+class RegisterActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.register_page)
+
+        val emailEditText: EditText = findViewById(R.id.email)
+        val firstNameEditText: EditText = findViewById(R.id.firstname)
+        val lastNameEditText: EditText = findViewById(R.id.lastname)
+        val passwordEditText: EditText = findViewById(R.id.password)
+        val confirmPasswordEditText: EditText = findViewById(R.id.confirmpassword)
+        val signUpButton: Button = findViewById(R.id.signupbutton)
+
+        signUpButton.setOnClickListener {
+            val email = emailEditText.text.toString()
+            val firstName = firstNameEditText.text.toString()
+            val lastName = lastNameEditText.text.toString()
+            val password = passwordEditText.text.toString()
+            val confirmPassword = confirmPasswordEditText.text.toString()
+
+            // Check if any field is empty
+            if (email.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                // Inform the user that all fields are required
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check if the email is valid
+            if (!isValidEmail(email)) {
+                // Inform the user that the email is invalid
+                Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check if passwords match
+            if (password != confirmPassword) {
+                // Inform the user that passwords do not match
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Continue with registration process
+            // Generate a unique user ID
+            val userId = generateUserId()
+
+            // Check if the email is already registered
+            if (!isEmailRegistered(email)) {
+                // Create a new UserInfo object
+                val userInfo = MainActivity.UserInfo(
+                    userId.toString(), // Convert userId to String
+                    email,
+                    password,
+                    firstName,
+                    lastName
+                )
+                // Add the new user to the user list
+                addUserToUserList(userInfo)
+
+                // Inform the user that registration is successful
+                Toast.makeText(this, "Registration successful", Toast.LENGTH_SHORT).show()
+
+                // Navigate to login page or perform any other action
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish() // Finish the current activity
+            } else {
+                // Email is already registered, inform the user
+                Toast.makeText(this, "Email already registered, please use a different email", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun generateUserId(): Int {
+        // Find the maximum user ID in the list
+        val maxUserId = usersList.map { it.userId.toInt() }.maxOrNull() ?: 0
+        // Increment the maximum user ID to get the new user ID
+        return maxUserId + 1
+    }
+
+    private fun isEmailRegistered(email: String): Boolean {
+        // Check if the email is already registered in the system
+        return usersList.any { it.username == email }
+    }
+
+    private fun addUserToUserList(userInfo: MainActivity.UserInfo) {
+        // Add the new user data to the user list
+        usersList.add(userInfo)
+        saveUsersData() // Save the updated user list to a file for persistence
+    }
+
+    private fun saveUsersData() {
+        val usersFile = File(filesDir, "Users")
+        val userDataLines = usersList.map { "${it.userId}+${it.username}+${it.password}+${it.firstName}+${it.lastName}" }
+        try {
+            usersFile.bufferedWriter().use { out ->
+                userDataLines.forEach { line ->
+                    out.write(line)
+                    out.newLine()
+                }
+            }
+            Log.d("EditProfileActivity", "User data saved: $userDataLines")
+        } catch (e: IOException) {
+            Log.e("EditProfileActivity", "Error saving user data: ${e.message}")
+        }
+    }
+}
+class LoginActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.login_page)
+
+        // Check if auto-login is enabled
+        checkAutoLogin()
+
+        // Find views
+        val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
+        val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
+        val checkboxRememberMe = findViewById<CheckBox>(R.id.checkboxRememberMe)
+        val btnForgotPassword = findViewById<Button>(R.id.btnForgotPassword)
+        val btnLogin = findViewById<Button>(R.id.btnLogin)
+        val textSignUp = findViewById<Button>(R.id.textSignUp)
+
+        // Set click listeners
+        btnLogin.setOnClickListener {
+            // Handle login button click
+            val email = editTextEmail.text.toString()
+            val password = editTextPassword.text.toString()
+            val rememberMe = checkboxRememberMe.isChecked
+
+            // Implement login logic with remember me functionality
+            loginUser(email, password, rememberMe)
+        }
+
+        btnForgotPassword.setOnClickListener {
+            // Handle forgot password button click
+            navigateToForgotPasswordPage()
+        }
+
+        textSignUp.setOnClickListener {
+            // Handle sign up button click
+            onSignUpClick(it) // Call the onSignUpClick method with the view
+        }
+    }
+
+    // Declare the onSignUpClick method
+    fun onSignUpClick(view: View) {
+        // Handle click event here
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun loginUser(email: String, password: String, rememberMe: Boolean) {
+        // Search for the email in the users list
+        val user = usersList.find { it.username == email }
+
+        if (user != null) {
+            // User found, check if the password matches
+            val storedPassword = user.password
+            if (password == storedPassword) {
+                // Password matches, user logged in successfully
+                Log.d("LoginActivity", "User $email logged in successfully")
+                // Extract the user ID
+                val userId = user.userId.toInt()
+                Log.d("LoginActivity", "User ID: $userId")
+                // Pass user ID to DashboardActivity
+                navigateToDashboard(userId)
+                finish() // Finish the LoginActivity
+
+                // Save login credentials if "Remember me" is checked
+                if (rememberMe && email.isNotBlank() && password.isNotBlank()) {
+                    saveLoginCredentials(email, password)
+                }
+            } else {
+                // Password does not match
+                Log.d("LoginActivity", "Incorrect password for user $email")
+                // Inform the user that the password is incorrect
+                Toast.makeText(this, "Incorrect password", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            // User not found
+            Log.d("LoginActivity", "User $email not found")
+            // Inform the user that the username is not registered
+            Toast.makeText(this, "Username not registered", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun navigateToDashboard(userId: Int) {
+        Log.d("LoginActivity", "Navigating to DashboardActivity with user ID: $userId")
+        val intent = Intent(this, DashboardActivity::class.java)
+        intent.putExtra("userId", userId.toString()) // Convert userId to String
+        startActivity(intent)
+        finish()
+    }
+
+    private fun saveLoginCredentials(email: String, password: String) {
+        val rememberMeFile = File(filesDir, "RememberMe.txt")
+        try {
+            rememberMeFile.writeText("True:$email|$password\n")
+            Log.d("LoginActivity", "Login credentials saved for user $email")
+        } catch (e: IOException) {
+            Log.e("LoginActivity", "Error saving login credentials: ${e.message}")
+        }
+    }
+
+    private fun navigateToForgotPasswordPage() {
+        // Redirect to the forgot password page
+        val intent = Intent(this, ForgotPasswordActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun checkAutoLogin() {
+        val rememberMeFile = File(filesDir, "RememberMe.txt")
+        if (rememberMeFile.exists()) {
+            val content = rememberMeFile.readText().trim()
+            if (content.startsWith("True")) {
+                val userData = content.substringAfter(":").trim().split("|")
+                if (userData.size == 2) {
+                    val email = userData[0]
+                    val password = userData[1]
+                    // Attempt to login with the saved credentials
+                    loginUser(email, password, true)
+                }
+            }
+        }
+    }
+}
+class ForgotPasswordActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.forget_password_page)
+
+        // Find views
+        val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
+        val editTextNewPassword = findViewById<EditText>(R.id.editTextNewPassword)
+        val editTextConfirmNewPassword = findViewById<EditText>(R.id.editTextConfirmNewPassword)
+        val btnConfirmChangePassword = findViewById<Button>(R.id.btnConfirmChangePassword)
+
+        // Set click listener for Confirm Change Password button
+        btnConfirmChangePassword.setOnClickListener {
+            // Handle button click
+            val email = editTextEmail.text.toString()
+            val newPassword = editTextNewPassword.text.toString()
+            val confirmNewPassword = editTextConfirmNewPassword.text.toString()
+
+            // Check if any field is empty
+            if (email.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Check if passwords match
+            if (newPassword != confirmNewPassword) {
+                Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Change password logic
+            changePassword(email, newPassword)
+        }
+    }
+
+    private fun changePassword(email: String, newPassword: String) {
+        // Find the index of the user by email
+        val userIndex = usersList.indexOfFirst { it.username == email }
+
+        if (userIndex != -1) {
+            // Update the password for the user in the list
+            val user = usersList[userIndex]
+            val updatedUser = user.copy(password = newPassword)
+            usersList[userIndex] = updatedUser
+
+            // Save the updated user list to the file
+            saveUsersData()
+
+            // Inform the user that the password has been changed
+            Toast.makeText(this, "Password changed successfully", Toast.LENGTH_SHORT).show()
+
+            // Add any additional actions here, such as navigating to another activity
+        } else {
+            // User not found
+            Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun saveUsersData() {
+        val usersFile = File(filesDir, "Users")
+        val userDataLines = usersList.map { "${it.userId}|${it.username}|${it.password}" }
+        try {
+            usersFile.bufferedWriter().use { out ->
+                userDataLines.forEach { line ->
+                    out.write(line)
+                    out.newLine()
+                }
+            }
+            Log.d("ForgotPasswordActivity", "User data saved: $userDataLines")
+        } catch (e: IOException) {
+            Log.e("ForgotPasswordActivity", "Error saving user data: ${e.message}")
+        }
+    }
+}//Forget password Application Activity that handles the forget password functionality
+class DashboardActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_dashboard)
+
+        val userId = intent.getStringExtra("userId")
+        Log.d("DashboardActivity", "Received User ID: $userId")
+
+        if (userId != null) {
+            // User ID is successfully retrieved, proceed with your logic
+            setCardViewListeners()
+        } else {
+            // Handle case where user ID is not passed correctly
+            Toast.makeText(this, "User ID is null", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+
+    private fun setCardViewListeners() {
+        val dashboardItems = findViewById<GridLayout>(R.id.dashboardItems)
+        for (i in 0 until dashboardItems.childCount) {
+            val cardView = dashboardItems.getChildAt(i) as CardView
+            when (cardView.id) {
+                R.id.home_card -> cardView.setOnClickListener { handleHomeClick() }
+                R.id.categories_card -> cardView.setOnClickListener { handleCategoriesClick() }
+                R.id.timesheets_card -> cardView.setOnClickListener { handleTimesheetsClick() }
+                R.id.goals_card -> cardView.setOnClickListener { handleGoalsClick() }
+                R.id.profile_card -> cardView.setOnClickListener { handleProfileClick() }
+                R.id.statistics_card -> cardView.setOnClickListener { handleStatisticsClick() }
+                else -> {
+                    // Handle other cases if needed
+                }
+            }
+        }
+    }
+
+    private fun handleHomeClick() {
+        // Handle home button click
+    }
+
+    private fun handleCategoriesClick() {
+        val userId = intent.getStringExtra("userId")
+        Log.d("DashboardActivity", "User ID for Categories: $userId")
+        val intent = Intent(this, CategoriesActivity::class.java)
+        intent.putExtra("userId", userId)
+        startActivity(intent)
+    }
+
+    private fun handleTimesheetsClick() {
+        // Handle timesheets button click
+        val intent = Intent(this, TimesheetsActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun handleGoalsClick() {
+        // Handle goals button click
+        val intent = Intent(this, GoalsActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun handleProfileClick() {
+        // Handle profile button click
+        val intent = Intent(this, EditProfileActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun handleStatisticsClick() {
+        // Handle statistics button click
+        val intent = Intent(this, StatisticsActivity::class.java)
+        startActivity(intent)
+    }
+}
+class TimesheetsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_timesheets)
+
+        // TODO: Add code to handle timesheets functionality
+    }
+}
+class GoalsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_goals)
+
+        // TODO: Add code to handle goals functionality
+    }
+}
+class StatisticsActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_statistics)
+
+        // TODO: Add code to handle statistics functionality
+    }
+}
+class CategoriesActivity : AppCompatActivity() {
+    private lateinit var categoriesAdapter: CategoryAdapter
+    private lateinit var userId: String // User ID obtained from intent or session
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_categories)
+
+        // Retrieve user ID from intent or session
+        userId = intent.getStringExtra("userId") ?: ""
+        if (userId.isEmpty()) {
+            // Handle invalid user ID
+            Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        val categories = filterCategoriesByUserId(userId)
+        if (categories.isNotEmpty()) {
+            // Display categories in the RecyclerView
+            showCategories(categories)
+        } else {
+            // Show a message indicating no categories found
+            showNoCategoriesMessage()
+        }
+
+        val addButton: Button = findViewById(R.id.addButton)
+        addButton.setOnClickListener {
+            // Handle add category button click
+            navigateToAddCategory()
+        }
+    }
+
+    private fun showCategories(categories: List<MainActivity.Category>) {
+        val recyclerView: RecyclerView = findViewById(R.id.categoriesRecyclerView)
+        categoriesAdapter = CategoryAdapter(categories)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = categoriesAdapter
+
+        Log.d("CategoriesActivity", "Categories loaded: $categories")
+    }
+
+    private fun showNoCategoriesMessage() {
+        val noCategoriesTextView: TextView = findViewById(R.id.noCategoriesTextView)
+        noCategoriesTextView.visibility = View.VISIBLE
+    }
+
+    private fun filterCategoriesByUserId(userId: String): List<MainActivity.Category> {
+        // Load categories data from the file and filter by user ID
+        val filteredCategories = MainActivity.categoriesList.filter { it.userId == userId }
+        Log.d("CategoriesActivity", "Filtered categories by user ID ($userId): $filteredCategories")
+        return filteredCategories
+    }
+    private fun navigateToAddCategory() {
+        // Navigate to AddCategoryActivity to add a new category
+        val intent = Intent(this, AddCategoryActivity::class.java)
+        intent.putExtra("userId", userId) // Pass the userId along with the intent
+        startActivity(intent)
+    }
+}
+class CategoryAdapter(private val categories: List<MainActivity.Category>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.category_item, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val category = categories[position]
+        holder.bind(category)
+    }
+
+    override fun getItemCount(): Int {
+        return categories.size
+    }
+
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
+        private val editCategoryButton: Button = itemView.findViewById(R.id.editCategoryButton)
+        private val deleteCategoryButton: Button = itemView.findViewById(R.id.deleteCategoryButton)
+
+        fun bind(category: MainActivity.Category) {
+            categoryNameTextView.text = category.categoryName
+
+            editCategoryButton.setOnClickListener {
+                // Handle edit category action
+                val context = itemView.context
+                val intent = Intent(context, EditCategoryActivity::class.java)
+                intent.putExtra("categoryId", category.categoryId)
+                context.startActivity(intent)
+            }
+
+            deleteCategoryButton.setOnClickListener {
+                // Handle delete category action
+                val context = itemView.context
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    // Remove the category from the list
+                    // Notify the adapter about the removal
+                }
+            }
+        }
+    }
+}
+class AddCategoryActivity : AppCompatActivity() {
+    private lateinit var dateEditText: EditText
+    private var selectedDate: Calendar = Calendar.getInstance()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_add_category)
+
+        dateEditText = findViewById(R.id.dateEditText)
+
+        // Handle Date EditText click to show DatePickerDialog
+        dateEditText.setOnClickListener {
+            showDatePickerDialog()
+        }
+
+        // Handle Save button click
+        val saveButton: Button = findViewById(R.id.saveButton)
+        saveButton.setOnClickListener {
+            // Retrieve category information
+            val categoryNameEditText: EditText = findViewById(R.id.categoryNameEditText)
+            val categoryDescriptionEditText: EditText = findViewById(R.id.categoryDescriptionEditText)
+
+            val categoryName = categoryNameEditText.text.toString()
+            val categoryDescription = categoryDescriptionEditText.text.toString()
+            val date = dateEditText.text.toString()
+
+            // Check if any field is empty
+            if (categoryName.isEmpty() || categoryDescription.isEmpty() || date.isEmpty()) {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Generate a unique category ID
+            val categoryId = generateUniqueId()
+
+            // Retrieve the user ID of the logged-in user
+            val userId = intent.getStringExtra("userId")
+
+            // Save category data
+            val categoryData = "$categoryId+$userId+$categoryName+$categoryDescription+$date"
+            saveCategory(categoryData)
+
+            // Redirect back to DashboardActivity
+            finish()
+        }
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerDialog(
+            this,
+            { _, year, month, dayOfMonth ->
+                selectedDate.set(year, month, dayOfMonth)
+                val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US)
+                dateEditText.setText(sdf.format(selectedDate.time))
+            },
+            selectedDate.get(Calendar.YEAR),
+            selectedDate.get(Calendar.MONTH),
+            selectedDate.get(Calendar.DAY_OF_MONTH)
+        )
+        datePicker.show()
+    }
+
+    private fun generateUniqueId(): String {
+        val categoriesList = MainActivity.categoriesList
+        // If no categories exist yet, start with ID 1
+        if (categoriesList.isEmpty()) return "1"
+        // Find the highest existing category ID and increment by 1
+        val highestId = categoriesList.maxByOrNull { it.categoryId.toIntOrNull() ?: 0 }?.categoryId?.toIntOrNull() ?: 0
+        return (highestId + 1).toString()
+    }
+
+    private fun saveCategory(categoryData: String) {
+        try {
+            val categoriesFile = File(filesDir, "Categories")
+            // Ensure categoryData has the correct format
+            if (categoryData.count { it == '+' } != 4) {
+                Log.e("AddCategoryActivity", "Error saving category data: Invalid format")
+                return
+            }
+            // Open a FileWriter in append mode to add category data to the file
+            FileWriter(categoriesFile, true).use { writer ->
+                writer.write("$categoryData\n") // Add a new line to separate categories
+            }
+            // Parse and add the new category to the list
+            val newCategory = parseCategory(categoryData)
+            MainActivity.categoriesList.add(newCategory)
+            Log.d("AddCategoryActivity", "Category data saved successfully: $categoryData")
+            // Inform the user about successful category addition
+            Toast.makeText(this, "Category added successfully", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            Log.e("AddCategoryActivity", "Error saving category data: ${e.message}")
+            e.printStackTrace()
+            // Inform the user about the error
+            Toast.makeText(this, "Failed to add category. Please try again.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun parseCategory(categoryData: String): MainActivity.Category {
+        val categoryFields = categoryData.split("+")
+        return MainActivity.Category(
+            categoryId = categoryFields.getOrElse(0) { "" },
+            userId = categoryFields.getOrElse(1) { "" },
+            categoryName = categoryFields.getOrElse(2) { "" },
+            categoryDescription = categoryFields.getOrElse(3) { "" },
+            categoryType = categoryFields.getOrElse(4) { "" }
+        )
+    }
+}
+class EditCategoryActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_edit_category)
+
+        // Retrieve categoryId from intent extras
+        val categoryId = intent.getStringExtra("categoryId")
+        if (categoryId.isNullOrEmpty()) {
+            // Handle invalid categoryId
+            Toast.makeText(this, "Invalid category ID", Toast.LENGTH_SHORT).show()
+            finish() // Close the activity
+            return
+        }
+
+        // Initialize views
+        val categoryNameEditText: EditText = findViewById(R.id.categoryNameEditText)
+        val categoryDescriptionEditText: EditText = findViewById(R.id.categoryDescriptionEditText)
+        val saveButton: Button = findViewById(R.id.saveButton)
+
+        // Load category data based on categoryId
+        val category = getCategoryById(categoryId)
+
+        // Populate EditTexts with category data
+        categoryNameEditText.setText(category?.categoryName)
+        categoryDescriptionEditText.setText(category?.categoryDescription)
+
+        // Handle Save button click
+        saveButton.setOnClickListener {
+            // Retrieve updated category information
+            val updatedName = categoryNameEditText.text.toString()
+            val updatedDescription = categoryDescriptionEditText.text.toString()
+
+            // Validate input
+            if (updatedName.isEmpty() || updatedDescription.isEmpty()) {
+                Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            // Update category
+            val success = updateCategory(categoryId, updatedName, updatedDescription)
+
+            // Check if the update was successful
+            if (success) {
+                Toast.makeText(this, "Category updated successfully", Toast.LENGTH_SHORT).show()
+                finish() // Close the activity
+            } else {
+                Toast.makeText(this, "Failed to update category", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    // Function to load category data based on categoryId
+    private fun getCategoryById(categoryId: String): MainActivity.Category? {
+        // Find the category with the given categoryId
+        return categoriesList.find { it.categoryId == categoryId }
+    }
+
+    private fun updateCategory(categoryId: String, name: String, description: String): Boolean {
+        // Find the index of the category with the given categoryId
+        val index = categoriesList.indexOfFirst { it.categoryId == categoryId }
+        // Check if the category exists
+        if (index != -1) {
+            // Update the category's name and description
+            categoriesList[index] = categoriesList[index].copy(categoryName = name, categoryDescription = description)
+
+            // Save the updated list of categories to the file
+            saveCategoriesToFile()
+
+            // Return true to indicate a successful update
+            return true
+        }
+
+        // Return false if the category was not found
+        return false
+    }
+
+    private fun saveCategoriesToFile() {
+        try {
+            FileWriter(File(filesDir, "Categories"), false).use { writer ->
+                for (category in categoriesList) {
+                    val categoryData = "${category.categoryId}+${category.userId}+${category.categoryName}+${category.categoryDescription}+${category.categoryType}"
+                    writer.write("$categoryData\n")
+                }
+            }
+            Log.d("CategoryAdapter", "Categories saved successfully")
+        } catch (e: IOException) {
+            Log.e("CategoryAdapter", "Error saving categories: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+}
+class EditProfileActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_edit_profile)
+
+        // Retrieve user ID from intent
+        val userId = intent.getStringExtra("userId")
+
+        // Load user data based on user ID
+        val user = usersList.find { it.userId == userId }
+
+        // Populate EditText fields with user data
+        val emailEditText: EditText = findViewById(R.id.emailEditText)
+        val passwordEditText: EditText = findViewById(R.id.passwordEditText)
+
+        // Check if user is not null before accessing its properties
+        if (user != null) {
+            emailEditText.setText(user.username)
+            passwordEditText.setText(user.password)
+        } else {
+            // Handle case where user is null, maybe display an error message or navigate back
+            // For example:
+            // Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
+            // finish()
+        }
+
+        // Handle Save button click
+        val saveButton: Button = findViewById(R.id.saveButton)
+        saveButton.setOnClickListener {
+            // Retrieve updated email and password
+            val updatedEmail = emailEditText.text.toString()
+            val updatedPassword = passwordEditText.text.toString()
+
+            // Update user data in usersList if user is not null
+            user?.let { currentUser ->
+                val index = usersList.indexOfFirst { it.userId == userId }
+                if (index != -1) {
+                    val updatedUser = currentUser.copy(username = updatedEmail, password = updatedPassword)
+                    usersList[index] = updatedUser
+                }
+            }
+
+            // Save updated user data to file or database
+
+            // Redirect back to DashboardActivity
+            finish()
+        }
+    }
+}

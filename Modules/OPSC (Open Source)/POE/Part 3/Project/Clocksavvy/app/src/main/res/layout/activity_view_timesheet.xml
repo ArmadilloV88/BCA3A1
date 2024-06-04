@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Timesheet Details -->
+    <TextView
+        android:id="@+id/textViewTimesheetId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/textViewDateLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter Date"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/textViewStartTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Time:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextStartTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter Start Time"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/textViewEndTimeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Time:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextEndTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter End Time"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/textViewDescriptionLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:hint="Enter Description"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Editable Data -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/textViewDailyGoalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Daily Goal:"
+            android:textSize="16sp"
+            android:layout_marginEnd="4dp"/>
+
+        <EditText
+            android:id="@+id/editTextDailyGoal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter Daily Goal"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/textViewMaxDailyGoalLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max Daily Goal:"
+            android:textSize="16sp"
+            android:layout_marginStart="8dp"/>
+
+        <EditText
+            android:id="@+id/editTextMaxDailyGoal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Enter Max Daily Goal"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Goals RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGoals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Timesheet Photo -->
+    <ImageView
+        android:id="@+id/imageViewTimesheetPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Delete"/>
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Save"/>
+    </LinearLayout>
+
+</LinearLayout>
