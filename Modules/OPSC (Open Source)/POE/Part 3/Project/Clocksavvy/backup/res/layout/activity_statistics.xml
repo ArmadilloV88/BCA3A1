@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Root layout with a general padding and a background color -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#E0E0E0">
+
+    <!-- Layout for the chart with a gray background -->
+    <RelativeLayout
+        android:id="@+id/chart_container"
+        android:layout_width="match_parent"
+        android:layout_height="310dp"
+        android:background="#BDBDBD"
+        android:layout_centerInParent="true">
+
+        <!-- Vertical LinearLayout for y-axis labels -->
+        <LinearLayout
+            android:id="@+id/y_axis"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true">
+            <!-- Y-axis labels are added programmatically -->
+        </LinearLayout>
+
+
+        <!-- Container for bars and horizontal grid lines -->
+        <LinearLayout
+            android:id="@+id/bars_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/y_axis"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:gravity="bottom">
+            <!-- Bars will be added dynamically -->
+        </LinearLayout>
+    </RelativeLayout>
+
+    <!-- Done Button with custom styling below the chart -->
+    <Button
+        android:id="@+id/done_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:layout_below="@id/chart_container"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_background"
+        android:textColor="#000000"
+        android:textStyle="bold"
+        android:padding="10dp"/>
+</RelativeLayout>

@@ -5,48 +5,44 @@
     android:background="@color/charcoalGrey">
 
     <!-- Category Name TextView -->
-
-    <!-- Edit Category Button -->
-
-    <!-- Delete Category Button -->
-
     <TextView
         android:id="@+id/categoryNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="295dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="295dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="619dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="18dp"
         android:layout_weight="1"
-        android:textColor="@android:color/white"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
         android:textColorHint="@color/Gold"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/editCategoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="250dp"
-        android:layout_marginBottom="513dp"
+        android:layout_marginStart="74dp"
+        android:layout_marginEnd="87dp"
+        android:layout_marginBottom="124dp"
         android:backgroundTint="@color/Gold"
         android:text="Edit"
         android:textColor="@color/black" />
 
     <Button
         android:id="@+id/deleteCategoryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="512dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginBottom="124dp"
         android:backgroundTint="@color/Gold"
         android:text="Delete"
         android:textColor="@color/black" />

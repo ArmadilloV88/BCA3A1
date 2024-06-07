@@ -7,13 +7,20 @@
     android:background="@color/charcoalGrey"
     tools:context=".RegisterActivity">
 
+    <!-- Header View -->
+    <View
+        android:id="@+id/topview"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:background="@drawable/header_bg" />
+
     <!-- Title -->
     <TextView
         android:id="@+id/signuptitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create an Account"
-        android:textColor="@color/white"
+        android:text="Create Account"
+        android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -31,8 +38,8 @@
         android:drawableLeft="@drawable/icon_email"
         android:drawablePadding="20dp"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -54,8 +61,8 @@
         android:drawablePadding="20dp"
         android:hint="First Name"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <!-- Last Name EditText -->
     <EditText
@@ -72,8 +79,8 @@
         android:drawablePadding="20dp"
         android:hint="Last Name"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <!-- Password EditText -->
     <EditText
@@ -91,8 +98,8 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <!-- Confirm Password EditText -->
     <EditText
@@ -110,8 +117,8 @@
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textColor="@color/black"
+        android:textColorHint="@color/black" />
 
     <!-- "Already Have an Account?" TextView -->
     <TextView

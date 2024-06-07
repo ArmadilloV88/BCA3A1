@@ -51,6 +51,7 @@
         android:inputType="textMultiLine"
         android:minLines="3"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
 
@@ -79,6 +80,7 @@
         android:inputType="textMultiLine"
         android:minLines="3"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
 

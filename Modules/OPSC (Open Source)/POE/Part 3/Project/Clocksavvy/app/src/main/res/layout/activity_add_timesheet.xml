@@ -50,6 +50,7 @@
         android:inputType="textMultiLine"
         android:minLines="3"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:textColorHint="@color/black" />
 
     <!-- Description Input -->
@@ -76,85 +77,100 @@
         android:inputType="textMultiLine"
         android:minLines="3"
         android:padding="10dp"
+        android:textColor="@color/black"
         android:textColorHint="@color/black" />
-
-    <EditText
-        android:id="@+id/dateEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="300dp"
-        android:layout_marginBottom="280dp"
-        android:hint="Date"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/startTimeEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="312dp"
-        android:hint="Start Time"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/endTimeEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="47dp"
-        android:layout_marginBottom="250dp"
-        android:hint="End Time"
-        android:textColorHint="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="226dp"
-        android:text="Category:"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_below="@id/descriptionEditText"
+        android:text="Date:"
+        android:textSize="16sp"
+        android:layout_marginBottom="4dp"
+        android:textColor="@color/white"/>
 
-    <Spinner
-        android:layout_width="200dp"
-        android:layout_height="48dp"
+    <EditText
+        android:id="@+id/dateEditText"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="163dp"
-        android:background="@drawable/edit_text_bg"
-        android:spinnerMode="dropdown"
-        android:textColor="@color/white" />
+        android:layout_marginBottom="322dp"
+        android:background="@drawable/inputbg"
+        android:hint="Enter Date"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/startTimeEditText"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="255dp"
+        android:background="@drawable/inputbg"
+        android:hint="Start Time"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp" />
+
 
     <!-- ImageView for displaying selected image -->
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/endTimeEditText"
-        android:layout_marginTop="16dp"
-        android:visibility="gone" /> <!-- Initially set to gone -->
+    <!-- Initially set to gone -->
 
     <!-- Button for picking image -->
+
+    <EditText
+        android:id="@+id/endTimeEditText"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="71dp"
+        android:layout_marginBottom="253dp"
+        android:layout_toEndOf="@+id/startTimeEditText"
+        android:background="@drawable/inputbg"
+        android:hint="End Time"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="213dp"
+        android:text="Image"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="178dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="500dp"
+        android:hint="Image"
+        android:background="@color/white"
+        android:textColorHint="@color/black"
+        android:visibility="visible" />
+
+    <!-- Initially set to gone -->
+
     <Button
         android:id="@+id/btnPickImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/imageView"
-        android:layout_marginTop="16dp"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="123dp"
+        android:backgroundTint="@color/Gold"
         android:text="Pick Image"
-        android:visibility="gone" />  <!-- Initially set to gone -->
+        android:textColor="@color/black"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/saveButton"

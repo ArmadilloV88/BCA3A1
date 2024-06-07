@@ -1,19 +1,19 @@
-RememberMe File:
+RememberMe :
 Format: <State>:<UserID>+<Username>+<Password>
 Example: True:123+exampleuser+password123
 
-Users File:
+Users :
 Format: <UserID>+<Username>+<Password>+<First>+<last>
 Example: 123+exampleuser+password123+christiaan+Versfeld
 
-Categories File:
+Categories :
 Format: <CategoryID>+<UserID>+<CategoryName>+<CategoryDescription>+<CategoryType>
 Example: 1+123+ProjectA+Used for project A+Project
 
-Timesheets File:
+Timesheets :
 Format: <TimesheetID>+<CategoryID>+<Date>+<StartTime>+<EndTime>+<Description>
 Example: 1+1+2024-04-19+08:00+10:00+Meeting with client
 
-Contents File:
+Contents :
 Format: <TimesheetID>+<PhotoID>-<CategoryID>+<DailyGoalID>+<MaxDailyGoal>+<MinDailyGoal>
 Example: 1+789-1+1+8+6

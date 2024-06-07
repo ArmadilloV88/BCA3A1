@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1002710249944",
+    "project_id": "opsc-poe-part3-4b9f9",
+    "storage_bucket": "opsc-poe-part3-4b9f9.appspot.com",
+    "firebase_url": "https://opsc-poe-part3-4b9f9-default-rtdb.europe-west1.firebasedatabase.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1002710249944:android:9c7bbf7e739a36fadc82ad",
+        "android_client_info": {
+          "package_name": "com.poe.clocksavvy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy32NBTLhUJ6hP5TSkrDIgXzu_BbmpiKQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

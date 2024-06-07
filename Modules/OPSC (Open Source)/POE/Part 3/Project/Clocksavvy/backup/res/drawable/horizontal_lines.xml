@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:shape="line"
+    tools:ignore="ExtraText">
+    <stroke
+        android:color="#FFFFFF"
+        android:width="1dp" />   <!-- Line thickness -->
+    <size android:height="1dp" /> <!-- Height of the line; only relevant for line shape -->
+    <solid android:color="#00000000" /> <!-- Transparent background -->
+    <padding
+        android:top="10dp"
+        android:bottom="10dp" />
+</shape>
