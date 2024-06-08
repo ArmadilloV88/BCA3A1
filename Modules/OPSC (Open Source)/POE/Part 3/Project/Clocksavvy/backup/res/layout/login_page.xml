@@ -6,15 +6,25 @@
     android:background="#3C4142">
 
     <!-- "Welcome Back" message -->
+
+    <View
+        android:id="@+id/topview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/header_bg" />
+
+    <!-- Title -->
     <TextView
         android:id="@+id/textWelcomeBack"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Welcome Back"
-        android:textSize="24sp"
-        android:textColor="#FFFFFF"
-        android:layout_marginTop="32dp"/>
+        android:text="Welcome Back!"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp" />
 
     <!-- Email EditText -->
     <EditText
@@ -27,8 +37,8 @@
         android:drawableLeft="@drawable/icon_email"
         android:drawablePadding="20dp"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
@@ -46,8 +56,8 @@
         android:inputType="textPassword"
         android:drawablePadding="20dp"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"

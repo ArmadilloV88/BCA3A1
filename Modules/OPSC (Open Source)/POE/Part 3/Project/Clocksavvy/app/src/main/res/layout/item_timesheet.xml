@@ -31,6 +31,7 @@
             android:id="@+id/timesheetDescriptionTextView"
             android:layout_width="match_parent"
             android:layout_height="48dp"
+            android:layout_below="@id/topview"
             android:layout_marginTop="16dp"
             android:background="@drawable/edit_text_bg"
             android:padding="5dp"
@@ -56,13 +57,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/categoryNameTextView"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
             android:layout_alignParentEnd="true"
             android:backgroundTint="@color/Gold"
             android:text="Edit"
             android:textColor="@color/black" />
 
+        <!-- Delete Button -->
+        <Button
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/categoryNameTextView"
+            android:layout_toStartOf="@id/editButton"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:backgroundTint="@color/Gold"
+            android:text="Delete"
+            android:textColor="@color/black" />
 
     </RelativeLayout>
-
 </ScrollView>

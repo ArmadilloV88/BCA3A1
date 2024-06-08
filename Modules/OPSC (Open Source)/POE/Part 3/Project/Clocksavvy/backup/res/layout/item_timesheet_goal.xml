@@ -15,8 +15,10 @@
         android:id="@+id/viewButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="View"
+        android:text="VIEW"
         android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/Gold"
+        android:textColor="@color/black"
         android:layout_marginTop="8dp"/>
 
 </LinearLayout>

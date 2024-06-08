@@ -5,31 +5,53 @@
     android:background="@color/charcoalGrey">
 
     <!-- RecyclerView to display categories -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="84dp"
+        android:layout_centerHorizontal="true"
+        android:text="Categories"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoriesRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:layout_width="368dp"
+        android:layout_height="398dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="126dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="207dp"
+        android:background="@drawable/inputbg"
+        android:paddingLeft="10dp"
+        android:visibility="visible"/>
 
     <!-- TextView to show message when no categories are found -->
+
     <TextView
         android:id="@+id/noCategoriesTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@id/addButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="76dp"
         android:text="No categories available, press the '+' button to add a category"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:visibility="visible" />
 
     <!-- Button to add a new category -->
-
-    <!-- ImageButton to delete a category -->
-
     <Button
         android:id="@+id/addButton"
-        android:layout_width="135dp"
-        android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/Gold"
@@ -37,19 +59,7 @@
         android:textColor="@color/black"
         android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/deleteCategoryButton"
-        android:layout_width="123dp"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="137dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="16dp"
-        android:layout_toEndOf="@id/addButton"
-        android:backgroundTint="@color/Gold"
-        android:text="Delete"
-        android:textColor="@color/black"
-        android:layout_alignParentRight="true"/>
+
 
 </RelativeLayout>
 

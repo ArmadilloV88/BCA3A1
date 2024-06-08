@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Clocksavvy"
-        android:textColor="#000000"
+        android:textColor="@color/Gold"
         android:textSize="40sp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/imageLogo"
@@ -35,7 +35,7 @@
 
         <Button
             android:id="@+id/btnLoginPage"
-            android:layout_width="wrap_content"
+            android:layout_width="152dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:backgroundTint="@color/Gold"
@@ -44,7 +44,7 @@
 
         <Button
             android:id="@+id/btnRegisterPage"
-            android:layout_width="wrap_content"
+            android:layout_width="152dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/Gold"

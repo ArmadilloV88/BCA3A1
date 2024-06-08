@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -15,12 +15,9 @@
 
     <!-- Report Title -->
     <TextView
-        android:layout_width="365dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Report"
         android:textColor="@color/black"
@@ -31,9 +28,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="535dp"
         android:text="Select Timesheet:"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -41,11 +36,9 @@
 
     <Spinner
         android:id="@+id/spinner_timesheet"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="475dp"
-        android:spinnerMode="dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/inputbg"
         android:textColor="@color/black" />
 
@@ -53,9 +46,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="430dp"
         android:text="Select Category:"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -63,36 +54,38 @@
 
     <Spinner
         android:id="@+id/spinner_category"
-        android:layout_width="200dp"
-        android:layout_height="48dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="370dp"
-        android:spinnerMode="dropdown"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="@drawable/inputbg"
         android:textColor="@color/black" />
 
-    <!-- Report Display TextView -->
-    <TextView
-        android:id="@+id/report_display"
-        android:layout_width="371dp"
-        android:layout_height="180dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="161dp"
-        android:textColor="@color/black"
-        android:text=""
-        android:background="@drawable/inputbg"/>
+    <!-- Report Display ScrollView -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/report_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text=""
+            android:background="@drawable/inputbg"/>
+    </ScrollView>
 
     <!-- Generate Button -->
     <Button
         android:id="@+id/btn_generate"
         android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:backgroundTint="@color/Gold"
         android:text="Generate"
         android:textColor="@color/black" />
 
-</RelativeLayout>
+</LinearLayout>
