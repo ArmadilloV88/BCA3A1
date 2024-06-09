@@ -207,7 +207,7 @@ class MainActivity : AppCompatActivity() {
                     val contentsData = contentsSnapshot.getValue(String::class.java)
                     contentsData?.let { contentsList.add(it) }
                 }
-                Log.d("MainActivity", "Loaded contents data from Firebase Database: $contentsList")
+                Log.d("MainActivity", "Loaded Contents data from Firebase Database: $contentsList")
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -626,9 +626,12 @@ class GenerateReportActivity : AppCompatActivity() {
         val selectedTimesheet = MainActivity.timesheetsList.find { it.timesheetId == selectedTimesheetId }
         val selectedCategory = categoriesList.find { it.categoryName == selectedCategoryName && it.userId == userId }
 
+        // Find the user
+        val user = usersList.find { it.userId == userId }
+
         // Generate the report
         val report = StringBuilder()
-        report.append("Made by: $userId\n\n")
+        report.append("Made by: (${user?.username}) ${user?.firstName} ${user?.lastName}\n\n")
         report.append("Category Information:\n")
         report.append("Category Name: ${selectedCategory?.categoryName}\n")
         report.append("Category Description: ${selectedCategory?.categoryDescription}\n")
@@ -643,7 +646,8 @@ class GenerateReportActivity : AppCompatActivity() {
         reportDisplay.text = report.toString()
     }
 
-}
+
+}//Used to generate the report
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -858,6 +862,12 @@ class DashboardActivity : AppCompatActivity() {
             Toast.makeText(this, "User ID is null", Toast.LENGTH_SHORT).show()
             finish()
         }
+
+        // Set logout button listener
+        val logoutButton = findViewById<CardView>(R.id.logout_card)
+        logoutButton.setOnClickListener {
+            handleLogout()
+        }
     }
 
     private fun setCardViewListeners() {
@@ -909,6 +919,25 @@ class DashboardActivity : AppCompatActivity() {
         val intent = Intent(this, StatisticsActivity::class.java)
         startActivity(intent)
     }
+
+    private fun handleLogout() {
+        // Set RememberMe.txt to False
+        val rememberMeFile = File(filesDir, "RememberMe.txt")
+        try {
+            rememberMeFile.writeText("False\n")
+            Log.d("DashboardActivity", "RememberMe set to False")
+        } catch (e: IOException) {
+            Log.e("DashboardActivity", "Error updating RememberMe file: ${e.message}")
+        }
+
+        // Clear user data (optional, depending on your app's logic)
+
+        // Re-initialize the app
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
+    }
 }//Dashboard activity that handles the dashboard integration functionality
 private val categoryIdToUserIdMap: HashMap<String, String> = HashMap()
 class AddTimesheetActivity : AppCompatActivity() {
@@ -950,6 +979,12 @@ class AddTimesheetActivity : AppCompatActivity() {
         endTimeEditText.setOnClickListener {
             showTimePicker(endTimeEditText)
         }
+        imageView = findViewById(R.id.imageView)
+
+        val pickImageButton = findViewById<Button>(R.id.btnPickImage)
+        pickImageButton.setOnClickListener {
+            openGallery()
+            }
     }
 
     private fun saveTimesheet() {
@@ -1534,7 +1569,7 @@ class GoalsActivity : AppCompatActivity() {
         startActivity(intent)
         Log.d("GoalsActivity", "Selected timesheet: ${timesheet.timesheetId}")
     }
-}//Goals Activity used to
+}//Goals Activity used to display the goals and allows you to edit them too
 class GoalsAdapter(
     private val timesheetsList: List<MainActivity.Timesheet>,
     private val onViewClick: (MainActivity.Timesheet) -> Unit
