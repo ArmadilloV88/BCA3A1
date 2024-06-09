@@ -1,49 +1,86 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Root layout with a general padding and a background color -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#E0E0E0">
 
-    <!-- Layout for the chart with a gray background -->
+    <!-- X Axis Label (Date) -->
+    <TextView
+        android:id="@+id/x_axis_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timesheet Date"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="8dp"/>
+
+    <!-- Timesheet Date Label -->
+    <TextView
+        android:id="@+id/timesheet_date_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timesheet Date"
+        android:layout_above="@id/x_axis_label"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Chart Container -->
     <RelativeLayout
         android:id="@+id/chart_container"
         android:layout_width="match_parent"
-        android:layout_height="310dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/timesheet_date_label"
         android:background="@color/black"
+        android:layout_marginBottom="24dp"
         android:layout_centerInParent="true">
 
-        <!-- Vertical LinearLayout for y-axis labels -->
-        <LinearLayout
-            android:id="@+id/y_axis"
-            android:layout_width="40dp"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="bottom"
+        <!-- Y Axis Label (Goals) -->
+        <TextView
+            android:id="@+id/y_axis_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Goals"
+            android:rotation="-90"
+            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:layout_alignParentBottom="true">
-            <!-- Y-axis labels are added programmatically -->
-        </LinearLayout>
+            android:paddingLeft="8dp"/>
 
-
-        <!-- Container for bars and horizontal grid lines -->
+        <!-- Graph Bars Container -->
         <LinearLayout
             android:id="@+id/bars_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_toRightOf="@id/y_axis"
             android:orientation="horizontal"
-            android:paddingLeft="20dp"
+            android:padding="8dp"
             android:gravity="bottom">
-            <!-- Bars will be added dynamically -->
+        </LinearLayout>
+
+        <!-- Legend -->
+        <LinearLayout
+            android:id="@+id/legend_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Min (Green)"
+                android:textColor="@android:color/holo_green_dark"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Max (Red)"
+                android:textColor="@android:color/holo_red_dark"
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
     </RelativeLayout>
 
-    <!-- Done Button with custom styling below the chart -->
+    <!-- Done Button -->
     <Button
         android:id="@+id/done_button"
         android:layout_width="wrap_content"
@@ -56,4 +93,6 @@
         android:textColor="#000000"
         android:textStyle="bold"
         android:padding="10dp"/>
+
 </RelativeLayout>
+

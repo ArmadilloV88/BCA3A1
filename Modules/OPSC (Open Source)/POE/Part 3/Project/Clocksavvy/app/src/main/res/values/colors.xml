@@ -10,4 +10,7 @@
     <color name="charcoalGrey">#3C4142</color>
     <color name="Red">#FF0000</color>
     <color name="Gold">#FFD700</color>
+    <color name="not_good">#FF0000</color> <!-- Red for "Not good" -->
+    <color name="fair_progress">#FFA500</color> <!-- Orange for "Fair progress" -->
+    <color name="strong_progress">#00FF00</color> <!-- Green for "Strong progress" -->
 </resources>

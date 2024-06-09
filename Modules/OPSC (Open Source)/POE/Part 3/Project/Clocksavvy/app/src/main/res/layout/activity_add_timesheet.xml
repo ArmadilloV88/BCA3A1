@@ -102,19 +102,6 @@
         android:textColorHint="@color/black"
         android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/startTimeEditText"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="255dp"
-        android:background="@drawable/inputbg"
-        android:hint="Start Time"
-        android:padding="10dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:textSize="18sp" />
-
 
     <!-- ImageView for displaying selected image -->
     <!-- Initially set to gone -->
@@ -122,13 +109,28 @@
     <!-- Button for picking image -->
 
     <EditText
+        android:id="@+id/startTimeEditText"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="200dp"
+        android:layout_marginBottom="330dp"
+        android:background="@drawable/inputbg"
+        android:hint="Start Time"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
         android:id="@+id/endTimeEditText"
         android:layout_width="152dp"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="71dp"
+        android:layout_marginLeft="300dp"
+        android:layout_margin="200dp"
         android:layout_marginBottom="253dp"
-        android:layout_toEndOf="@+id/startTimeEditText"
         android:background="@drawable/inputbg"
         android:hint="End Time"
         android:padding="10dp"
@@ -136,21 +138,12 @@
         android:textColorHint="@color/black"
         android:textSize="18sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="213dp"
-        android:text="Image"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="178dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="500dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="515dp"
+        android:layout_marginBottom="25dp"
         android:hint="Image"
         android:background="@color/white"
         android:textColorHint="@color/black"

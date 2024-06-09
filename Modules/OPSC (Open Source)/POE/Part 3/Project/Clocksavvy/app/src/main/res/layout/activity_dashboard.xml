@@ -10,7 +10,7 @@
         android:id="@+id/topview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/header_bg"/>
+        android:background="@drawable/header_bg" />
 
     <TextView
         android:id="@+id/dashboard_title"
@@ -22,27 +22,29 @@
         android:textColor="@color/black"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp" />
 
     <GridLayout
         android:id="@+id/dashboardItems"
         android:layout_width="match_parent"
-        android:layout_height="589dp"
+        android:layout_height="0dp"
         android:layout_below="@id/dashboard_title"
         android:layout_marginTop="29dp"
+        android:layout_alignParentBottom="true"
         android:columnCount="2"
-        android:rowCount="3">
+        android:rowCount="3"
+        android:layout_marginBottom="20dp">
 
         <!-- Home CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/home_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="0"
-            android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -50,13 +52,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icons8_home" />
+                    android:src="@drawable/icons8_home"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,7 +69,7 @@
                     android:text="Report"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -74,13 +78,13 @@
         <!-- Categories CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/categories_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="0"
-            android:layout_rowWeight="1"
             android:layout_column="1"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -88,13 +92,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_category" />
+                    android:src="@drawable/icon_category"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,7 +109,7 @@
                     android:text="Categories"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -112,13 +118,13 @@
         <!-- Timesheets CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/timesheets_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="1"
-            android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -126,13 +132,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_timesheets" />
+                    android:src="@drawable/icon_timesheets"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -141,7 +149,7 @@
                     android:text="Timesheets"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -150,13 +158,13 @@
         <!-- Goals CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/goals_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="1"
-            android:layout_rowWeight="1"
             android:layout_column="1"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -164,13 +172,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_goals" />
+                    android:src="@drawable/icon_goals"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -179,7 +189,7 @@
                     android:text="Goals"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -188,13 +198,13 @@
         <!-- Logout CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/logout_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="2"
-            android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -202,13 +212,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_profile" />
+                    android:src="@drawable/icon_profile"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -217,7 +229,7 @@
                     android:text="Logout"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -226,13 +238,13 @@
         <!-- Statistics CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/statistics_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_row="2"
-            android:layout_rowWeight="1"
             android:layout_column="1"
-            android:layout_columnWeight="1"
             android:layout_margin="12dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
             app:cardCornerRadius="15dp"
             app:cardElevation="12dp">
 
@@ -240,13 +252,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@android:color/white">
 
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_statistics" />
+                    android:src="@drawable/icon_statistics"
+                    app:tint="@android:color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -255,7 +269,7 @@
                     android:text="Statistics"
                     android:textColor="@color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

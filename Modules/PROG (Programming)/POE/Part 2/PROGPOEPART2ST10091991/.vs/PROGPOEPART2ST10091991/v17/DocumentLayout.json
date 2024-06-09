@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{E4ED375A-3C70-455F-B3B9-546B7A6B4952}|PROGPOEPART2ST10091991.csproj|d:\\vc\\st10091991\\bca3a1\\modules\\prog (programming)\\poe\\part 2\\progpoepart2st10091991\\code attributions\\code attributions.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{E4ED375A-3C70-455F-B3B9-546B7A6B4952}|PROGPOEPART2ST10091991.csproj|solutionrelative:code attributions\\code attributions.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -27,19 +22,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Code Attributions.txt",
-              "DocumentMoniker": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\Code Attributions\\Code Attributions.txt",
-              "RelativeDocumentMoniker": "Code Attributions\\Code Attributions.txt",
-              "ToolTip": "D:\\VC\\ST10091991\\BCA3A1\\Modules\\PROG (Programming)\\POE\\Part 2\\PROGPOEPART2ST10091991\\Code Attributions\\Code Attributions.txt",
-              "RelativeToolTip": "Code Attributions\\Code Attributions.txt",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
-              "WhenOpened": "2024-05-31T15:53:01.334Z",
-              "EditorCaption": ""
             }
           ]
         }

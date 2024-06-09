@@ -21,4 +21,3 @@ SELECT * FROM Favorites;
 
 -- Display contents of EmployeeProduct Table
 SELECT * FROM EmployeeProduct;
-

@@ -47,6 +47,7 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:21.0.3")
     implementation ("com.google.code.gson:gson:2.8.8")
     implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")

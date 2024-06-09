@@ -11,26 +11,26 @@
         android:id="@+id/textViewTimesheetId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/textViewCategory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_marginBottom="4dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_marginBottom="4dp"/>
 
     <TextView
         android:id="@+id/textViewDateLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Date:"
-        android:textColor="@color/white"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <EditText
@@ -39,7 +39,9 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:hint="Enter Date"
+        android:inputType="date"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <TextView
@@ -47,8 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start Time:"
-        android:textColor="@color/white"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <EditText
@@ -57,7 +59,9 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:hint="Enter Start Time"
+        android:inputType="time"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <TextView
@@ -65,8 +69,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="End Time:"
-        android:textColor="@color/white"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <EditText
@@ -75,7 +79,9 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:hint="Enter End Time"
+        android:inputType="time"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <TextView
@@ -83,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Description:"
-        android:textColor="@color/white"
         android:textSize="16sp"
+        android:textColor="@color/white"
         android:layout_marginBottom="4dp"/>
 
     <EditText
@@ -94,6 +100,7 @@
         android:textSize="16sp"
         android:hint="Enter Description"
         android:textColorHint="@color/white"
+        android:textColor="@color/white"
         android:layout_marginBottom="16dp"/>
 
     <!-- Editable Data -->
@@ -105,21 +112,23 @@
         android:background="@color/charcoalGrey">
 
         <TextView
-            android:id="@+id/textViewDailyGoalLabel"
+            android:id="@+id/textViewMinDailyGoalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily Goal:"
-            android:textColor="@color/white"
+            android:text="Min Daily Goal:"
             android:textSize="16sp"
+            android:textColor="@color/white"
             android:layout_marginEnd="4dp"/>
 
         <EditText
-            android:id="@+id/editTextDailyGoal"
+            android:id="@+id/editTextMinDailyGoal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Enter Daily Goal"
+            android:hint="Enter Min Daily Goal"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:layout_marginEnd="8dp"/>
 
         <TextView
@@ -127,8 +136,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Max Daily Goal:"
-            android:textColor="@color/white"
             android:textSize="16sp"
+            android:textColor="@color/white"
             android:layout_marginStart="8dp"/>
 
         <EditText
@@ -137,17 +146,45 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="Enter Max Daily Goal"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/white"
+            android:textColor="@color/white"
             android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Progress Status and Percentage -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/textViewProgressStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:text="Progress Status:" />
+
+        <TextView
+            android:id="@+id/textViewProgressPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:text="Progress Percentage:"/>
     </LinearLayout>
 
     <!-- Goals RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewGoals"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="116dp"
         android:layout_marginBottom="16dp"
-        android:background="@color/charcoalGrey"/>
+        android:background="@color/charcoalGrey" />
 
     <!-- Timesheet Photo -->
     <ImageView
