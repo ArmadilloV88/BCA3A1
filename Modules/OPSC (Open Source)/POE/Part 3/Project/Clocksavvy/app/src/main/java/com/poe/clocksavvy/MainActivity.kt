@@ -49,11 +49,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.FirebaseDatabase
-import com.google.gson.Gson
 import com.poe.clocksavvy.MainActivity.Companion.contentsList
 import com.poe.clocksavvy.MainActivity.Companion.isOnlineMode
 import com.poe.clocksavvy.MainActivity.Companion.timesheetsList
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 class MainActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
@@ -83,7 +83,11 @@ class MainActivity : AppCompatActivity() {
         var startTime: String = "",
         var endTime: String = "",
         var description: String = ""
-    )
+    ) {
+        fun toStringFormatted(): String {
+            return "$timesheetId+$categoryId+$date+$startTime+$endTime+$description"
+        }
+    }
 
     data class UserInfo(
         val userId: String = "",
@@ -296,15 +300,20 @@ class MainActivity : AppCompatActivity() {
     private fun loadCategoriesData() {
         val categoriesFile = File(filesDir, "Categories")
         if (categoriesFile.exists()) {
-            categoriesList = categoriesFile.readLines().map { line ->
+            categoriesList = categoriesFile.readLines().mapNotNull { line ->
                 val categoryData = line.split("+")
-                Category(
-                    categoryId = categoryData[0],
-                    userId = categoryData[1],
-                    categoryName = categoryData[2],
-                    categoryDescription = categoryData[3],
-                    categoryDate = categoryData[4]
-                )
+                if (categoryData.size >= 5) {
+                    Category(
+                        categoryId = categoryData[0],
+                        userId = categoryData[1],
+                        categoryName = categoryData[2],
+                        categoryDescription = categoryData[3],
+                        categoryDate = categoryData[4]
+                    )
+                } else {
+                    Log.e("MainActivity", "Invalid category data format: $line")
+                    null // Skip invalid data
+                }
             }.toMutableList()
             Log.d("MainActivity", "Loaded categories data: $categoriesList")
         } else {
@@ -315,17 +324,24 @@ class MainActivity : AppCompatActivity() {
     private fun loadTimesheetsData() {
         val timesheetsFile = File(filesDir, "Timesheets")
         if (timesheetsFile.exists()) {
-            timesheetsList = timesheetsFile.readLines().map { line ->
+            timesheetsList = mutableListOf()
+            timesheetsFile.forEachLine { line ->
                 val timesheetData = line.split("+")
-                Timesheet(
-                    timesheetId = timesheetData[0],
-                    categoryId = timesheetData[1],
-                    date = timesheetData[2],
-                    startTime = timesheetData[3],
-                    endTime = timesheetData[4],
-                    description = timesheetData[5]
-                )
-            }.toMutableList()
+                if (timesheetData.size >= 6) { // Ensure there are at least 6 elements
+                    timesheetsList.add(
+                        Timesheet(
+                            timesheetId = timesheetData[0],
+                            categoryId = timesheetData[1],
+                            date = timesheetData[2],
+                            startTime = timesheetData[3],
+                            endTime = timesheetData[4],
+                            description = timesheetData[5]
+                        )
+                    )
+                } else {
+                    Log.e("MainActivity", "Invalid timesheet data: $line")
+                }
+            }
             Log.d("MainActivity", "Loaded timesheets data: $timesheetsList")
         } else {
             Log.e("MainActivity", "Timesheets file does not exist")
@@ -393,6 +409,28 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    private fun deleteContentsFile() {
+        val contentsFile = File(filesDir, "Contents")
+        if (contentsFile.exists()) {
+            contentsFile.delete()
+            Log.d("MainActivity", "Contents file deleted successfully")
+        } else {
+            Log.e("MainActivity", "Contents file does not exist")
+        }
+    }
+    fun deleteCategoriesFile() {
+        val categoriesFile = File(filesDir, "Categories")
+        if (categoriesFile.exists()) {
+            val isDeleted = categoriesFile.delete()
+            if (isDeleted) {
+                println("Categories file deleted successfully")
+            } else {
+                println("Failed to delete categories file")
+            }
+        } else {
+            println("Categories file does not exist")
+        }
+    }
 }//Main Application Activity handling Initializer and offline/online mode
 class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -417,7 +455,6 @@ class WelcomeActivity : AppCompatActivity() {
     }
 }//Welcome activity that handles the welcome functionality
 class RegisterActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.register_page)
@@ -706,7 +743,7 @@ class LoginActivity : AppCompatActivity() {
             val userId = user.userId.toInt()
             Log.d("LoginActivity", "User ID: $userId")
             // Save user data to Realtime Database
-            saveUserDataToDatabase(user)
+            //saveUserDataToDatabase(user)
             // Pass user ID to DashboardActivity
             navigateToDashboard(userId)
             finish() // Finish the LoginActivity
@@ -721,13 +758,13 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, "Username not registered", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun saveUserDataToDatabase(user: MainActivity.UserInfo) {
+    /*private fun saveUserDataToDatabase(user: MainActivity.UserInfo) {
         val db = Firebase.database
-        val usersRef = db.getReference("users")
+        val usersRef = db.getReference("Users")
         usersRef.child(user.userId).setValue(user)
             .addOnSuccessListener { Log.d(TAG, "User data saved to Realtime Database: $user") }
             .addOnFailureListener { e -> Log.w(TAG, "Error saving user data to Realtime Database", e) }
-    }
+    }*/
 
     private fun navigateToDashboard(userId: Int) {
         Log.d("LoginActivity", "Navigating to DashboardActivity with user ID: $userId")
@@ -865,7 +902,11 @@ class DashboardActivity : AppCompatActivity() {
         } else {
             // Handle case where user ID is not passed correctly
             Log.e("DashboardActivity", "User ID is null")
-            Toast.makeText(this, "User ID is null", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "An error occurred. Redirecting to welcome page...", Toast.LENGTH_SHORT).show()
+
+            // Redirect the user to the welcome page
+            val intent = Intent(this, WelcomeActivity::class.java)
+            startActivity(intent)
             finish()
         }
 
@@ -918,105 +959,31 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun handleGoalsClick() {
-        val userId = intent.getStringExtra("userId")
-        Log.d("DashboardActivity", "Handle Goals Click: User ID - $userId")
-        val intent = Intent(this, GoalsActivity::class.java)
-        intent.putExtra("userId", userId)
-        startActivity(intent)
+        if (isOnlineMode) {
+            val userId = intent.getStringExtra("userId")
+            Log.d("DashboardActivity", "Handle Goals Click: User ID - $userId")
+            val intent = Intent(this, GoalsActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
+        } else {
+            // Display message when app is in offline mode
+            Toast.makeText(this, "Feature unavailable in offline mode", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun handleStatisticsClick() {
-        Log.d("DashboardActivity", "Handle Statistics Click")
-        fetchUserDataAndShowChart()
-    }
-
-    private fun fetchUserDataAndShowChart() {
-        val userId = intent.getStringExtra("userId") ?: return
-        Log.d("DashboardActivity", "Fetching data for userId: $userId")
-
-        val userCategories = categoriesList.filter { it.userId == userId }.map { it.categoryId }
-        Log.d("DashboardActivity", "User categories: $userCategories")
-
-        val userTimesheets = timesheetsList.filter { userCategories.contains(it.categoryId) }
-        Log.d("DashboardActivity", "User timesheets: $userTimesheets")
-
-        val minGoals = mutableListOf<Int>()
-        val maxGoals = mutableListOf<Int>()
-        val timesheetDates = mutableListOf<String>()
-
-        // Fetch min and max goals for each data point
-        for (timesheet in userTimesheets) {
-            val content = contentsList.find { it.startsWith("${timesheet.timesheetId}+") }
-            Log.d("DashboardActivity", "Content for timesheetId ${timesheet.timesheetId}: $content")
-
-            content?.let {
-                val goalsParts = it.split("-")[1].split("+")
-                Log.d("DashboardActivity", "Goals parts: $goalsParts")
-                if (goalsParts.size >= 4) {
-                    val maxGoal = goalsParts[2].toIntOrNull()
-                    val minGoal = goalsParts[3].toIntOrNull()
-
-                    minGoal?.let { minGoals.add(it) }
-                    maxGoal?.let { maxGoals.add(it) }
-                    timesheetDates.add(timesheet.date) // Add date to the list
-                    Log.d("DashboardActivity", "Added minGoal: $minGoal, maxGoal: $maxGoal, date: ${timesheet.date}")
-                }
-            }
-        }
-
-        if (minGoals.isEmpty() || maxGoals.isEmpty() || timesheetDates.isEmpty()) {
-            // If there's no data, use dummy data
-            showDummyStatistics()
+        if (isOnlineMode) {
+            // Retrieve the userId from where you have it stored
+            val userId = intent.getStringExtra("userId")
+            Log.d("DashboardActivity", "Handle stats Click: User ID - $userId")
+            // Start the StatisticsActivity and pass the userId as an intent extra
+            val intent = Intent(this, StatisticsActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
         } else {
-            // If data is available, display the statistics
-            showStatistics(minGoals, maxGoals, timesheetDates, userTimesheets)
+            // Display message when app is in offline mode
+            Toast.makeText(this, "Feature unavailable in offline mode", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun showStatistics(minGoals: List<Int>, maxGoals: List<Int>, timesheetDates: List<String>, userTimesheets: List<MainActivity.Timesheet>) {
-        // Convert lists to arrays for Intent extra
-        val minGoalsArray = minGoals.toIntArray()
-        val maxGoalsArray = maxGoals.toIntArray()
-
-        // Log the final min and max goals
-        Log.d("DashboardActivity", "Final minGoalsArray: ${minGoalsArray.contentToString()}")
-        Log.d("DashboardActivity", "Final maxGoalsArray: ${maxGoalsArray.contentToString()}")
-        Log.d("DashboardActivity", "Final timesheetDatesArray:")
-        Log.d("DashboardActivity", "Final timesheetDatesArray:")
-        timesheetDates.forEach { date ->
-            Log.d("DashboardActivity", "Date: $date")
-        }
-
-        // Start StatisticsActivity and pass the min and max goals arrays as extras
-        val intent = Intent(this, StatisticsActivity::class.java)
-        intent.putExtra("MIN_GOALS", minGoalsArray)
-        intent.putExtra("MAX_GOALS", maxGoalsArray)
-        intent.putStringArrayListExtra("TIMESHEET_DATES", ArrayList(timesheetDates))
-
-        // Pass data points and labels for chart blocks
-        val labels = userTimesheets.map { "Label ${it.timesheetId}" } // Replace with your own labels
-        intent.putStringArrayListExtra("LABELS", ArrayList(labels))
-
-        Log.d("DashboardActivity", "Starting StatisticsActivity with labels: $labels")
-
-        startActivity(intent)
-    }
-
-    private fun showDummyStatistics() {
-        val dummyData = List(10) { (1..50).random() } // Generate random data
-        val dummyMinGoals = List(10) { (1..10).random() } // Generate random min goals data
-        val dummyMaxGoals = List(10) { (11..20).random() } // Generate random max goals data
-
-        Log.d("DashboardActivity", "Showing dummy statistics with data: $dummyData")
-        Log.d("DashboardActivity", "Dummy min goals: $dummyMinGoals")
-        Log.d("DashboardActivity", "Dummy max goals: $dummyMaxGoals")
-
-        val intent = Intent(this, StatisticsActivity::class.java)
-        intent.putExtra("USER_DATA", dummyData.toIntArray())
-        intent.putExtra("MIN_GOALS", dummyMinGoals.toIntArray())
-        intent.putExtra("MAX_GOALS", dummyMaxGoals.toIntArray())
-
-        startActivity(intent)
     }
 
     private fun handleLogout() {
@@ -1083,7 +1050,7 @@ class AddTimesheetActivity : AppCompatActivity() {
         val pickImageButton = findViewById<Button>(R.id.btnPickImage)
         pickImageButton.setOnClickListener {
             openGallery()
-            }
+        }
     }
 
     private fun saveTimesheet() {
@@ -1135,7 +1102,10 @@ class AddTimesheetActivity : AppCompatActivity() {
 
     private fun navigateToDashboard() {
         val categoryId = intent.getStringExtra("categoryId")
-        Log.d("AddTimesheetActivity", "Navigating to DashboardActivity with Category ID: $categoryId")
+        Log.d(
+            "AddTimesheetActivity",
+            "Navigating to DashboardActivity with Category ID: $categoryId"
+        )
 
         // Check if the categoryId to userId map contains the categoryId
         if (categoryId != null && categoryIdToUserIdMap.containsKey(categoryId)) {
@@ -1148,22 +1118,35 @@ class AddTimesheetActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-            Log.e("AddTimesheetActivity", "Failed to retrieve User ID: Category ID not found in local map")
-            Toast.makeText(this@AddTimesheetActivity, "Failed to retrieve User ID", Toast.LENGTH_SHORT).show()
+            Log.e(
+                "AddTimesheetActivity",
+                "Failed to retrieve User ID: Category ID not found in local map"
+            )
+            Toast.makeText(
+                this@AddTimesheetActivity,
+                "Failed to retrieve User ID",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
-
 
     // Function to save timesheets to a file in offline mode
     private fun saveTimesheetsToFile() {
         try {
             val file = File(filesDir, "Timesheets")
-            file.writeText(Gson().toJson(timesheetsList))
+            val stringBuilder = StringBuilder()
+
+            for (timesheet in timesheetsList) {
+                val timesheetData =
+                    "${timesheet.timesheetId}+${timesheet.categoryId}+${timesheet.date}+${timesheet.startTime}+${timesheet.endTime}+${timesheet.description}"
+                stringBuilder.append("$timesheetData\n")
+            }
+
+            file.writeText(stringBuilder.toString())
         } catch (e: IOException) {
             Log.e("AddTimesheetActivity", "Error saving timesheets to file: ${e.message}", e)
         }
     }
-
 
     private fun openGallery() {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -1184,14 +1167,26 @@ class AddTimesheetActivity : AppCompatActivity() {
     }
 
     private fun checkPermissionsAndOpenGallery() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSIONS_REQUEST_READ_STORAGE)
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                PERMISSIONS_REQUEST_READ_STORAGE
+            )
         } else {
             openGallery()
         }
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_READ_STORAGE && grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             openGallery()
@@ -1205,6 +1200,7 @@ class AddTimesheetActivity : AppCompatActivity() {
         val newId = existingIds.maxOrNull()?.plus(1) ?: 1
         return newId.toString()
     }
+
 
     private fun showDatePicker() {
         val calendar = Calendar.getInstance()
@@ -1259,75 +1255,6 @@ class AddTimesheetActivity : AppCompatActivity() {
         timePickerDialog.show()
     }
 }//Timesheets activity add on that handles adding the entries the file system//Timesheets activity add on that handles adding the entries the file system
-class CategoriesSelectionActivity : AppCompatActivity() {
-    private lateinit var userId: String
-    private lateinit var categories: List<MainActivity.Category>
-    private lateinit var categoriesRecyclerView: RecyclerView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_categories_selection)
-
-        userId = intent.getStringExtra("userId") ?: ""
-        if (userId.isEmpty()) {
-            Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
-
-        categoriesRecyclerView = findViewById(R.id.categoriesRecyclerView)
-        categoriesRecyclerView.layoutManager = LinearLayoutManager(this)
-
-        loadCategories()
-    }
-
-    private fun loadCategories() {
-        categories = MainActivity.categoriesList.filter { it.userId == userId }
-        val categoryAdapter = CategoryAdapter(categories) { categoryId ->
-            handleCategorySelection(categoryId)
-        }
-        categoriesRecyclerView.adapter = categoryAdapter
-    }
-
-    private fun handleCategorySelection(categoryId: String) {
-        categoryIdToUserIdMap[categoryId] = userId
-        val intent = Intent(this, AddTimesheetActivity::class.java)
-        intent.putExtra("categoryId", categoryId)
-        startActivity(intent)
-    }
-
-    inner class CategoryAdapter(
-        private val categories: List<MainActivity.Category>,
-        private val onItemClick: (String) -> Unit
-    ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item_simple, parent, false)
-            return CategoryViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-            val category = categories[position]
-            holder.bind(category)
-        }
-
-        override fun getItemCount(): Int {
-            return categories.size
-        }
-
-        inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            private val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
-            private val selectButton: Button = itemView.findViewById(R.id.selectButton)
-
-            fun bind(category: MainActivity.Category) {
-                categoryNameTextView.text = category.categoryName
-                selectButton.setOnClickListener {
-                    onItemClick(category.categoryId)
-                }
-            }
-        }
-    }
-}
 class TimesheetsActivity : AppCompatActivity() {
     private lateinit var userId: String
     private lateinit var timesheets: MutableList<MainActivity.Timesheet>
@@ -1392,9 +1319,15 @@ class TimesheetsActivity : AppCompatActivity() {
         })
     }
 
-    private fun fetchTimesheetsForCategories(categoryIds: List<String>) {
+    fun fetchTimesheetsForCategories(categoryIds: List<String>) {
         Log.d("TimesheetsActivity", "Fetching timesheets for categories: $categoryIds")
         timesheets = mutableListOf() // Clear the existing timesheets list
+
+        if (categoryIds.isEmpty()) {
+            Log.e("TimesheetsActivity", "Category IDs list is empty.")
+            Toast.makeText(this, "No categories selected", Toast.LENGTH_SHORT).show()
+            return
+        }
 
         val timesheetRef = FirebaseDatabase.getInstance().reference.child("Timesheets")
         val query = timesheetRef.orderByChild("categoryId").startAt(categoryIds.first()).endAt(categoryIds.last() + "\uf8ff")
@@ -1421,21 +1354,51 @@ class TimesheetsActivity : AppCompatActivity() {
     }
 
     private fun loadOfflineTimesheets() {
-        val categoryFile = File(filesDir, "Categories")
-        if (categoryFile.exists()) {
-            val categoryIds = categoryFile.readLines().mapNotNull { line ->
-                val parts = line.split("+")
-                if (parts.size >= 2 && parts[1] == MainActivity.userId) {
-                    parts[0]
-                } else {
-                    null
+        try {
+            val file = File(filesDir, "Timesheets")
+            if (file.exists()) {
+                timesheets = mutableListOf()
+
+                file.readLines().forEach { line ->
+                    val parts = line.split("+")
+                    if (parts.size == 6) {
+                        val timesheetId = parts[0]
+                        val categoryId = parts[1]
+                        val date = parts[2]
+                        val startTime = parts[3]
+                        val endTime = parts[4]
+                        val description = parts[5]
+
+                        val timesheet = MainActivity.Timesheet(
+                            timesheetId = timesheetId,
+                            categoryId = categoryId,
+                            date = date,
+                            startTime = startTime,
+                            endTime = endTime,
+                            description = description
+                        )
+
+                        timesheets.add(timesheet)
+                    } else {
+                        Log.e("TimesheetsActivity", "Invalid timesheet format in line: $line")
+                    }
                 }
+
+                if (timesheets.isNotEmpty()) {
+                    showTimesheets()
+                    noTimesheetsTextView.visibility = View.GONE
+                } else {
+                    showNoTimesheetsMessage()
+                }
+            } else {
+                Log.e("TimesheetsActivity", "Timesheets file does not exist")
+                Toast.makeText(this, "Timesheets file does not exist", Toast.LENGTH_SHORT).show()
+                showNoTimesheetsMessage()
             }
-            Log.d("TimesheetsActivity", "Category IDs loaded: $categoryIds")
-            fetchTimesheetsForCategories(categoryIds)
-        } else {
-            Log.e("TimesheetsActivity", "Categories file does not exist")
-            Toast.makeText(this, "Categories file does not exist", Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            Log.e("TimesheetsActivity", "Error loading timesheets from file: ${e.message}", e)
+            Toast.makeText(this, "Error loading timesheets", Toast.LENGTH_SHORT).show()
+            showNoTimesheetsMessage()
         }
     }
 
@@ -1462,7 +1425,6 @@ class TimesheetsActivity : AppCompatActivity() {
     }
 
     private fun editTimesheet(timesheet: MainActivity.Timesheet) {
-        // Ensure the timesheet ID is valid before launching the activity
         val timesheetId = timesheet.timesheetId
         if (timesheetId.isNotEmpty()) {
             val intent = Intent(this, ViewTimesheetActivity::class.java)
@@ -1472,6 +1434,7 @@ class TimesheetsActivity : AppCompatActivity() {
             Toast.makeText(this, "Invalid timesheet ID", Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun deleteTimesheet(timesheet: MainActivity.Timesheet) {
         val timesheetId = timesheet.timesheetId
@@ -1493,7 +1456,7 @@ class TimesheetsActivity : AppCompatActivity() {
             val file = File(filesDir, "Timesheets")
             if (file.exists()) {
                 val timesheetsFromFile = file.readLines().toMutableList()
-                val timesheetString = timesheet.toString() // Assuming Timesheet has a proper toString() method
+                val timesheetString = timesheet.toStringFormatted() // Use toStringFormatted() method
                 if (timesheetsFromFile.remove(timesheetString)) {
                     file.writeText(timesheetsFromFile.joinToString("\n"))
                     Toast.makeText(this@TimesheetsActivity, "Timesheet deleted successfully", Toast.LENGTH_SHORT).show()
@@ -1556,6 +1519,106 @@ class TimesheetAdapter(
         }
     }
 }// Timesheets adapter that allows the timesheets to be displayed
+class CategoriesSelectionActivity : AppCompatActivity() {
+    private lateinit var userId: String
+    private lateinit var categories: List<MainActivity.Category>
+    private lateinit var categoriesRecyclerView: RecyclerView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_categories_selection)
+
+        userId = intent.getStringExtra("userId") ?: ""
+        if (userId.isEmpty()) {
+            Toast.makeText(this, "Invalid user ID", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
+        categoriesRecyclerView = findViewById(R.id.categoriesRecyclerView)
+        categoriesRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        loadCategories()
+    }
+
+    private fun loadCategories() {
+        if (isOnlineMode) {
+            fetchCategoriesFromDatabase(userId) { fetchedCategories ->
+                categories = fetchedCategories
+                val categoryAdapter = CategoryAdapter(categories) { categoryId ->
+                    handleCategorySelection(categoryId)
+                }
+                categoriesRecyclerView.adapter = categoryAdapter
+            }
+        } else {
+            categories = MainActivity.categoriesList.filter { it.userId == userId }
+            val categoryAdapter = CategoryAdapter(categories) { categoryId ->
+                handleCategorySelection(categoryId)
+            }
+            categoriesRecyclerView.adapter = categoryAdapter
+        }
+    }
+
+    // Function to fetch categories from Firebase Database
+    private fun fetchCategoriesFromDatabase(userId: String, callback: (List<MainActivity.Category>) -> Unit) {
+        val databaseReference = FirebaseDatabase.getInstance().reference.child("Categories")
+        databaseReference.orderByChild("userId").equalTo(userId)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val categories = mutableListOf<MainActivity.Category>()
+                    for (snapshot in dataSnapshot.children) {
+                        val category = snapshot.getValue(MainActivity.Category::class.java)
+                        category?.let { categories.add(it) }
+                    }
+                    callback(categories)
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("loadCategories", "Failed to fetch categories: ${databaseError.message}")
+                    Toast.makeText(this@CategoriesSelectionActivity, "Failed to fetch categories", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun handleCategorySelection(categoryId: String) {
+        categoryIdToUserIdMap[categoryId] = userId
+        val intent = Intent(this, AddTimesheetActivity::class.java)
+        intent.putExtra("categoryId", categoryId)
+        startActivity(intent)
+    }
+
+    inner class CategoryAdapter(
+        private val categories: List<MainActivity.Category>,
+        private val onItemClick: (String) -> Unit
+    ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.category_item_simple, parent, false)
+            return CategoryViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+            val category = categories[position]
+            holder.bind(category)
+        }
+
+        override fun getItemCount(): Int {
+            return categories.size
+        }
+
+        inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+            private val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
+            private val selectButton: Button = itemView.findViewById(R.id.selectButton)
+
+            fun bind(category: MainActivity.Category) {
+                categoryNameTextView.text = category.categoryName
+                selectButton.setOnClickListener {
+                    onItemClick(category.categoryId)
+                }
+            }
+        }
+    }
+}
 class GoalsActivity : AppCompatActivity() {
 
     private lateinit var recyclerView: RecyclerView
@@ -1719,45 +1782,93 @@ class ViewTimesheetActivity : AppCompatActivity() {
         setContentView(R.layout.activity_view_timesheet)
 
         timesheetId = intent.getStringExtra("timesheetId") ?: ""
-        val timesheet = MainActivity.timesheetsList.find { it.timesheetId == timesheetId }
 
-        if (timesheet != null) {
-            findViewById<TextView>(R.id.textViewTimesheetId).text = "Timesheet ID: ${timesheet.timesheetId}"
-            findViewById<TextView>(R.id.textViewCategory).text = "Category: ${getCategoryName(timesheet.categoryId)}"
-
-            dailyGoalEditText = findViewById(R.id.editTextMinDailyGoal)
-            maxDailyGoalEditText = findViewById(R.id.editTextMaxDailyGoal)
-            minDailyGoalEditText = findViewById(R.id.editTextMinDailyGoal)
-            dateEditText = findViewById(R.id.editTextDate)
-            startTimeEditText = findViewById(R.id.editTextStartTime)
-            endTimeEditText = findViewById(R.id.editTextEndTime)
-            descriptionEditText = findViewById(R.id.editTextDescription)
-
-            val dailyGoalInfo = getDailyGoalInfoForTimesheet(timesheetId)
-            dailyGoalEditText.setText(dailyGoalInfo.first.toString())
-            maxDailyGoalEditText.setText(dailyGoalInfo.second.toString())
-            dateEditText.setText(timesheet.date)
-            startTimeEditText.setText(timesheet.startTime)
-            endTimeEditText.setText(timesheet.endTime)
-            descriptionEditText.setText(timesheet.description)
-
-            setDateTimeFieldListeners()
-
-            recyclerViewGoals = findViewById(R.id.recyclerViewGoals)
-            recyclerViewGoals.layoutManager = LinearLayoutManager(this)
-            recyclerViewGoals.adapter = GoalsAdapter(getGoalsForTimesheet(timesheetId)) { }
-
-            findViewById<Button>(R.id.buttonDelete).setOnClickListener { deleteTimesheet(timesheet) }
-            findViewById<Button>(R.id.buttonSave).setOnClickListener {
-                updateProgress()
-                saveTimesheetChanges(timesheet)
-            }
-
-            // Update progress initially
-            updateProgress()
+        // Check for online mode
+        if (MainActivity.isOnlineMode) {
+            fetchTimesheetFromDatabase(timesheetId)
         } else {
-            Toast.makeText(this, "Timesheet not found", Toast.LENGTH_SHORT).show()
+            fetchTimesheetFromFile(timesheetId)
+        }
+    }
+
+    private fun fetchTimesheetFromDatabase(timesheetId: String) {
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Timesheets")
+        databaseReference.child(timesheetId).get().addOnSuccessListener { dataSnapshot ->
+            val timesheet = dataSnapshot.getValue(MainActivity.Timesheet::class.java)
+            if (timesheet != null) {
+                displayTimesheetDetails(timesheet)
+                Log.d("ViewTimesheetActivity", "Timesheet fetched successfully from database")
+            } else {
+                Toast.makeText(this, "Timesheet not found in database", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to fetch timesheet from database", Toast.LENGTH_SHORT).show()
             finish()
+        }
+    }
+
+    private fun fetchTimesheetFromFile(timesheetId: String) {
+        val file = File(filesDir, "Timesheets")
+        if (file.exists()) {
+            val timesheetsFromFile = file.readLines().mapNotNull { line ->
+                val parts = line.split("+")
+                if (parts.size == 6 && parts[0] == timesheetId) {
+                    MainActivity.Timesheet(
+                        timesheetId = parts[0],
+                        categoryId = parts[1],
+                        date = parts[2],
+                        startTime = parts[3],
+                        endTime = parts[4],
+                        description = parts[5]
+                    )
+                } else {
+                    null
+                }
+            }
+            if (timesheetsFromFile.isNotEmpty()) {
+                displayTimesheetDetails(timesheetsFromFile[0])
+                Log.d("ViewTimesheetActivity", "Timesheet fetched successfully from file")
+            } else {
+                Toast.makeText(this, "Timesheet not found in file", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+        } else {
+            Toast.makeText(this, "Timesheets file does not exist", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+    }
+
+    private fun displayTimesheetDetails(timesheet: MainActivity.Timesheet) {
+        findViewById<TextView>(R.id.textViewTimesheetId).text = "Timesheet ID: ${timesheet.timesheetId}"
+        findViewById<TextView>(R.id.textViewCategory).text = "Category: ${getCategoryName(timesheet.categoryId)}"
+
+        dailyGoalEditText = findViewById(R.id.editTextMinDailyGoal)
+        maxDailyGoalEditText = findViewById(R.id.editTextMaxDailyGoal)
+        minDailyGoalEditText = findViewById(R.id.editTextMinDailyGoal)
+        dateEditText = findViewById(R.id.editTextDate)
+        startTimeEditText = findViewById(R.id.editTextStartTime)
+        endTimeEditText = findViewById(R.id.editTextEndTime)
+        descriptionEditText = findViewById(R.id.editTextDescription)
+
+        val dailyGoalInfo = getDailyGoalInfoForTimesheet(timesheet.timesheetId)
+        dailyGoalEditText.setText(dailyGoalInfo.first.toString())
+        maxDailyGoalEditText.setText(dailyGoalInfo.second.toString())
+        dateEditText.setText(timesheet.date)
+        startTimeEditText.setText(timesheet.startTime)
+        endTimeEditText.setText(timesheet.endTime)
+        descriptionEditText.setText(timesheet.description)
+
+        setDateTimeFieldListeners()
+
+        recyclerViewGoals = findViewById(R.id.recyclerViewGoals)
+        recyclerViewGoals.layoutManager = LinearLayoutManager(this)
+        recyclerViewGoals.adapter = GoalsAdapter(getGoalsForTimesheet(timesheet.timesheetId)) { }
+
+        findViewById<Button>(R.id.buttonDelete).setOnClickListener { deleteTimesheet(timesheet) }
+        findViewById<Button>(R.id.buttonSave).setOnClickListener {
+            updateProgress()
+            saveTimesheetChanges(timesheet)
         }
     }
 
@@ -1778,34 +1889,30 @@ class ViewTimesheetActivity : AppCompatActivity() {
                     Pair(maxDailyGoal, minDailyGoal)
                 } else {
                     Log.e("ViewTimesheetActivity", "Unexpected daily goal format: $content")
-                    Pair(0, 0) // Return default values if unexpected daily goal format
+                    Pair(0, 0)
                 }
             } else {
                 Log.e("ViewTimesheetActivity", "Unexpected content format: $content")
-                Pair(0, 0) // Return default values if unexpected content format
+                Pair(0, 0)
             }
         } else {
-            Pair(0, 0) // Return default values if no content found
+            Pair(0, 0)
         }
     }
 
     private fun getGoalsForTimesheet(timesheetId: String): List<MainActivity.Timesheet> {
         val filteredContents = MainActivity.contentsList.filter { it.startsWith("$timesheetId+") }
-        Log.d("ViewTimesheetActivity", "Filtered contents for timesheet $timesheetId: $filteredContents")
-
         return filteredContents.map {
             val parts = it.split("+")
-            val goalParts = parts[1].split("-") // Split the second part using "-" delimiter
-            val minMaxGoals = goalParts[1].split("+") // Split the second part using "+" delimiter
-            Log.d("ViewTimesheetActivity", "Parts after splitting: $parts, Goal parts: $goalParts, Min/Max Goals: $minMaxGoals")
-
+            val goalParts = parts[1].split("-")
+            val minMaxGoals = goalParts[1].split("+")
             MainActivity.Timesheet(
                 timesheetId = parts[0],
-                categoryId = goalParts[0], // Use goalParts instead of parts for category ID
+                categoryId = goalParts[0],
                 date = parts[2],
                 startTime = parts[3],
                 endTime = parts[4],
-                description = minMaxGoals.last() // Use last element of minMaxGoals for description
+                description = minMaxGoals.last()
             )
         }
     }
@@ -1835,7 +1942,9 @@ class ViewTimesheetActivity : AppCompatActivity() {
         if (timesheetsFile.exists()) {
             timesheetsFile.bufferedWriter().use { out ->
                 MainActivity.timesheetsList.forEach { timesheet ->
-                    out.write("${timesheet.timesheetId}+${timesheet.categoryId}+${timesheet.date}+${timesheet.startTime}+${timesheet.endTime}+${timesheet.description}\n")
+                    val line = "${timesheet.timesheetId}+${timesheet.categoryId}+${timesheet.date}+${timesheet.startTime}+${timesheet.endTime}+${timesheet.description}\n"
+                    out.write(line)
+                    Log.d("MainActivity", "Timesheet saved: $line")
                 }
             }
             Log.d("MainActivity", "Timesheets file updated successfully")
@@ -1844,144 +1953,159 @@ class ViewTimesheetActivity : AppCompatActivity() {
         }
     }
 
-    private fun calculateProgressPercentage(minDailyGoal: Int, maxDailyGoal: Int): Pair<Int, String> {
-        Log.d("ProgressCalculation", "Input - minDailyGoal: $minDailyGoal, maxDailyGoal: $maxDailyGoal")
-
-        if (maxDailyGoal == 0) {
-            Log.d("ProgressCalculation", "Progress halted")
-            return Pair(0, "Progress halted")
-        }
-
-        val progress = ((minDailyGoal.toDouble() / maxDailyGoal.toDouble()) * 100).toInt()
-        val status = when {
-            progress < 50 -> "Not good"
-            progress in 50..60 -> "Fair progress"
-            else -> "Strong progress"
-        }
-
-        Log.d("ProgressCalculation", "Result - progress: $progress, status: $status")
-        return Pair(progress, status)
-    }
-
     private fun updateProgress() {
-        // Retrieve the values of min and max daily goals from EditTexts
-        val minDailyGoal = minDailyGoalEditText.text.toString().toIntOrNull() ?: 0
-        val maxDailyGoal = maxDailyGoalEditText.text.toString().toIntOrNull() ?: 0
+        // Initialize max and min daily goals to zero if EditTexts are null
+        initializeMaxAndMinToZero()
 
-        // Calculate and display the progress status
-        displayProgressStatus(minDailyGoal, maxDailyGoal)
+        // Calculate progress percentage
+        val progressPercentage = calculateProgressPercentage()
+
+        // Display progress status with calculated percentage
+        displayProgressStatus(progressPercentage.toString())
     }
 
-    private fun displayProgressStatus(minDailyGoal: Int, maxDailyGoal: Int) {
-        // Calculate progress percentage
-        val progress = if (maxDailyGoal != 0) {
-            ((minDailyGoal.toFloat() / maxDailyGoal.toFloat()) * 100).toInt()
+    private fun calculateProgressPercentage(): Int {
+        val minDailyGoal = minDailyGoalEditText.text.toString().toIntOrNull() ?: 0
+        val maxDailyGoal = maxDailyGoalEditText.text.toString().toIntOrNull() ?: 1
+        return if (maxDailyGoal != 0) {
+            (minDailyGoal.toDouble() / maxDailyGoal.toDouble() * 100).toInt()
         } else {
-            0 // Avoid division by zero
+            0 // Handle division by zero by setting progress to 0
         }
+    }
 
-        // Determine progress status
-        val status = when {
-            minDailyGoal == 0 -> "Progress halted"
-            minDailyGoal < 0.5 * maxDailyGoal -> "Not good progress"
-            minDailyGoal.toDouble() in 0.4 * maxDailyGoal..0.6 * maxDailyGoal -> "Fair progress"
-            else -> "Strong progress"
-        }
-
-        // Display progress percentage and status in TextViews
-        findViewById<TextView>(R.id.textViewProgressPercentage).text = "Progress: $progress%"
+    private fun displayProgressStatus(progressPercentage: String) {
         val progressStatusTextView = findViewById<TextView>(R.id.textViewProgressStatus)
-        progressStatusTextView.text = "Status: $status"
+        progressStatusTextView.text = "Progress Status: "
 
-        // Set text color based on progress status
-        val textColor = when (status) {
-            "Not good progress" -> ContextCompat.getColor(this, R.color.not_good)
-            "Fair progress" -> ContextCompat.getColor(this, R.color.fair_progress)
-            "Strong progress" -> ContextCompat.getColor(this, R.color.strong_progress)
-            else -> ContextCompat.getColor(this, android.R.color.black) // Default color
+        val progressPercentageTextView = findViewById<TextView>(R.id.textViewProgressPercentage)
+
+        // Parse progress percentage to determine status
+        val progress = progressPercentage.toIntOrNull() ?: 0
+
+        // Set text color and status based on progress percentage
+        val textColor: Int
+        val status: String
+        when {
+            progress < 50 -> {
+                status = "Not good"
+                textColor = ContextCompat.getColor(this, R.color.not_good)
+            }
+            progress in 50..60 -> {
+                status = "Fair progress"
+                textColor = ContextCompat.getColor(this, R.color.fair_progress)
+            }
+            else -> {
+                status = "Strong progress"
+                textColor = ContextCompat.getColor(this, R.color.strong_progress)
+            }
         }
+
+        // Apply text color and status to progress status TextView
+        progressStatusTextView.text = "Progress Status: $status"
         progressStatusTextView.setTextColor(textColor)
+
+        // Apply text color to progress percentage TextView
+        progressPercentageTextView.setTextColor(textColor)
+        progressPercentageTextView.text = "Progress Percentage: $progressPercentage%"
+    }
+
+    private fun initializeMaxAndMinToZero() {
+        if (maxDailyGoalEditText.text.isNullOrEmpty()) {
+            maxDailyGoalEditText.setText("0")
+        }
+        if (minDailyGoalEditText.text.isNullOrEmpty()) {
+            minDailyGoalEditText.setText("0")
+        }
+    }
+
+    private fun setDateTimeFieldListeners() {
+        setDateFieldListener(dateEditText)
+        setTimeFieldListener(startTimeEditText)
+        setTimeFieldListener(endTimeEditText)
+    }
+
+    private fun setDateFieldListener(editText: EditText) {
+        val calendar = Calendar.getInstance()
+        val dateSetListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, monthOfYear)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            editText.setText(dateFormat.format(calendar.time))
+        }
+
+        editText.setOnClickListener {
+            DatePickerDialog(
+                this, dateSetListener,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+        }
+    }
+
+    private fun setTimeFieldListener(editText: EditText) {
+        val calendar = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
+            calendar.set(Calendar.MINUTE, minute)
+            val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
+            editText.setText(timeFormat.format(calendar.time))
+        }
+
+        editText.setOnClickListener {
+            TimePickerDialog(
+                this, timeSetListener,
+                calendar.get(Calendar.HOUR_OF_DAY),
+                calendar.get(Calendar.MINUTE),
+                true
+            ).show()
+        }
+    }
+
+    private fun constructContentData(timesheet: MainActivity.Timesheet, maxDailyGoal: Int, minDailyGoal: Int): String {
+        val dailyGoalId = generateUniqueDailyGoalId()
+        return if (dailyGoalId.isNotBlank()) {
+            "${timesheet.timesheetId}+0-${timesheet.categoryId}+$dailyGoalId+$maxDailyGoal+$minDailyGoal"
+        } else {
+            "${timesheet.timesheetId}+0-${timesheet.categoryId}++"
+        }
     }
 
     private fun saveTimesheetChanges(timesheet: MainActivity.Timesheet) {
-        timesheet.date = dateEditText.text.toString()
-        timesheet.startTime = startTimeEditText.text.toString()
-        timesheet.endTime = endTimeEditText.text.toString()
-        timesheet.description = descriptionEditText.text.toString()
+        val updatedTimesheet = timesheet.copy(
+            date = dateEditText.text.toString(),
+            startTime = startTimeEditText.text.toString(),
+            endTime = endTimeEditText.text.toString(),
+            description = descriptionEditText.text.toString()
+        )
 
-        val dailyGoal = dailyGoalEditText.text.toString().toIntOrNull() ?: 0
+        // Retrieve max and min daily goals from EditText fields
         val maxDailyGoal = maxDailyGoalEditText.text.toString().toIntOrNull() ?: 0
         val minDailyGoal = minDailyGoalEditText.text.toString().toIntOrNull() ?: 0
-        displayProgressStatus(minDailyGoal, maxDailyGoal)
 
         if (MainActivity.isOnlineMode) {
-            // Generate a unique ID for dailyGoalId if both maxDailyGoal and minDailyGoal are provided
-            val dailyGoalId = if (maxDailyGoal != null && minDailyGoal != null) {
-                // Increment the max daily goal ID
-                val newDailyGoalId = MainActivity.contentsList
-                    .mapNotNull { it.substringAfter('+').substringBefore('-').substringAfter('+').substringBefore('+').toIntOrNull() }
-                    .maxOrNull()?.plus(1) ?: 1
-                newDailyGoalId.toString()
-            } else {
-                ""
-            }
-
-            // Save content to database
-            saveContentToDatabase(
-                timesheet,
-                "0", // Assuming photoId is "0" for cases where it's not provided
-                timesheet.categoryId,
-                dailyGoalId ?: "", // Default to empty string if dailyGoalId is null
-                maxDailyGoal ?: 0, // Default to 0 if maxDailyGoal is null
-                minDailyGoal ?: 0  // Default to 0 if minDailyGoal is null
-            )
+            val dailyGoalId = generateUniqueDailyGoalId()
+            saveContentToDatabase(updatedTimesheet, "0", timesheet.categoryId, dailyGoalId, maxDailyGoal, minDailyGoal)
+            saveTimesheetToDatabase(updatedTimesheet)
+            Log.d("ViewTimesheetActivity", "Changes saved in online mode")
         } else {
-            // Save content to local list and file
-            val index = MainActivity.timesheetsList.indexOfFirst { it.timesheetId == timesheet.timesheetId }
-            if (index != -1) {
-                MainActivity.timesheetsList[index] = timesheet
-            }
+            val contentData = constructContentData(timesheet, maxDailyGoal, minDailyGoal)
+            updateContentsFile(contentData)
             updateTimesheetsFile()
-
-            // Save minDailyGoal to local file
-            val contentIndex = MainActivity.contentsList.indexOfFirst { it.startsWith("${timesheet.timesheetId}+") }
-            if (contentIndex != -1) {
-                val parts = MainActivity.contentsList[contentIndex].split("-")
-                if (parts.size >= 2) {
-                    val dailyGoalParts = parts[1].split("+")
-                    if (dailyGoalParts.size >= 2) {
-                        MainActivity.contentsList[contentIndex] = "${parts[0]}-${dailyGoalParts[0]}+${dailyGoalParts[1]}+$maxDailyGoal+$minDailyGoal"
-                        updateContentsFile()
-                    }
-                }
-            }
+            Log.d("ViewTimesheetActivity", "Changes saved in offline mode")
         }
 
-        Toast.makeText(this, "Timesheet updated", Toast.LENGTH_SHORT).show()
-        finish()
-    }
-
-    private fun updateContentsFile() {
-        val contentsFile = File(filesDir, "Contents")
-        if (contentsFile.exists()) {
-            contentsFile.bufferedWriter().use { out ->
-                MainActivity.contentsList.forEach { content ->
-                    out.write("$content\n")
-                }
-            }
-            Log.d("MainActivity", "Contents file updated successfully")
+        val index = MainActivity.timesheetsList.indexOfFirst { it.timesheetId == timesheet.timesheetId }
+        if (index != -1) {
+            MainActivity.timesheetsList[index] = updatedTimesheet
+            Toast.makeText(this, "Timesheet updated", Toast.LENGTH_SHORT).show()
+            Log.d("ViewTimesheetActivity", "Timesheet updated")
         } else {
-            Log.e("MainActivity", "Contents file does not exist")
+            Toast.makeText(this, "Timesheet not found", Toast.LENGTH_SHORT).show()
+            Log.e("ViewTimesheetActivity", "Timesheet not found")
         }
-    }
-
-    private fun generateUniqueDailyGoalId(): String {
-        val existingIds = MainActivity.contentsList.mapNotNull {
-            val parts = it.split("+")
-            parts.getOrNull(3)
-        }.toSet()
-        var newId = (1..Int.MAX_VALUE).firstOrNull { it.toString() !in existingIds } ?: 0
-        return newId.toString()
     }
 
     private fun saveContentToDatabase(timesheet: MainActivity.Timesheet, photoId: String, category: String, dailyGoalId: String, maxDailyGoal: Int, minDailyGoal: Int) {
@@ -1990,6 +2114,7 @@ class ViewTimesheetActivity : AppCompatActivity() {
         } else {
             "${timesheet.timesheetId}+$photoId-$category++"
         }
+        Log.d("ViewTimesheetActivity", "Content data to be saved: $contentData")
 
         val databaseReference = FirebaseDatabase.getInstance().getReference("Contents")
         databaseReference.child(timesheet.timesheetId).setValue(contentData)
@@ -2004,115 +2129,217 @@ class ViewTimesheetActivity : AppCompatActivity() {
                     MainActivity.contentsList.add(updatedContent)
                 }
                 // Update contents file
-                updateContentsFile()
+                updateContentsFile(updatedContent)
             }
             .addOnFailureListener {
                 Log.e("ViewTimesheetActivity", "Failed to save content to database")
             }
     }
 
-    private fun setDateTimeFieldListeners() {
-        val datePickerListener = DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
-            val formattedDate = "%02d/%02d/%04d".format(dayOfMonth, monthOfYear + 1, year)
-            dateEditText.setText(formattedDate)
-        }
+    private fun saveTimesheetToDatabase(timesheet: MainActivity.Timesheet) {
+        Log.d("ViewTimesheetActivity", "Timesheet data to be saved: $timesheet")
 
-        dateEditText.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val datePickerDialog = DatePickerDialog(
-                this,
-                datePickerListener,
-                calendar.get(Calendar.YEAR),
-                calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH)
-            )
-            datePickerDialog.show()
-        }
-
-        val timePickerListener = TimePickerDialog.OnTimeSetListener { _, hourOfDay, minute ->
-            val formattedTime = "%02d:%02d".format(hourOfDay, minute)
-            if (startTimeEditText.isFocused) {
-                startTimeEditText.setText(formattedTime)
-            } else if (endTimeEditText.isFocused) {
-                endTimeEditText.setText(formattedTime)
+        val databaseReference = FirebaseDatabase.getInstance().getReference("Timesheets")
+        databaseReference.child(timesheet.timesheetId).setValue(timesheet)
+            .addOnSuccessListener {
+                Log.d("ViewTimesheetActivity", "Timesheet saved to database")
             }
-        }
+            .addOnFailureListener {
+                Log.e("ViewTimesheetActivity", "Failed to save timesheet to database")
+            }
+    }
 
-        startTimeEditText.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val timePickerDialog = TimePickerDialog(
-                this,
-                timePickerListener,
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
-            )
-            timePickerDialog.show()
-        }
+    private fun updateContentsFile(contentData: String) {
+        val contentsFile = File(filesDir, "Contents")
+        if (contentsFile.exists()) {
+            val existingContents = contentsFile.readLines().toMutableList()
+            val index = existingContents.indexOfFirst { it.startsWith(contentData.split("+")[0]) }
+            if (index != -1) {
+                existingContents[index] = contentData
+            } else {
+                existingContents.add(contentData)
+            }
+            contentsFile.writeText(existingContents.joinToString("\n"))
+            Log.d("ViewTimesheetActivity", "Content saved: $contentData")
+            Log.d("MainActivity", "Contents file updated successfully")
 
-        endTimeEditText.setOnClickListener {
-            val calendar = Calendar.getInstance()
-            val timePickerDialog = TimePickerDialog(
-                this,
-                timePickerListener,
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
-            )
-            timePickerDialog.show()
+            // Read contents file again for confirmation
+            val updatedContents = contentsFile.readLines()
+            Log.d("MainActivity", "Contents file content after update: $updatedContents")
+        } else {
+            Log.e("MainActivity", "Contents file does not exist")
         }
+    }
+
+    private fun generateUniqueDailyGoalId(): String {
+        val existingIds = MainActivity.contentsList.mapNotNull {
+            val parts = it.split("+")
+            parts.getOrNull(3)
+        }.toSet()
+        var newId = (1..Int.MAX_VALUE).firstOrNull { it.toString() !in existingIds } ?: 0
+        return newId.toString()
     }
 }
 class StatisticsActivity : AppCompatActivity() {
+    data class StatisticsData(
+        val minGoalsArray: IntArray,
+        val maxGoalsArray: IntArray,
+        val timesheetDates: List<String>,
+        val labels: List<String>
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
 
-        val minGoalsArray = intArrayOf(1)
-        val maxGoalsArray = intArrayOf(2)
-        val labels = listOf("Label 1") // Adjust the labels as needed
+        // Retrieve userId from intent extras
+        val userId = intent.getStringExtra("userId") ?: return
 
+        // Fetch user data based on userId
+        val (minGoalsArray, maxGoalsArray, timesheetDates, labels) = fetchUserDataAndPrepareChartData(userId)
+
+        // Show chart with the prepared data
         showChart(minGoalsArray, maxGoalsArray, labels)
+
+        // Find the "Done" button
+        val doneButton = findViewById<Button>(R.id.done_button)
+        // Set click listener to the "Done" button
+        doneButton.setOnClickListener {
+            // Create intent to go back to the DashboardActivity
+            val intent = Intent(this, DashboardActivity::class.java)
+            // Put userId as an extra in the intent
+            intent.putExtra("userId", userId)
+            // Start DashboardActivity with the intent
+            startActivity(intent)
+        }
     }
 
-    private fun showChart(minGoalsArray: IntArray, maxGoalsArray: IntArray, labels: List<String>) {
-        val barsContainer = findViewById<LinearLayout>(R.id.bars_container)
-        val xAxisContainer = findViewById<LinearLayout>(R.id.legend_container)
 
+    private fun fetchUserDataAndPrepareChartData(userId: String): StatisticsData {
+        Log.d("StatisticsActivity", "Fetching data for userId: $userId")
+
+        val userCategories = categoriesList.filter { it.userId == userId }.map { it.categoryId }
+        Log.d("StatisticsActivity", "User categories: $userCategories")
+
+        // Log timesheetsList to see if it contains data
+        Log.d("StatisticsActivity", "All timesheets: $timesheetsList")
+
+        val userTimesheets = timesheetsList.filter { userCategories.contains(it.categoryId) }
+        Log.d("StatisticsActivity", "User timesheets: $userTimesheets")
+
+        val minGoals = mutableListOf<Int>()
+        val maxGoals = mutableListOf<Int>()
+        val timesheetDates = mutableListOf<String>()
+        val labels = mutableListOf<String>()
+
+        // Fetch min and max goals for each data point
+        for (timesheet in userTimesheets) {
+            val content = contentsList.find { it.startsWith("${timesheet.timesheetId}+") }
+            Log.d("StatisticsActivity", "Content for timesheetId ${timesheet.timesheetId}: $content")
+
+            content?.let {
+                val goalsParts = it.split("-")[1].split("+")
+                Log.d("StatisticsActivity", "Goals parts: $goalsParts")
+                if (goalsParts.size >= 4) {
+                    val maxGoal = goalsParts[2].toIntOrNull()
+                    val minGoal = goalsParts[3].toIntOrNull()
+
+                    minGoal?.let { minGoals.add(it) }
+                    maxGoal?.let { maxGoals.add(it) }
+                    timesheetDates.add(timesheet.date) // Add date to the list
+                    labels.add(timesheet.date) // Use timesheet date as label
+                    Log.d("StatisticsActivity", "Added minGoal: $minGoal, maxGoal: $maxGoal, date: ${timesheet.date}")
+                }
+            }
+        }
+
+        return StatisticsData(minGoals.toIntArray(), maxGoals.toIntArray(), timesheetDates, labels)
+    }
+
+    private fun showStatistics(minGoals: List<Int>, maxGoals: List<Int>, timesheetDates: List<String>, userTimesheets: List<MainActivity.Timesheet>) {
+        // Convert lists to arrays for Intent extra
+        val minGoalsArray = minGoals.toIntArray()
+        val maxGoalsArray = maxGoals.toIntArray()
+
+        // Log the final min and max goals
+        Log.d("DashboardActivity", "Final minGoalsArray: ${minGoalsArray.contentToString()}")
+        Log.d("DashboardActivity", "Final maxGoalsArray: ${maxGoalsArray.contentToString()}")
+        timesheetDates.forEach { date ->
+            Log.d("DashboardActivity", "Date: $date")
+        }
+
+        // Start StatisticsActivity and pass the min and max goals arrays as extras
+        val intent = Intent(this, StatisticsActivity::class.java)
+        intent.putExtra("MIN_GOALS", minGoalsArray)
+        intent.putExtra("MAX_GOALS", maxGoalsArray)
+        intent.putStringArrayListExtra("TIMESHEET_DATES", ArrayList(timesheetDates))
+
+        // Pass data points and labels for chart blocks
+        val labels = userTimesheets.map { "Label ${it.timesheetId}" } // Replace with your own labels
+        intent.putStringArrayListExtra("LABELS", ArrayList(labels))
+
+        Log.d("DashboardActivity", "Starting StatisticsActivity with labels: $labels")
+
+        startActivity(intent)
+    }
+
+    private fun showDummyStatistics() {
+        val dummyData = List(10) { (1..50).random() } // Generate random data
+        val dummyMinGoals = List(10) { (1..10).random() } // Generate random min goals data
+        val dummyMaxGoals = List(10) { (11..20).random() } // Generate random max goals data
+
+        Log.d("DashboardActivity", "Showing dummy statistics with data: $dummyData")
+        Log.d("DashboardActivity", "Dummy min goals: $dummyMinGoals")
+        Log.d("DashboardActivity", "Dummy max goals: $dummyMaxGoals")
+
+        val intent = Intent(this, StatisticsActivity::class.java)
+        intent.putExtra("USER_DATA", dummyData.toIntArray())
+        intent.putExtra("MIN_GOALS", dummyMinGoals.toIntArray())
+        intent.putExtra("MAX_GOALS", dummyMaxGoals.toIntArray())
+
+        startActivity(intent)
+    }
+
+    private fun showChart(minGoalsArray: IntArray, maxGoalsArray: IntArray, timesheetDates: List<String>) {
+        Log.d("StatisticsActivity", "minGoalsArray: ${minGoalsArray.joinToString()}")
+        Log.d("StatisticsActivity", "maxGoalsArray: ${maxGoalsArray.joinToString()}")
+        Log.d("StatisticsActivity", "timesheetDates: ${timesheetDates.joinToString()}")
+
+        val barsContainer = findViewById<LinearLayout>(R.id.bars_container)
         barsContainer.removeAllViews()
-        xAxisContainer.removeAllViews()
 
         val maxValue = maxGoalsArray.maxOrNull() ?: 10  // Avoid division by zero
-        val scaleFactor = 100.0 / maxValue  // Assuming 100dp is the max height of your container
-
-        val numBars = minGoalsArray.size
-        val barHeight = 300 / numBars
+        val scaleFactor = 300.0 / maxValue  // Assuming 300dp is the max height of your container
 
         for (i in minGoalsArray.indices) {
             val minGoal = minGoalsArray[i]
             val maxGoal = maxGoalsArray[i]
+            Log.d("StatisticsActivity", "Result - Min: $minGoal, Max: $maxGoal")
 
-            val minBarWidth = (minGoal * scaleFactor).toInt()
-            val maxBarWidth = (maxGoal * scaleFactor).toInt()
+            val minBarHeight = (minGoal * scaleFactor).toInt()
+            val maxBarHeight = (maxGoal * scaleFactor).toInt()
 
             val barContainer = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, barHeight).also {
-                    it.setMargins(0, 5, 0, 5)
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.MATCH_PARENT
+                ).apply {
+                    setMargins(5, 0, 5, 0)
                 }
                 gravity = Gravity.BOTTOM
             }
 
             val maxBar = View(this).apply {
-                layoutParams = LinearLayout.LayoutParams(maxBarWidth, LinearLayout.LayoutParams.MATCH_PARENT).apply {
-                    setMargins(0, 0, 5, 0)
+                layoutParams = LinearLayout.LayoutParams(30, maxBarHeight).apply {
+                    setMargins(0, 0, 5, 0)  // Adjust margins as needed
                 }
                 setBackgroundColor(Color.RED)
             }
 
             val minBar = View(this).apply {
-                layoutParams = LinearLayout.LayoutParams(minBarWidth, LinearLayout.LayoutParams.MATCH_PARENT).apply {
-                    setMargins(0, 0, 5, 0)
+                layoutParams = LinearLayout.LayoutParams(30, minBarHeight).apply {
+                    setMargins(0, 0, 5, 0)  // Adjust margins as needed
                 }
                 setBackgroundColor(Color.GREEN)
             }
@@ -2120,20 +2347,27 @@ class StatisticsActivity : AppCompatActivity() {
             barContainer.addView(maxBar)
             barContainer.addView(minBar)
 
-            barsContainer.addView(barContainer)
-
             val labelView = TextView(this).apply {
-                text = labels[i]
+                text = timesheetDates[i] + " " // Set label to corresponding timesheet date with space
                 layoutParams = LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT,
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 ).apply {
-                    setMargins(5, 0, 5, 0)
+                    gravity = Gravity.CENTER
+                    topMargin = 10 // Set top margin for the label
                 }
-                gravity = Gravity.CENTER_VERTICAL
+                setTextColor(Color.WHITE)  // Set text color to white
+                textSize = 10f // Set smaller font size
             }
 
-            xAxisContainer.addView(labelView)
+            val barWithLabel = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                gravity = Gravity.CENTER_HORIZONTAL
+                addView(barContainer)
+                addView(labelView)
+            }
+
+            barsContainer.addView(barWithLabel)
         }
     }
 }
@@ -2207,32 +2441,25 @@ class CategoriesActivity : AppCompatActivity() {
     }
 
     private fun loadOfflineCategories() {
-        val categoryFile = File(filesDir, "Categories")
-        if (categoryFile.exists()) {
-            val categoryDataLines = categoryFile.readLines()
-            categories = categoryDataLines.mapNotNull { line ->
-                val parts = line.split("+")
-                if (parts.size >= 2 && parts[1] == userId) {
-                    MainActivity.Category(parts[0], parts[1], parts[2], parts[3], parts[4])
-                } else {
-                    null
-                }
-            }.toMutableList()
-
-            if (categories.isNotEmpty()) {
-                // Display categories in the RecyclerView
-                showCategories()
-                // Hide the "No categories available" message
-                noCategoriesTextView.visibility = View.GONE
-            } else {
-                // Show a message indicating no categories found
-                showNoCategoriesMessage()
-            }
-            Log.d("CategoriesActivity", "Loaded categories from local storage: $categories")
+        categories = filterCategoriesByUserId(userId).toMutableList()
+        if (categories.isNotEmpty()) {
+            // Display categories in the RecyclerView
+            showCategories()
+            // Hide the "No categories available" message
+            noCategoriesTextView.visibility = View.GONE
         } else {
-            Log.e("CategoriesActivity", "Categories file does not exist")
-            Toast.makeText(this, "Categories file does not exist", Toast.LENGTH_SHORT).show()
+            // Show a message indicating no categories found
+            showNoCategoriesMessage()
         }
+
+        Log.d("CategoriesActivity", "Loaded categories: $categories")
+    }
+
+    private fun filterCategoriesByUserId(userId: String): List<MainActivity.Category> {
+        // Load categories data from the file and filter by user ID
+        val filteredCategories = MainActivity.categoriesList.filter { it.userId == userId }
+        Log.d("CategoriesActivity", "Filtered categories by user ID ($userId): $filteredCategories")
+        return filteredCategories
     }
 
     private fun showCategories() {
@@ -2251,12 +2478,7 @@ class CategoriesActivity : AppCompatActivity() {
     private fun showNoCategoriesMessage() {
         noCategoriesTextView.visibility = View.VISIBLE
     }
-    private fun filterCategoriesByUserId(userId: String): List<MainActivity.Category> {
-        // Load categories data from the file and filter by user ID
-        val filteredCategories = MainActivity.categoriesList.filter { it.userId == userId }
-        Log.d("CategoriesActivity", "Filtered categories by user ID ($userId): $filteredCategories")
-        return filteredCategories
-    }
+
     private fun navigateToAddCategory() {
         // Navigate to AddCategoryActivity to add a new category
         val intent = Intent(this, AddCategoryActivity::class.java)
@@ -2266,6 +2488,10 @@ class CategoriesActivity : AppCompatActivity() {
     // Function to delete a category
     private fun deleteCategory(categoryId: String) {
         // Remove the category from the list in memory
+        // If online mode, delete category from Firebase Database
+        if (MainActivity.isOnlineMode) {
+            deleteCategoryFromDatabase(categoryId)
+        }
         val removedCategory = categories.find { it.categoryId == categoryId }
         categories.removeAll { it.categoryId == categoryId }
 
@@ -2280,11 +2506,6 @@ class CategoriesActivity : AppCompatActivity() {
 
         // Log the deleted category
         Log.d("CategoriesActivity", "Deleted category: $removedCategory")
-
-        // If online mode, delete category from Firebase Database
-        if (MainActivity.isOnlineMode) {
-            deleteCategoryFromDatabase(categoryId)
-        }
     }
 
     private fun deleteCategoryFromDatabase(categoryId: String) {
@@ -2301,6 +2522,8 @@ class CategoriesActivity : AppCompatActivity() {
     }
 
     private fun saveCategoriesData() {
+
+
         val categoriesFile = File(filesDir, "Categories")
         val categoryDataLines = categories.map { "${it.categoryId}+${it.userId}+${it.categoryName}+${it.categoryDescription}+${it.categoryDate}" }
         try {
@@ -2339,6 +2562,7 @@ class CategoriesActivity : AppCompatActivity() {
         inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             private val categoryNameTextView: TextView = itemView.findViewById(R.id.categoryNameTextView)
             private val deleteButton: Button = itemView.findViewById(R.id.deleteCategoryButton)
+            private val editButton: Button = itemView.findViewById(R.id.editButton)
 
             fun bind(category: MainActivity.Category) {
                 categoryNameTextView.text = category.categoryName
@@ -2347,6 +2571,14 @@ class CategoriesActivity : AppCompatActivity() {
                 deleteButton.setOnClickListener {
                     val categoryId = categories[adapterPosition].categoryId
                     onDeleteCategory(categoryId)
+                }
+
+                // Set click listener for edit button
+                editButton.setOnClickListener {
+                    val intent = Intent(itemView.context, EditCategoryActivity::class.java).apply {
+                        putExtra("categoryId", category.categoryId)
+                    }
+                    itemView.context.startActivity(intent)
                 }
             }
         }
@@ -2424,21 +2656,7 @@ class AddCategoryActivity : AppCompatActivity() {
             // Log the user ID
             Log.d("AddCategoryActivity", "User ID: $userId")
 
-            val categoriesFile = File(filesDir, "Categories")
-            // Ensure categoryData has the correct format
-            if (categoryData.count { it == '+' } != 3) {
-                Log.e("AddCategoryActivity", "Error saving category data: Invalid format")
-                return
-            }
-            // Parse categoryData
-            val categoryFields = categoryData.split("+")
-            val categoryId = categoryFields[0]
-            val categoryName = categoryFields[1]
-            val categoryDescription = categoryFields[2]
-            val categoryDate = categoryFields[3]
-
-            // Create a new category object with the retrieved fields
-            val newCategory = MainActivity.Category(categoryId, userId, categoryName, categoryDescription, categoryDate)
+            val newCategory = parseCategory(categoryData)
 
             // Save the category locally
             MainActivity.categoriesList.add(newCategory)
@@ -2446,9 +2664,12 @@ class AddCategoryActivity : AppCompatActivity() {
             // Inform the user about successful category addition
             Toast.makeText(this, "Category added successfully", Toast.LENGTH_SHORT).show()
 
-            // If online mode, save category data to Firebase Database
             if (MainActivity.isOnlineMode) {
-                saveCategoryToDatabase(newCategory)
+                // If online mode, save category data to Firebase Database
+                saveCategoryToDatabase(newCategory, userId)
+            } else {
+                // If offline mode, save category data to file
+                saveCategoryToFile(newCategory, userId)
             }
 
             // Navigate back to DashboardActivity with userId
@@ -2465,6 +2686,18 @@ class AddCategoryActivity : AppCompatActivity() {
         }
     }
 
+    // Function to save category data to file
+    private fun saveCategoryToFile(category: MainActivity.Category, userId: String) {
+        try {
+            val categoryFile = File(filesDir, "Categories")
+            val categoryData = "${category.categoryId}+$userId+${category.categoryName}+${category.categoryDescription}+${category.categoryDate}"
+            categoryFile.appendText("$categoryData\n")
+        } catch (e: IOException) {
+            Log.e("AddCategoryActivity", "Error saving category data to file: ${e.message}")
+            e.printStackTrace()
+        }
+    }
+
     // Function to parse category data
     private fun parseCategory(categoryData: String): MainActivity.Category {
         val categoryFields = categoryData.split("+")
@@ -2477,11 +2710,13 @@ class AddCategoryActivity : AppCompatActivity() {
     }
 
     // Function to save category to Firebase Database
-    private fun saveCategoryToDatabase(category: MainActivity.Category) {
+    private fun saveCategoryToDatabase(category: MainActivity.Category, userId: String) {
         val databaseReference = FirebaseDatabase.getInstance().reference.child("Categories")
-        databaseReference.child(category.categoryId).setValue(category)
+        // Update the userId in the category data before saving to the database
+        val categoryWithUserId = category.copy(userId = userId)
+        databaseReference.child(category.categoryId).setValue(categoryWithUserId)
             .addOnSuccessListener {
-                Log.d("AddCategoryActivity", "Category added to Firebase Database successfully: $category")
+                Log.d("AddCategoryActivity", "Category added to Firebase Database successfully: $categoryWithUserId")
             }
             .addOnFailureListener { e ->
                 // Handle failure, log error message
@@ -2529,12 +2764,14 @@ class EditCategoryActivity : AppCompatActivity() {
             }
 
             // Update category
-            val success = updateCategory(categoryId, updatedName, updatedDescription)
+            val category = getCategoryById(categoryId)
+            val userId = category?.userId ?: ""
+            val success = updateCategory(categoryId, updatedName, updatedDescription, userId)
 
             // Check if the update was successful
             if (success) {
                 Toast.makeText(this, "Category updated successfully", Toast.LENGTH_SHORT).show()
-                finish() // Close the activity
+                returnToDashboard(userId) // Return to dashboard
             } else {
                 Toast.makeText(this, "Failed to update category", Toast.LENGTH_SHORT).show()
             }
@@ -2547,30 +2784,68 @@ class EditCategoryActivity : AppCompatActivity() {
         return categoriesList.find { it.categoryId == categoryId }
     }
 
-    private fun updateCategory(categoryId: String, name: String, description: String): Boolean {
-        // Find the index of the category with the given categoryId
-        val index = categoriesList.indexOfFirst { it.categoryId == categoryId }
-        // Check if the category exists
-        if (index != -1) {
-            // Update the category's name and description
-            categoriesList[index] = categoriesList[index].copy(categoryName = name, categoryDescription = description)
-
-            // Save the updated list of categories to the file
-            saveCategoriesToFile()
-
-            // Return true to indicate a successful update
-            return true
+    private fun updateCategory(categoryId: String, name: String, description: String, userId: String): Boolean {
+        // Check if the app is in online mode
+        if (isOnlineMode) {
+            // If online mode, update the category in the database
+            updateCategoryInDatabase(categoryId, name, description, userId)
+            return true // Return true since the update is initiated
+        } else {
+            // If offline mode, update the category in the list and file
+            val index = categoriesList.indexOfFirst { it.categoryId == categoryId }
+            if (index != -1) {
+                // Update the category's name and description in the list
+                categoriesList[index] = categoriesList[index].copy(
+                    categoryName = name,
+                    categoryDescription = description
+                )
+                // Save the updated list of categories to the file
+                saveCategoriesToFile()
+                // Navigate back to DashboardActivity with the user ID
+                returnToDashboard(userId)
+                return true // Return true since the update is successful
+            } else {
+                return false // Return false if the category was not found
+            }
         }
+    }
 
-        // Return false if the category was not found
-        return false
+    private fun updateCategoryInDatabase(categoryId: String, name: String, description: String, userId: String) {
+        val databaseReference = FirebaseDatabase.getInstance().reference.child("Categories")
+        val updatedData = hashMapOf<String, Any>(
+            "categoryName" to name,
+            "categoryDescription" to description,
+            "userId" to userId // Ensure userId is part of the updated data
+        )
+
+        // Update the category in the database
+        databaseReference.child(categoryId).updateChildren(updatedData)
+            .addOnSuccessListener {
+                Log.d("EditCategoryActivity", "Category updated in Firebase Database successfully")
+                // Navigate back to DashboardActivity with the user ID
+                returnToDashboard(userId)
+            }
+            .addOnFailureListener { e ->
+                // Handle failure, log error message
+                Log.e("EditCategoryActivity", "Failed to update category in Firebase Database: ${e.message}")
+                Toast.makeText(this, "Failed to update category in database: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun returnToDashboard(userId: String) {
+        val intent = Intent(this, DashboardActivity::class.java).apply {
+            putExtra("userId", userId)
+        }
+        startActivity(intent)
+        finish() // Close the current activity
     }
 
     private fun saveCategoriesToFile() {
         try {
             FileWriter(File(filesDir, "Categories"), false).use { writer ->
                 for (category in categoriesList) {
-                    val categoryData = "${category.categoryId}+${category.userId}+${category.categoryName}+${category.categoryDescription}+${category.categoryDate}"
+                    val categoryData =
+                        "${category.categoryId}+${category.userId}+${category.categoryName}+${category.categoryDescription}+${category.categoryDate}"
                     writer.write("$categoryData\n")
                 }
             }
@@ -2579,5 +2854,79 @@ class EditCategoryActivity : AppCompatActivity() {
             Log.e("CategoryAdapter", "Error saving categories: ${e.message}")
             e.printStackTrace()
         }
+
     }
 }
+/****************************************************************************************
+ *    anon (2021) Kotlin arraylist - javatpoint, www.javatpoint.com. Available at: https://www.javatpoint.com/kotlin-arraylist (Accessed: 01 June 2024).
+
+
+Where array list was used
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Arandilla, A. (2021) Android simple registration and login application tutorial with source code, SourceCodester. Available at: https://www.sourcecodester.com/android/12151/android-simple-registration-and-login-application.html (Accessed: 04 May 2024).
+
+where the functionality for register and login is
+
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Jansen, R. (2022) A recyclerview with multiple item types in Kotlin, Medium. Available at: https://medium.com/@ruut_j/a-recyclerview-with-multiple-item-types-in-kotlin-80e1e36d93e6 (Accessed: 03 June 2024).
+
+back end - where adapters were used
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Kolahan, A. (2020) How to use vertical recyclerview inside Scrollview in Android, Medium. Available at: https://armanco.medium.com/how-to-use-vertical-recyclerview-inside-scrollview-in-android-b72337285517 (Accessed: 03 June 2024).
+
+front end - xml files using recycler view within scroll view
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Koçer, E. (2023) Get events to your Android app using Google Calendar Api, Get Events to Your Android App Using Google Calendar API. Available at: https://medium.com/@eneskocerr/get-events-to-your-android-app-using-google-calendar-api-4411119cd586 (Accessed: 07 June 2024).
+
+back end - code handling the google calendar integration
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Lopez, A. and Chetan, J. (2017) Android select image from internal / external storage, Stack Overflow. Available at: https://stackoverflow.com/questions/42263816/android-select-image-from-internal-external-storage (Accessed: 08 June 2024).
+
+back end - code for selecting an image
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Mshidlyali, A. (2021) Dashboard UI design in Android, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/dashboard-ui-design-in-android/ (Accessed: 14 May 2024).
+
+front end and back end - where dashboard is applicable and cardview
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Ramesh, R. (2023) Building real-time apps with Firebase Realtime Database and Kotlin, Medium. Available at: https://blog.stackademic.com/building-real-time-apps-with-firebase-realtime-database-and-kotlin-fd368a396e96 (Accessed: 01 June 2024).
+
+back end - code handling the firebase stuff
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Ruhil, P. (2021) Timepicker in Kotlin, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/timepicker-in-kotlin/ (Accessed: 02 June 2024).
+
+back end - code handling the time picker
+
+ ***************************************************************************************
+
+ ***************************************************************************************
+ *    Yamunje, C. (2022) Android - create BarChart with Kotlin, GeeksforGeeks. Available at: https://www.geeksforgeeks.org/android-create-barchart-with-kotlin/ (Accessed: 08 June 2024).
+
+back end - code handling the graph
+
+ ***************************************************************************************
+
+ */

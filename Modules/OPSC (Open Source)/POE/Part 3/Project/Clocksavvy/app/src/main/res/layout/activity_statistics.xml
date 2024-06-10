@@ -2,36 +2,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="#E0E0E0">
+    android:background="@color/black">
 
     <!-- X Axis Label (Date) -->
+
+    <!-- Timesheet Date Label -->
+
     <TextView
         android:id="@+id/x_axis_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Timesheet Date"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="8dp"/>
-
-    <!-- Timesheet Date Label -->
-    <TextView
-        android:id="@+id/timesheet_date_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Timesheet Date"
-        android:layout_above="@id/x_axis_label"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="16dp"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="165dp"
+        android:paddingBottom="8dp"
+        android:text="Times"
+        android:textColor="@color/white"/>
 
     <!-- Chart Container -->
     <RelativeLayout
         android:id="@+id/chart_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/timesheet_date_label"
-        android:background="@color/black"
-        android:layout_marginBottom="24dp"
+        android:layout_above="@id/x_axis_label"
+        android:background="@color/charcoalGrey"
+        android:layout_marginBottom="5dp"
         android:layout_centerInParent="true">
 
         <!-- Y Axis Label (Goals) -->
@@ -40,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Goals"
+            android:textColor="@color/white"
             android:rotation="-90"
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
@@ -51,7 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
+            android:layout_marginBottom="35dp"
             android:padding="8dp"
+            android:layout_toRightOf="@id/y_axis_label"
+            android:textStyle="bold"
             android:gravity="bottom">
         </LinearLayout>
 
@@ -61,6 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_above="@id/y_axis_label"
             android:layout_alignParentBottom="true"
             android:gravity="center_horizontal">
 
@@ -69,12 +70,14 @@
                 android:layout_height="wrap_content"
                 android:text="Min (Green)"
                 android:textColor="@android:color/holo_green_dark"
+                android:textStyle="bold"
                 android:layout_marginEnd="8dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Max (Red)"
+                android:textStyle="bold"
                 android:textColor="@android:color/holo_red_dark"
                 android:layout_marginStart="8dp"/>
         </LinearLayout>
@@ -95,4 +98,3 @@
         android:padding="10dp"/>
 
 </RelativeLayout>
-
