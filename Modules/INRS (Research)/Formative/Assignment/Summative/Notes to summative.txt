@@ -2,37 +2,38 @@ N.B. You can use color codes in the exam.
 
 N.B. Atleast provide 3 examples for anything that you are discussing
 
-N.B. 
+N.B.
+------------------------------------------------------------------------------------------------------------------------------------------
 
-Article 1 is interpritism. 
+Article 1 is interpritism.
 
-example 1 : "what
+example 1 : " what
 are South African postgraduate students’ knowledge and
 experiences"
 
-example 2 : "This was a qualitative exploratory 
-study to investigate postgraduate students’ experience with 
+example 2 : "This was a qualitative exploratory
+study to investigate postgraduate students’ experience with
 research ethics"
 
-examplee 3 : "Researchers using interpretive methods study 
+example 3 : "Researchers using interpretive methods study
 social reality by applying an open-ended approach to data
 collection and a flexible research design (Usher, 2020)."
 
 How was the target population acquired : "A Twitter account
-(@pgResearchEthics) was created specifically to recruit participants. 
-A pamphlet detailing the project and contact information was posted on 
-Twitter account’s feed and stories. Hashtags relating to postgraduate studies 
-and research ethics were used to increase the reach of the target population. 
+(@pgResearchEthics) was created specifically to recruit participants.
+A pamphlet detailing the project and contact information was posted on
+Twitter account’s feed and stories. Hashtags relating to postgraduate studies
+and research ethics were used to increase the reach of the target population.
 Additionally, the researchers also posted the pamphlet on their personal accounts."
 
-Filtering : "To participate in the study the participants had to be 20 years of age 
-and older and graduated with a Masters or Doctoral degree from a South African university 
+Filtering : "To participate in the study the participants had to be 20 years of age
+and older and graduated with a Masters or Doctoral degree from a South African university
 or university of technology from 2018 to 2021. The participants studied a range of disciplines
-as indicated in Table 1. Hennink and Kaiser (2022) confirmed that qualitative studies can reach 
-saturation at relatively small sample sizes of 9–17 interviews.", "Students who graduated between 
-2018 and 2021 were a targeted sample since they had recent research ethics exposure to reflect on 
-and could provide rich data related to the study’s research aim.", "The participants were from eight 
-different institutions in five provinces. Eight participants were masters graduates and four were 
+as indicated in Table 1. Hennink and Kaiser (2022) confirmed that qualitative studies can reach
+saturation at relatively small sample sizes of 9–17 interviews.", "Students who graduated between
+2018 and 2021 were a targeted sample since they had recent research ethics exposure to reflect on
+and could provide rich data related to the study’s research aim.", "The participants were from eight
+different institutions in five provinces. Eight participants were masters graduates and four were
 doctoral graduates."
 
 Population : " Twelve participants were included in the study as saturation was reached."
@@ -49,4 +50,50 @@ trustworthiness (Higson-Smith et al., 2000) by using
 member checking, which affords participants the opportunity to review their statements for accuracy (Dudovskiy,
 2016). Participants were also given the option to go
 through their transcripts and coding to clarify any misrepresentations."
+------------------------------------------------------------------------------------------------------------------------------------------
+Article 2 - Remember sampling
+Article 2 is positivism : example "The purpose of the study was to
+examine the mediating influence of customer satisfaction, trust, and commitment on the relationship between
+loyalty programs and repeat purchase behaviour of a group of South African youth." , "The study used a quantitative and positivist approach." , "The data was analysed using SPSS." , "Descriptive statistics"
 
+Data collection instrument discussion :
+
+"We used seven measurement items adapted from a study by Evanschitzky et al. (2012) to assess the
+loyalty program. Four measurement items were adapted from a study by Bridson, Evans and Hickman
+(2008) to assess the levels of customer satisfaction and customer commitment, respectively. In addition,
+we used four measurement items adapted from a study by Agudo et al. (2010) to assess the levels of
+customer trust of the participants. Lastly, three measurement items were adapted from a study by Gomez
+et al. (2006) to assess the levels of repeat purchase behaviour. The measurement items were measured
+using a 7-point Likert scale; one being strongly disagree, five neutral and seven strongly agree"
+
+target population :
+Parameters :
+1. students aged between 18 and 24 years
+2. from the University of Witwatersrand in Johannesburg
+3. all retail loyalty program members
+
+sample size :
+100% response rate on the 263 distributed and collected, Of the total number of participants, 77.6% were female and 22.4% were male.  More than 50% of the respondents were between 18 and 20 years of age, and 39 % of the respondents were in their third year of
+study. A quarter of the respondents reported being members of at least two retail loyalty programs.
+
+sampling method :
+the current study was based on a convenience sampling
+method using a self-administered questionnaire. This is a non probability sampling method that is used more with interpertism based studies, with quantitative studie's each participant in the study must have an equal chance where as in this study that did not happen. a suggested method youd be a systematic sampling.
+
+findings discussion :
+there was secondary literature analysis using books, articles and sources to proof if this study is correct.
+use thee table diagram on page 240 and speak about the SD (standard deviation) its shown that there is a high correlation and the results are above 0.6 showing there is a strong correlation between the variables. concluding argument : "As has been mentioned, current research has found a relationship between loyalty programs and customer satisfaction."
+
+validity and reliability :
+All questionnaires were valid and indicated a 100% response rate on the 263 distributed and collected.
+check : 4.2. Tests of reliability and validity
+
+ethical practices before,during and after :
+1. They did not mention their ethical practices however they did do it cause they needed verification by WITS University
+2. Infromed concent
+3. anuminity
+4. Debriefing
+
+
+data analyse tools used :
+SPSS 22 for descriptive statistics and IBM Amos 22.
