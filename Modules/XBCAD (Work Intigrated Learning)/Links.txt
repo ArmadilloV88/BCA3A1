@@ -1,0 +1,17 @@
+Team Quaternary XBCAD7319 Links and Members:
+
+Team Members:
+  ST10019838 - Damian Dare
+  ST10019972 - Guillaume Swanevelder 
+  ST10091991 - Christiaan Versfeld
+  ST10158660 - Ruan Zwarts
+
+
+Personal Repository Link:
+https://github.com/ST10091991/Team-Quaternary_XBCAD7319.git
+
+Project Documentation GitHub Classroom Link:
+https://github.com/IIEWFL/xbcad7319-project-documentation-teamquaternary.git
+
+Project Submission GitHub Classroom Link:
+https://github.com/IIEWFL/xbcad7319-project-submission-teamquaternary

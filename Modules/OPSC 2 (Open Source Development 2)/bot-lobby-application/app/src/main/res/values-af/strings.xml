@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bot-Lobby</string>
+    <string name="confirm_action">Bevestig</string>
+    <string name="dismiss_action">Verwerp</string>
+
+
+    <!-- MainActivity -->
+    <string name="student_notice_title">Studentekennisgewing!</string>
+    <string name="student_notice_body" translatable="false">
+        Dit is \'n studentetoepassing wat ontwikkel is om \'n universiteitskursus te voltooi
+        en is nie bedoel, geoptimaliseer of beveilig vir verbruik nie. \n\n
+        Maar wie weet, eendag kan die toepassing gewild raak, wat lei tot \'n beter meer geoptimaliseerde weergawe ;)
+    </string>
+
+    <string name="offline_notice_title">Jy is nou in vanlyn modus</string>
+    <string name="offline_notice_body">
+        Geen internetverbinding bespeur nie.
+        Sommige kenmerke sal gedeaktiveer word totdat \'n internetverbinding gevind word.
+        \n\nHierdie kenmerke sluit in: \n
+            - Teken in / Registreer\n
+            - Aankondigingskepping\n
+            - Verkenner\n
+            - Rekening uitvee\n
+            - Sinkroniseer met die aanlyn databasis\n \n
+        Ps: Moenie vergeet om te sinkroniseer wanneer jy aanlyn is nie :)
+    </string>
+
+
+
+    <!-- TeamProfile -->
+    <string name="team_profile_offline">
+        Jy is tans in vanlyn modus.
+        Koppel aan die internet en maak dan die span toe en maak weer oop om die lede te sien.
+    </string>
+    <string name="left_team_success">Het die span suksesvol verlaat</string>
+    <string name="delete_team_success">Het die span suksesvol uitgevee</string>
+    <string name="leave_team_title">Verlaat span</string>
+    <string name="leave_team_confirmation">Is jy seker jy wil hierdie span verlaat?</string>
+    <string name="delete_team_title">Vee span uit</string>
+    <string name="delete_team_confirmation">Is jy seker jy wil hierdie span uitvee?</string>
+
+
+    <!-- PlayerListItem -->
+    <string name="team_role_owner">Eienaar</string>
+
+
+    <!-- ProfileScreen -->
+    <string name="account_sign_out_success">Suksesvol afgemeld</string>
+    <string name="account_deleted_success">Rekening is suksesvol uitgevee</string>
+    <string name="starting_data_sync">Sinkroniseer tans met aanlyn databasis …</string>
+    <string name="successful_data_sync">Data suksesvol gesinkroniseer</string>
+
+    <string name="delete_account_title">Vee rekening uit</string>
+    <string name="delete_account_body">Is jy seker jy wil jou rekening uitvee?</string>
+
+    //--------------------------------------------------------------------------------------------
+
+    <!-- Announcements -->
+    <string name="announcments"> Aankondiging</string>
+    <string name="add_announcments"> Voeg aankondigings by </string>
+
+    <!-- Announcements -->
+    <string name="new_announcment"> Nuwe Aankondiging</string>
+    <string name="team"> Span</string>
+    <string name="select_team"> Kies \'n span</string>
+    <string name="title"> Titel</string>
+    <string name="add_title"> Voeg \'n titel by</string>
+    <string name="description"> Beskrywing</string>
+    <string name="add_description"> Voeg \'n beskrywing by</string>
+    <string name="post_announcement"> Pos Aankondiging</string>
+
+    <!-- AccountScreen -->
+    <string name="register">Registreer</string>
+    <string name="reset_password">Stel wagwoord terug</string>
+    <string name="create_account">Skep tou rekening</string>
+    <string name="reset_your_password">Stel jou wagwoord terug</string>
+    <string name="username_placeholder">Gebruikersnaam</string>
+    <string name="password_placeholder_signup">Wagwoord</string>
+    <string name="password_placeholder_reset">Nuwe wagwoord</string>
+    <string name="confirm_password_placeholder">Bevestig wagwoord</string>
+    <string name="error_something_wrong">Iets het verkeerd geloop, probeer asseblief weer</string>
+    <string name="error_invalid_login">Gebruikersnaam of wagwoord bestaan nie</string>
+    <string name="already_have_account">Het jy reeds \'n rekening? Meld hier aan</string>
+    <string name="error_invalid_login2">Gebruikersnaam of wagwoord kan nie leeg wees nie</string>
+    <string name="register_with_biometrics"> Registreer met biometrie </string>
+    <string name="password_null"> Wagwoord kan nie nul wees nie  </string>
+    <string name="login_failed"> Kon nie aanmeld nie</string>
+
+    <!-- AuthScreen -->
+    <string name="login_title">Teken in</string>
+    <string name="first_name_placeholder">Voornaam</string>
+    <string name="last_name_placeholder">Van</string>
+    <string name="age_placeholder">Ouderdom</string>
+    <string name="no_account_register">Het jy nie \'n rekening nie? Registreer</string>
+    <string name="already_have_account_login">Het jy reeds \'n rekening? Teken in</string>
+    <string name="registration_successful"> Registrasie suksesvol\! </string>
+    <string name="registration_failed"> Registrasie het misluk </string>
+
+    <!-- HomeScreen -->
+    <string name="welcome_back">Welkom Terug!</string>
+    <string name="announcements">Aankondigings</string>
+
+    <!-- LoginScreen -->
+    <string name="biometric_login"> Biometriese aanmelding </string>
+    <string name="biometric_cred"> Gebruik biometriese geloofsbriewe om aan te meld </string>
+    <string name="cancel"> Kanselleer</string>
+    <string name="biometric_login_failed"> Biometriese aanmelding het misluk</string>
+    <string name="biometric_authentication_failed"> Biometriese stawing het misluk</string>
+    <string name="login_with_biometric"> Teken in met biometrie </string>
+    <string name="login_with_biometric_unavailable"> Teken in met biometrie nie beskikbaar nie </string>
+    <string name="username_required"> Gebruikersnaam word vereis</string>
+
+    <string name="sign_in_title">Meld jou rekening aan</string>
+    <string name="username_placeholder_login">Gebruikersnaam</string>
+    <string name="password_placeholder_login">Wagwoord</string>
+    <string name="error_incorrect_credentials">Verkeerde e-pos of wagwoord</string>
+    <string name="forgot_password">Wagwoord vergeet?</string>
+
+    <!-- ScoutingPlayersScreen -->
+    <string name="search_player_tag">Soek \'n speler se merker</string>
+    <string name="search_clear">Vee soektog uit</string>
+    <string name="players_found">Spelers gevind: </string>
+    <string name="enter_player_name">Voer \'n speler se naam in om te soek</string>
+    <string name="no_players_found">Geen spelers gevind nie</string>
+    <string name="searching">Soek tans...</string>
+
+    <!-- ScoutingTeamsScreen -->
+    <string name="search_team_name">Soek \'n span se naam</string>
+    <string name="teams_found">Spanne gevind: %1$d</string>
+    <string name="enter_team_name">Voer \'n span se naam in om te soek</string>
+    <string name="no_teams_found">Geen spanne gevind nie</string>
+    <string name="successfully_joined_team"> Suksesvol by span aangesluit\!</string>
+
+    <!-- TeamsScreen -->
+    <string name="team_created_success">Suksesvol \'n span geskep</string>
+    <string name="teams_header">Spankopskrif</string>
+    <string name="add_new_team"> Voeg nuwe span by </string>
+
+    <!-- Misc -->
+    <string name="arrow_back"> Back Arrow </string>
+    <string name="username_icon"> Username Icon </string>
+    <string name="error_icon"> Error Icon</string>
+    <string name="password_icon"> Password Icon </string>
+    <string name="hide_password"> Hide Password </string>
+    <string name="show_password"> Show Password </string>
+    <string name="confirm_password_icon"> Confirm Password Icon </string>
+    <string name="password_reset_unimplemented"> Password Reset </string>
+    <string name="sign_in_here"> Sign In Here </string>
+    <string name="login_success"> Succesfully Logged In </string>
+    <string name="search_team_placeholder"> </string>
+    <string name="search_team_icon"> Search team icon</string>
+    <string name="enter_team_name_to_search"> Enter team name to search </string>
+
+    <string name="player_image"> Speler beeld </string>
+    <string name="user_tag"> Gebruiker Tag </string>
+    <string name="lft"> LFT </string>
+    <string name="not_lft"> NIE LFT NIE </string>
+    <string name="is_lft"> Is LFT </string>
+    <string name="is_not_lft"> Is NIE LFT NIE </string>
+    <string name="user_is_public"> Gebruiker is publiek </string>
+    <string name="user_is_private"> Gebruiker is privaat </string>
+    <string name="public1"> Publiek </string>
+    <string name="private1"> Privaat </string>
+    <string name="bio"> Bio </string>
+    <string name="enter_player_description"> Voer spelerbeskrywing in </string>
+    <string name="details_saved_successfully"> Besonderhede is suksesvol gestoor </string>
+    <string name="save_changes"> Stoor veranderinge </string>
+    <string name="teams"> Spanne </string>
+    <string name="loading"> Laai tans... </string>
+    <string name="settings"> Instellings </string>
+    <string name="offline_mode"> Vanlyn modus </string>
+    <string name="sync_to_online_database"> Sinkroniseer met aanlyn databasis </string>
+    <string name="sync"> Sinkroniseer </string>
+    <string name="notifications"> Kennisgewings </string>
+    <string name="push_notifications"> Drukkennisgewings </string>
+    <string name="themes"> Temas </string>
+    <string name="dark_mode"> Donker modus </string>
+    <string name="language"> Taal </string>
+    <string name="account"> Rekening </string>
+    <string name="sign_out"> Teken uit </string>
+    <string name="delete"> Vee uit </string>
+    <string name="delete_account"> Vee rekening uit </string>
+    <string name="no_announcements_found"> Geen aankondigings gevind nie </string>
+    <string name="team_tag"> Span Tag: </string>
+    <string name="date_created"> Datum geskep </string>
+    <string name="created_by"> Geskep deur </string>
+</resources>

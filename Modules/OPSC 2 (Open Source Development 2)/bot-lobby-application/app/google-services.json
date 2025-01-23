@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "883730076432",
+    "project_id": "botlobby-43cb4",
+    "storage_bucket": "botlobby-43cb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883730076432:android:eacf154a3b31a579570b95",
+        "android_client_info": {
+          "package_name": "bot.lobby.bot_lobby"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkog_l_9oZbJK6tmpxkRlO6THX5rdfaTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
