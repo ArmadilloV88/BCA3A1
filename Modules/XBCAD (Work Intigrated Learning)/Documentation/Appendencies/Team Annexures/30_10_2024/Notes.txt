@@ -1,0 +1,2 @@
+Discord Chat:
+- Damian helped Christiaan solve a ui bug for OPSC7312. (Although not xbcad, it still shows regular communication)

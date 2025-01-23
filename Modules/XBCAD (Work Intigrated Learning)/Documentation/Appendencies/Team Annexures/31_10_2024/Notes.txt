@@ -1,0 +1,14 @@
+Discord Chat:
+- Damian and Christiaan discussed bugs and publishing for OPSC7312. It doesn't look like we can publish our app as it takes 2 weeks of continuous testing with 20 users before being eligible. (Although not xbcad, it still shows regular communication)
+
+
+Discord Chat 2:
+- Guillaume showed Damian some OPSC7312 work and discussed what can be done to move forward. (Although not xbcad, it still shows regular communication)
+
+
+Discord Chat 3:
+- Damian and Christiaan discussed bugs for OPSC7312. (Although not xbcad, it still shows regular communication)
+
+
+TrelloBoard:
+- This is the first update / screenshot of the Trello board in a couple of weeks, as the team has been busy with other submissions. More regular updates will be shown after the team has completed the work for the other modules
