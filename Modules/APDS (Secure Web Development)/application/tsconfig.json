@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/server/server.js",
+    "src/models/User-Mongoose.js",
+    "src/models/Post.js",
+    "src/models/LoginAttempt.js",
+    "src/server/db/connection.js",
+    "src/server/middleware/authMiddleware.js",
+    "src/server/routes/auth.js",
+    "src/server/middleware/bruteForceProtectionMiddleware.js",
+    "src/server/routes/post.js",
+    "src/server/config.js"
+  ],
+  "exclude": ["node_modules"]
+}

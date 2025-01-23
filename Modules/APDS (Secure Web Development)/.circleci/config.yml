@@ -1,0 +1,104 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5
+  sonarcloud: sonarsource/sonarcloud@2.0.0
+
+executors:
+  sonar-executor:
+    docker:
+      - image: circleci/node:16
+    working_directory: ~/project/application
+
+jobs:
+  test:
+    executor: sonar-executor
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run Tests
+          command: npm test -- --watchAll=false
+
+  sonar_scan:
+    executor: sonar-executor
+    steps:
+      - checkout
+      - run:
+          name: Navigate to app folder
+          command: cd application
+      - run:
+          name: Install SonarQube Scanner via npm
+          command: npm install sonarqube-scanner --save-dev
+      - run:
+          name: Run SonarCloud Analysis
+          command: |
+            npx sonar-scanner \
+            -Dsonar.projectKey=ST10019838_Team-Quaternary_APDS7311_POE \
+            -Dsonar.organization=st10019838 \
+            -Dsonar.sources=application/src \
+            -Dsonar.host.url=https://sonarcloud.io/ \
+            -Dsonar.login=$SONAR_TOKEN \
+            -Dsonar.java.binaries=./build \
+            -X
+
+  test-node:
+    executor: node/default
+    working_directory: ~/project/application
+    environment:
+      JEST_JUNIT_OUTPUT_DIR: ./test-results/
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm install jest-junit
+      - run:
+          name: Run tests
+          command: npm run test --ci --runInBand --reporters=default --reporters=jest-junit
+      - store_test_results:
+          path: ./test-results/
+
+  build-node:
+    executor: node/default
+    working_directory: ~/project/application
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm run build
+      - run:
+          name: Create the ~/artifacts directory if it doesn't exist
+          command: mkdir -p ~/artifacts
+      - run:
+          name: Copy artifacts
+          command: cp -R build dist public .output .next .docusaurus ~/artifacts 2>/dev/null || true
+      - store_artifacts:
+          path: ~/artifacts
+          destination: node-build
+
+  build:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: npm install
+      - sonarcloud/scan
+
+workflows:
+  build-and-test:  # Unique workflow
+    jobs:
+      - test-node
+      - build-node:
+          requires:
+            - test-node
+      - sonar_scan:
+          requires:
+            - build-node
