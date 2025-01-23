@@ -1,0 +1,81 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PROGPOEPART1ST10091991"
+             x:Class="PROGPOEPART1ST10091991.ServiceRequestStatusPage"
+             Title="Service Request Status"
+             BackgroundColor="#121212"
+             Background="{DynamicResource GlobalBackground}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:StatusToColorConverter x:Key="StatusToColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+            <Label Text="Service Request Status"
+                   FontSize="24"
+                   TextColor="#E0E0E0"
+                   HorizontalOptions="Center" />
+
+            <!-- Create Service Request Button -->
+            <Button Text="Create Service Request" 
+                    BackgroundColor="#3F8EFD" 
+                    TextColor="White" 
+                    Clicked="OnCreateServiceRequestClicked" />
+
+            <!-- Search Panel -->
+            <StackLayout Orientation="Vertical" Padding="0,10,0,20">
+                <Picker x:Name="FilterPicker" 
+                        ItemsSource="{Binding FilterOptions}" 
+                        SelectedItem="{Binding SelectedFilter}" 
+                        SelectedIndexChanged="OnFilterSelected" />
+
+                <!-- Advanced Search bar -->
+                <SearchBar x:Name="SearchBar"
+                           Placeholder="Enter search term..."
+                           IsVisible="False"
+                           TextChanged="OnSearchTextChanged" />
+            </StackLayout>
+
+            <!-- Service Request List -->
+            <CollectionView x:Name="ServiceRequestsCollectionView" 
+                            ItemsSource="{Binding FilteredServiceRequests}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" Margin="10" BackgroundColor="#1e1e1e" BorderColor="#3F8EFD" CornerRadius="10">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+                                <!-- Description -->
+                                <Label Grid.Row="0" Text="{Binding ReportDetails.Description}" 
+                                       TextColor="#E0E0E0" FontSize="18" />
+
+                                <!-- Date -->
+                                <Label Grid.Row="1" Text="{Binding ReportDetails.EventDate, StringFormat='{0:yyyy-MM-dd}'}" 
+                                       TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" 
+                                       FontSize="14" />
+
+                                <!-- Status Display -->
+                                <Label Grid.Row="2" Text="{Binding StatusDisplay}" 
+                                       TextColor="{Binding Status, Converter={StaticResource StatusToColorConverter}}" 
+                                       FontSize="14" />
+
+                                <!-- Location -->
+                                <StackLayout Grid.Row="3" Orientation="Horizontal" Spacing="10">
+                                    <Label Text="Location: " TextColor="#E0E0E0" FontSize="14" />
+                                    <Label Text="{Binding ReportDetails.Location}" TextColor="#3F8EFD" FontSize="14" />
+                                </StackLayout>
+
+                                <!-- Category -->
+                                <StackLayout Grid.Row="4" Orientation="Horizontal" Spacing="10">
+                                    <Label Text="Category: " TextColor="#E0E0E0" FontSize="14" />
+                                    <Label Text="{Binding ReportDetails.Category}" TextColor="#3F8EFD" FontSize="14" />
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

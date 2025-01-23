@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PROG7312ST10091991POEPART2.LocalEventsPage"
+             Title="Local Events and Announcements"
+             Background="{DynamicResource GlobalBackground}"
+    Padding="20">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="20">
+            <!-- Header -->
+            <Label Text="Upcoming Events" 
+                   FontSize="24" 
+                   FontAttributes="Bold" 
+                   TextColor="{DynamicResource LabelTextColor}" 
+                   HorizontalOptions="Center" />
+
+            <!-- Search Input -->
+            <SearchBar Placeholder="Search events by category or date..."
+                        TextChanged="OnSearchTextChanged" 
+                        TextColor="{DynamicResource LabelTextColor}"
+                        BackgroundColor="#333333" 
+                        PlaceholderColor="#AAAAAA"/>
+
+            <!-- Recommended Events Section -->
+            <Label Text="Recommended Events" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="{DynamicResource LabelTextColor}" 
+                   IsVisible="True" />
+
+            <CollectionView x:Name="RecommendedEventsCollection" 
+                            ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="{Binding TitleColor}" 
+                               BackgroundColor="{DynamicResource FrameBackgroundColor}" 
+                               CornerRadius="10" 
+                               Padding="10" 
+                               Margin="5">
+                            <StackLayout>
+                                <Label Text="{Binding Title}" 
+                                       FontSize="18" 
+                                       TextColor="{DynamicResource LabelTextColor}" 
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Date}" 
+                                       FontSize="14" 
+                                       TextColor="#AAAAAA" />
+                                <Label Text="{Binding Category}" 
+                                       FontSize="14" 
+                                       TextColor="#AAAAAA" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Upcoming Events Section -->
+            <Label Text="Upcoming Events" 
+                   FontSize="20" 
+                   FontAttributes="Bold" 
+                   TextColor="{DynamicResource LabelTextColor}" 
+                   IsVisible="True" />
+
+            <CollectionView x:Name="UpcomingEventsCollection" 
+                            ItemsLayout="VerticalGrid, 2">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="{Binding TitleColor}" 
+                               BackgroundColor="{DynamicResource FrameBackgroundColor}" 
+                               CornerRadius="10" 
+                               Padding="10" 
+                               Margin="5">
+                            <StackLayout>
+                                <Label Text="{Binding Title}" 
+                                       FontSize="18" 
+                                       TextColor="{DynamicResource LabelTextColor}" 
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding Date}" 
+                                       FontSize="14" 
+                                       TextColor="#AAAAAA" />
+                                <Label Text="{Binding Category}" 
+                                       FontSize="14" 
+                                       TextColor="#AAAAAA" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- No Events Message -->
+            <Label x:Name="NoUpcomingEventsLabel" 
+                   Text="No upcoming events" 
+                   FontSize="16" 
+                   TextColor="LightGray" 
+                   IsVisible="False" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

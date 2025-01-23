@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PROG7312ST10091991.ReportIssuesPage"
+             Title="Report Issues Page"
+             BackgroundColor="#121212"
+             Padding="20"
+             Background="{DynamicResource GlobalBackground}">
+
+    <ScrollView>
+        <Grid>
+            <VerticalStackLayout Spacing="20" Margin="0,50,0,0">
+                <Label Text="Report an Issue"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"
+                       TextColor="#E0E0E0" />
+
+                <Label x:Name="locationLabel"
+                       Text="Select Location"
+                       FontSize="18"
+                       TextColor="#E0E0E0" />
+
+                <Picker x:Name="locationPicker"
+                        SelectedIndexChanged="OnFieldChanged"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#1E1E1E"
+                        TextColor="White"
+                        FontSize="18">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Gauteng</x:String>
+                            <x:String>Western Cape</x:String>
+                            <x:String>KwaZulu-Natal</x:String>
+                            <x:String>Mpumalanga</x:String>
+                            <x:String>Limpopo</x:String>
+                            <x:String>Eastern Cape</x:String>
+                            <x:String>Free State</x:String>
+                            <x:String>Northern Cape</x:String>
+                            <x:String>North West</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label x:Name="categoryLabel"
+                       Text="Select Category"
+                       FontSize="18"
+                       TextColor="#E0E0E0" />
+
+                <Picker x:Name="categoryPicker" 
+                        SelectedIndexChanged="OnFieldChanged" 
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#1E1E1E"
+                        TextColor="White"
+                        FontSize="18">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sanitation</x:String>
+                            <x:String>Roads</x:String>
+                            <x:String>Utilities</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+
+                <Label x:Name="descriptionLabel"
+                       Text="Describe the issue"
+                       FontSize="18"
+                       TextColor="#E0E0E0" />
+
+                <Editor x:Name="descriptionEditor"
+                        TextChanged="OnFieldChanged"
+                        Placeholder="Enter description"
+                        BackgroundColor="#1E1E1E"
+                        FontSize="18"
+                        TextColor="White"
+                        PlaceholderColor="Gray"
+                        HeightRequest="120"
+                        AutoSize="TextChanges" />
+
+                <Frame x:Name="attachImageFrame"
+                       BackgroundColor="#1E1E1E"
+                       BorderColor="Red"
+                       CornerRadius="10"
+                       Padding="10">
+                    <Button x:Name="attachImageButton"
+                            Text="Attach File"
+                            TextColor="#E0E0E0"
+                            BackgroundColor="Transparent"
+                            Clicked="OnAttachImageClicked" />
+                </Frame>
+
+                <Label x:Name="progressPercentageLabel"
+                       Text="0%"
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       TextColor="#E0E0E0" />
+
+                <ProgressBar x:Name="progressBar"
+                             Progress="0"
+                             BackgroundColor="#333333"
+                             ProgressColor="Red"
+                             HeightRequest="20" />
+
+                <Button x:Name="submitButton"
+                        Text="Submit"
+                        Clicked="OnSubmitClicked"
+                        BackgroundColor="Red"
+                        TextColor="#FFFFFF"
+                        IsEnabled="False"
+                        CornerRadius="10" />
+
+                <Button x:Name="backButton"
+                        Text="Back to Main Menu"
+                        Clicked="OnBackToMainMenuClicked"
+                        BackgroundColor="#333333"
+                        TextColor="#FFFFFF"
+                        CornerRadius="10" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

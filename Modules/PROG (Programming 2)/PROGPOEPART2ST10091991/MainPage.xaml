@@ -1,0 +1,136 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PROG7312ST10091991POEPART2"
+             x:Class="PROG7312ST10091991POEPART2.MainPage"
+             Padding="20">
+
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#121212" Offset="0.0" />
+            <GradientStop Color="#2C2C2C" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="10">
+
+            <!-- Title Frame -->
+            <Frame CornerRadius="10"
+                   BackgroundColor="#1E1E1E"
+                   Opacity="1"
+                   Margin="2,2,0,0"
+                   Padding="0"
+                   HasShadow="False">
+                <Label Text="Municipal Services"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20" 
+                       TextColor="#E0E0E0" />
+            </Frame>
+
+            <!-- Municipality Emblem Image -->
+            <Image Source="municipality_logo.png"
+                   HorizontalOptions="Center"
+                   WidthRequest="150"
+                   HeightRequest="150"
+                   Aspect="AspectFit" />
+
+            <!-- Optional Info Section to Fill Space -->
+            <Label Text="Welcome to the Municipal Services portal. Please choose one of the options below."
+                   FontSize="18"
+                   TextColor="#E0E0E0"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20"/>
+
+            <!-- Report Issues Button -->
+            <Button x:Name="ReportIssuesButton"
+                    Text="Report Issues" 
+                    Clicked="OnReportIssuesClicked"
+                    CornerRadius="10" 
+                    HeightRequest="50"
+                    BackgroundColor="#1F1F1F"
+                    TextColor="#E0E0E0" 
+                    BorderColor="Green"
+                    Scale="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#1F1F1F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#2A2A2A" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            <!-- Local Events Button -->
+            <Button x:Name="LocalEventsButton"
+                    Text="Local Events and Announcements" 
+                    Clicked="OnLocalEventsClicked"
+                    CornerRadius="10" 
+                    HeightRequest="50"
+                    BackgroundColor="#1F1F1F"
+                    TextColor="#E0E0E0"
+                    BorderColor="Green"
+                    Scale="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#1F1F1F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#2A2A2A" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            <!-- Service Request Status Button -->
+            <Button x:Name="ServiceRequestStatusButton"
+                    Text="Service Request Status" 
+                    IsEnabled="True"
+                    CornerRadius="10" 
+                    HeightRequest="50" 
+                    BackgroundColor="#1F1F1F" 
+                    TextColor="#E0E0E0" 
+                    BorderColor="Green"
+                    Clicked="OnServiceRequestStatusClicked"
+                    Scale="1">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#1F1F1F" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#2A2A2A" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            <!-- Additional Spacer or Content if Needed -->
+            <BoxView HeightRequest="50" BackgroundColor="Transparent" />
+
+            <!-- Copyright Section at the Bottom -->
+            <Label Text="© 2024 South Africa. All rights reserved."
+                   FontSize="14"
+                   TextColor="#E0E0E0"
+                   HorizontalOptions="Start"
+                   VerticalOptions="EndAndExpand" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

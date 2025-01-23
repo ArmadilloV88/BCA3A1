@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PROG7312ST10091991POEPART2.ViewQueriesPage"
+             Background="{DynamicResource GlobalBackground}">
+
+    <ScrollView>
+        <StackLayout Padding="10">
+
+            <!-- Collection View for Listing Recommended and Upcoming Events -->
+            <CollectionView x:Name="QueriesCollectionViewControl" IsVisible="False">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10">
+                            <!-- Category -->
+                            <Label Text="Category:" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="{Binding Category}" FontSize="16" TextColor="LightGray" />
+
+                            <!-- Location -->
+                            <Label Text="Location:" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="{Binding Location}" FontSize="16" TextColor="LightGray" />
+
+                            <!-- Description -->
+                            <Label Text="Description:" FontSize="16" FontAttributes="Bold" TextColor="White" />
+                            <Label Text="{Binding Description}" FontSize="16" TextColor="LightGray" />
+
+                            <!-- File Section -->
+                            <Label Text="File:" FontSize="16" FontAttributes="Bold" TextColor="White" />
+
+                            <!-- Display Image (if applicable) -->
+                            <Frame IsVisible="{Binding IsImage}" BorderColor="Gray" Padding="0" Margin="0,10" HasShadow="True" BackgroundColor="#1E1E1E">
+                                <Image Source="{Binding FilePath}" Aspect="AspectFit" />
+                            </Frame>
+
+                            <!-- Display PDF in WebView (automatically previewed) -->
+                            <WebView x:Name="PdfWebView" 
+                                     IsVisible="{Binding IsPdfWebViewVisible}" 
+                                     Source="{Binding PdfWebViewSource}" 
+                                     HeightRequest="300" />
+
+                            <!-- Display PDF file link (clickable if not previewed) -->
+                            <Label Text="{Binding FilePath}" 
+                                   IsVisible="{Binding IsPdf}" 
+                                   TextColor="LightBlue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type DataTemplate}}, Path=BindingContext.OpenPdfCommand}" 
+                                                          CommandParameter="{Binding FilePath}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <!-- Display DOCX file link with a message -->
+                            <Label Text="{Binding FilePath}" 
+                                   IsVisible="{Binding IsDoc}" 
+                                   TextColor="LightBlue">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OpenDocxFile" CommandParameter="{Binding FilePath}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <!-- BoxView as a separator -->
+                            <BoxView HeightRequest="1" BackgroundColor="Gray" Margin="0,10" />
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- No Queries Label -->
+            <Label x:Name="NoQueriesLabelControl" 
+                   Text="No queries available." 
+                   IsVisible="False" 
+                   FontSize="20" 
+                   TextColor="Red" 
+                   HorizontalOptions="Center" />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

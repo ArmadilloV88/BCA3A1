@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\obj\\Debug\\net8.0-ios\\iossimulator-x64\\scopedcss\\bundle\\PROGPOEPART2ST10091991.styles.css",
+      "PackagePath": "staticwebassets\\PROGPOEPART2ST10091991.styles.css"
+    },
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "C:\\Users\\ccver\\OneDrive\\Documentos\\OneDrive\\Desktop\\PROG\\Part 3\\new\\PROGPOEPART2ST10091991\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.PROGPOEPART2ST10091991.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.build.PROGPOEPART2ST10091991.props",
+      "PackagePath": "build\\PROGPOEPART2ST10091991.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.buildMultiTargeting.PROGPOEPART2ST10091991.props",
+      "PackagePath": "buildMultiTargeting\\PROGPOEPART2ST10091991.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0-ios\\iossimulator-x64\\staticwebassets\\msbuild.buildTransitive.PROGPOEPART2ST10091991.props",
+      "PackagePath": "buildTransitive\\PROGPOEPART2ST10091991.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:PROG7312ST10091991POEPART2"
+       x:Class="PROG7312ST10091991POEPART2.AppShell"
+       BackgroundColor="#121212"
+       Shell.BackgroundColor="#121212"
+       Shell.ForegroundColor="WhiteSmoke"
+       Background="{DynamicResource GlobalBackground}">
+
+    <Shell.FlyoutHeader>
+        <StackLayout Padding="10" BackgroundColor="#1E1E1E">
+            <Label Text="Menu"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="White" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutContent>
+        <ContentPage BackgroundColor="#121212">
+            <StackLayout Padding="10">
+                <Label Text="Municipal Services"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,0,0,20"
+                       TextColor="White"/>
+
+                <Frame BorderColor="Green" BackgroundColor="#1E1E1E" Margin="0,5" CornerRadius="5">
+                    <Button Text="Report Issues" 
+                            Clicked="OnReportIssuesClicked" 
+                            BackgroundColor="#1E1E1E" 
+                            TextColor="White"/>
+                </Frame>
+
+                <Frame BorderColor="Green" BackgroundColor="#1E1E1E" Margin="0,5" CornerRadius="5">
+                    <Button Text="Local Events and Announcements" 
+                            IsEnabled="False" 
+                            BackgroundColor="#1E1E1E" 
+                            TextColor="Gray"/>
+                </Frame>
+
+                <Frame BorderColor="Green" BackgroundColor="#1E1E1E" Margin="0,5" CornerRadius="5">
+                    <Button Text="Service Request Status" 
+                            IsEnabled="False" 
+                            BackgroundColor="#1E1E1E" 
+                            TextColor="Gray"/>
+                </Frame>
+
+                <Frame BorderColor="Blue" BackgroundColor="#1E1E1E" Margin="0,5" CornerRadius="5">
+                    <Button Text="View Queries" 
+                            Clicked="OnViewQueriesClicked" 
+                            BackgroundColor="#1E1E1E" 
+                            TextColor="White"/>
+                </Frame>
+            </StackLayout>
+        </ContentPage>
+    </Shell.FlyoutContent>
+
+    <TabBar>
+        <ShellContent Title="Home" Route="home">
+            <local:MainPage />
+        </ShellContent>
+
+        <ShellContent Title="View Queries" Route="view-queries">
+            <local:ViewQueriesPage />
+        </ShellContent>
+    </TabBar>
+</Shell>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PROG7312ST10091991POEPART2.Resources"
+             x:Class="PROG7312ST10091991POEPART2.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- Dark Mode Colors -->
+            <Color x:Key="PageBackgroundColor">#121212</Color>
+            <!-- Dark background -->
+            <Color x:Key="LabelTextColor">#FFFFFF</Color>
+            <!-- White Text -->
+            <Color x:Key="EventTitleColor">#FFEB3B</Color>
+            <!-- Yellow for Event Title -->
+
+            <!-- Global Gradient Background -->
+            <LinearGradientBrush x:Key="GlobalBackground" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#121212" Offset="0.0" />
+                <!-- Dark Shade -->
+                <GradientStop Color="#2C2C2C" Offset="1.0" />
+                <!-- Lighter Shade -->
+            </LinearGradientBrush>
+
+            <!-- Button Styles (Optional for consistency) -->
+            <Style x:Key="MainButtonStyle" TargetType="Button">
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="BackgroundColor" Value="#1F1F1F" />
+                <Setter Property="TextColor" Value="#E0E0E0" />
+                <Setter Property="BorderColor" Value="Green" />
+                <Setter Property="FontSize" Value="18" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
